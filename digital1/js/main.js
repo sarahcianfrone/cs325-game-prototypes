@@ -24,7 +24,7 @@ function Massive(mass, xPos, yPos, xVel, yVel){
 var activeObjects = Array(3);
 
 function preload(){
-	game.load.image('moon', 'assets/moon.png');
+	game.load.image('moon', 'assets/phaser.png');
 	game.load.image('earth', 'assets/earth.png');
 	game.load.image('rocket', 'assets/rocket.png');
 	game.load.image('rocketFire', 'assets/rocket_fire.png');
