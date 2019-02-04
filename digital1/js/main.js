@@ -1,17 +1,17 @@
+"use strict";
 
 window.onload = function(){
-	var game = new Phaser.game(800, 800, Phaser.AUTO, 'game', {preload:preload, create:create, update:update });
+	var game = new Phaser.Game(800, 800, Phaser.AUTO, 'game', {preload:preload, create:create, update:update });
 }
 
-const var ROCKET_MASS = 2;
-const var MOON_MASS = 1;
-const var EARTH_MASS = 9;
+var ROCKET_MASS = 2;
+var MOON_MASS = 1;
+var EARTH_MASS = 9;
+var ROCKET = 0;
+var MOON = 1;
+var EARTH = 2;
 
-const var ROCKET = 0;
-const var MOON = 1;
-const var EARTH = 2;
-
-const var GRAV = 10;
+var GRAV = 10;
 
 function Massive(mass, xPos, yPos, xVel, yVel){
 	this.mass=mass;
