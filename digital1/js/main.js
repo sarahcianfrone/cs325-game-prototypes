@@ -32,6 +32,7 @@ window.onload = function(){
 	var rocket;
 	var moon;
 	var earth;
+	var background;
 
 	function create(){
 
@@ -46,16 +47,21 @@ window.onload = function(){
 			moon.anchor.setTo(0.5, 0.5);
 		
 			activeObjects[EARTH] = new Massive(EARTH_MASS, game.world.centerX, game.world.centerY);
-			earth = game.add.sprite(game.world.centerX, game.world.centerY);
+			earth = game.add.sprite(game.world.centerX, game.world.centerY, 'earth');
+			earth.scale.setTo(4, 4);
 			earth.anchor.setTo(0.5, 0.5);
+			
+			background = game.add.sprite(0, 0, 'background');
+			
 	}
 	var runs = 0;
 	function update(){
+
 		runs++;	
 		rocket=game.add.sprite(100, 100+runs, 'rocket');
 		moon=game.add.sprite(200, 200+runs/2, 'moon');
-		earth=game.add.sprite(game.world.centerX+runs, game.world.centerY+runs);	
-		
+		earth=game.add.sprite(game.world.centerX+runs, game.world.centerY+runs, 'earth');	
+		background=game.add.sprite(0, 0);
 		if (runs > 700) runs = 0;
 	}
 }
