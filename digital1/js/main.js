@@ -13,7 +13,7 @@ window.onload = function(){
 
 	var GRAV = 9.8;
 	
-	var SCALE = 0.01;
+	var SCALE = 10;
 	function Massive(mass, xPos, yPos, xVel, yVel){
 		this.mass=mass;
 		this.xPos=xPos;
