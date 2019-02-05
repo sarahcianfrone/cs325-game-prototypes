@@ -26,7 +26,9 @@ window.onload = function() {
 	var paddle2;
 	var pongBall;
 	function create() {
-		
+	
+		graphics = game.add.graphics(0,0);
+
 		paddle1 = {xPos: PONG_SPACE, yPos: PONG_SPACE, xVel: 0, yVel: 0, accel: 10, maxVel: 20};
 		paddle2 = {xPos: WIDTH-(PONG_SPACE+PONG_WIDTH), yPos: PONG_SPACE, xVel: 0, yVel: 0, accel: 10, maxVel: 20};
 
@@ -38,10 +40,10 @@ window.onload = function() {
 	}
 
 	function drawPong(){
-		beginFill(0xFFFFFF, 1);
-		drawRect(paddle1.xPos, paddle1.yPos, PONG_WIDTH, PONG_HEIGHT);
-		drawRect(paddle2.xPos, paddle2.yPos, PONG_WIDTH, PONG_HEIGHT);
-		drawRect(pongBall.xPos, pongBall.yPos, PONG_WIDTH, PONG_WIDTH);
+		graphics.beginFill(0xFFFFFF, 1);
+		graphics.drawRect(paddle1.xPos, paddle1.yPos, PONG_WIDTH, PONG_HEIGHT);
+		graphics.drawRect(paddle2.xPos, paddle2.yPos, PONG_WIDTH, PONG_HEIGHT);
+		graphics.drawRect(pongBall.xPos, pongBall.yPos, PONG_WIDTH, PONG_WIDTH);
 	}
 };
 
