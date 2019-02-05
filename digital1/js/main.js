@@ -43,7 +43,7 @@ window.onload = function(){
 		rocket = game.add.sprite(100, 100, 'rocket');
 			
 		
-		activeObjects[MOON] = new Massive(MOON_MASS, 400, 200, moonVelocity, 0);
+		activeObjects[MOON] = new Massive(MOON_MASS, 600, 200, moonVelocity, 0);
 		moon = game.add.sprite(600, 200, 'moon');
 		moon.anchor.setTo(0.5, 0.5);
 		
@@ -70,41 +70,22 @@ window.onload = function(){
 
 	function doGravity(){
 		/*Uses the other doGravity method to handle gravity of everything on each other*/
-		doGravityHelper(EARTH, MOON, EARTH_MASS, MOON_MASS);
+		doGravityHelper(MOON, EARTH, MOON_MASS, EARTH_MASS);
 		//doGravityHelper(ROCKET, MOON, ROCKET_MASS, MOON_MASS);
 		//doGravityHelper(ROCKET, EARTH, ROCKET_MASS, EARTH_MASS);
 	}
 
 	function doGravityHelper(ind1, ind2, ind1M, ind2M){
-		var yDist = activeObjects[ind1].yPos - activeObjects[ind2].yPos;
 		var xDist = activeObjects[ind1].xPos - activeObjects[ind2].xPos;
-
-		var gravY;
-		var gravX;
-		if(!(yDist < 0 || yDist > 0)) gravY = 0;
-		else gravY = GRAV*ind1M*ind2M/yDist*1.0;
-		if(!(xDist < 0 || xDist > 0)) gravX=0
-		else gravX = GRAV*ind1M*ind2M/xDist*1.0;
-
-		console.log("xgrav = "+gravX);
-
-		if(yDist > 0){
-			//Ind1 y pos > ind2 y pos --> ind1 gets smaller and ind2 gets bigger
-			activeObjects[ind1].yVel += gravY*-1.0/ind1M;
-			activeObjects[ind2].yVel += gravY/ind2M;
-		} else {
-			activeObjects[ind1].yVel += gravY/ind1M;
-			activeObjects[ind2].yVel += gravY*-1.0/ind2M;
-		}
-		if(xDist > 0){
-			//Ind1 x pos > ind2 x pos --> ind1 gets smaller and ind2 gets bigger
-			activeObjects[ind1].xVel += gravX*-1.0/ind1M;
-			activeObjects[ind2].xVel += gravY/ind2M;
-		} else {
-			activeObjects[ind1].xVel += gravX/ind1M;
-			activeObjects[ind2].xVel += gravX*-1.0/ind2M;
-		}
+		var yDist = activeObjects[ind1].yPos - activeObjects[ind2].yPos;
+		var dist = Math.sqrt(xDist*xDist + yDist*yDist);
 		
+		var fgrav = (GRAV*ind1M*ind2M)/(dist*dist)
+		var xAccel = (fgrav*xDist)/(dist*ind1M);
+		var yAccel = (fgrav*yDist)/(dist*ind1M);
+
+		activeObjects[ind1].xVel += xAccel*SCALE;
+		activeObjects[ind1].yVel += yAccel*SCALE;
 	}
 
 	function moveObjects(){
