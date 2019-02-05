@@ -48,8 +48,8 @@ window.onload = function(){
 			moon = game.add.sprite(600, 200, 'moon');
 			moon.anchor.setTo(0.5, 0.5);
 		
-			activeObjects[EARTH] = new Massive(EARTH_MASS, game.world.centerX, game.world.centerY);
-			earth = game.add.sprite(game.world.centerX, game.world.centerY, 'earth');
+			activeObjects[EARTH] = new Massive(EARTH_MASS, 400, 400, 0, 0);
+			earth = game.add.sprite(400, 400, 'earth');
 			earth.scale.setTo(4, 4);
 			earth.anchor.setTo(0.5, 0.5);
 			
@@ -83,9 +83,9 @@ window.onload = function(){
 
 		var gravY;
 		var gravX;
-		if(yDist == 0) gravY = 0;
+		if(!(yDist < 0 || yDist > 0)) gravY = 0;
 		else gravY = GRAV*ind1M*ind2M/yDist*1.0;
-		if(xDist == 0) gravX=0
+		if(!(xDist < 0 || xDist > 0)) gravX=0
 		else gravX = GRAV*ind1M*ind2M/xDist*1.0;
 
 		activeObjects[ind1].yVel += gravY*-1.0;
