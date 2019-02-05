@@ -24,29 +24,38 @@ window.onload = function(){
 	var activeObjects = Array(3);
 	
 	function preload(){
-		game.load.image('moon', 'assets/phaser.png');
+		game.load.image('moon', 'assets/moon.png');
 		game.load.image('earth', 'assets/earth.png');
 		game.load.image('rocket', 'assets/rocket.png');
 		game.load.image('rocketFire', 'assets/rocket_fire.png');
 	}
-	
+	var rocket;
+	var moon;
+	var earth;
+
 	function create(){
 
 			var moonVelocity = GRAV*EARTH_MASS/200;
 	
 			activeObjects[ROCKET] = new Massive(ROCKET_MASS, 100, 100, 0, 0);
-			var rocket = game.add.sprite(100, 100, 'rocket');
+			rocket = game.add.sprite(100, 100, 'rocket');
 			
 		
 			activeObjects[MOON] = new Massive(MOON_MASS, 600, 200, moonVelocity, 0);
-			var moon = game.add.sprite(600, 200, 'moon');
+			moon = game.add.sprite(600, 200, 'moon');
 			moon.anchor.setTo(0.5, 0.5);
 		
 			activeObjects[EARTH] = new Massive(EARTH_MASS, game.world.centerX, game.world.centerY);
-			var earth = game.add.sprite(game.world.centerX, game.world.centerY);
+			earth = game.add.sprite(game.world.centerX, game.world.centerY);
 			earth.anchor.setTo(0.5, 0.5);
 	}
+	var runs = 0;
 	function update(){
-
+		runs++;	
+		rocket=game.add.sprite(100, 100+runs, 'rocket');
+		moon=game.add.sprite(200, 200+runs/2, 'moon');
+		earth=game.add.sprite(game.world.centerX+runs, game.world.centerY+runs);	
+		
+		if (runs > 700) runs = 0;
 	}
 }
