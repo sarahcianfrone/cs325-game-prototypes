@@ -71,7 +71,7 @@ window.onload = function(){
 		doGravity(ROCKET, EARTH, ROCKET_MASS, EARTH_MASS);
 	}
 
-	function doGravity(var ind1, var ind2, var ind1M, var ind2M){
+	function doGravity(ind1, ind2, ind1M, ind2M){
 		var yDist = activeObjects[ind1].yPos - activeObjects[ind2].yPos;
 		var xDist = activeObjects[ind1].xPos - activeObjects[ind2].xPos;
 
