@@ -44,7 +44,7 @@ window.onload = function(){
 			rocket = game.add.sprite(100, 100, 'rocket');
 			
 		
-			activeObjects[MOON] = new Massive(MOON_MASS, 600, 200, moonVelocity, 0);
+			activeObjects[MOON] = new Massive(MOON_MASS, 400, 200, moonVelocity, 0);
 			moon = game.add.sprite(600, 200, 'moon');
 			moon.anchor.setTo(0.5, 0.5);
 		
@@ -61,8 +61,14 @@ window.onload = function(){
 		doGravity();
 		moveObjects();
 		drawObjects();
+		logPositions();
 	}
 
+	function logPositions(){
+		console.log("Earth: "+activeObjects[EARTH].xPos+", "+activeObjects[EARTH].yPos);
+		console.log("Moon: "+activeObjects[MOON].xPos+", "+activeObjects[MOON].yPos);
+		console.log("Rocket: "+activeObjects[ROCKET].xPos+", "+activeObjects[ROCKET].yPos);
+	}
 
 	function doGravity(){
 		/*Uses the other doGravity method to handle gravity of everything on each other*/
