@@ -1,5 +1,5 @@
 "use strict";
-
+//MOST RECENT VERSION : 2/5 10:52AM
 window.onload = function(){
 	var game = new Phaser.Game(800, 800, Phaser.AUTO, 'game', {preload:preload, create:create, update:update });
 
@@ -45,8 +45,7 @@ window.onload = function(){
 			activeObjects[EARTH] = new Massive(EARTH_MASS, game.world.centerX, game.world.centerY);
 			earth = game.add.sprite(game.world.centerX, game.world.centerY);
 			earth.anchor.setTo(0.5, 0.5);
-		}
-
+	}
 	function update(){
 
 	}
