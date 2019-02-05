@@ -1,5 +1,5 @@
 "use strict";
-//MOST RECENT VERSION : 2/5 10:52AM
+//MOST RECENT VERSION : 2/5 11:02AM
 window.onload = function(){
 	var game = new Phaser.Game(800, 800, Phaser.AUTO, 'game', {preload:preload, create:create, update:update });
 
@@ -35,15 +35,15 @@ window.onload = function(){
 			var moonVelocity = GRAV*EARTH_MASS/200;
 	
 			activeObjects[ROCKET] = new Massive(ROCKET_MASS, 100, 100, 0, 0);
-			rocket = game.add.sprite(100, 100, 'rocket');
+			var rocket = game.add.sprite(100, 100, 'rocket');
 			
 		
 			activeObjects[MOON] = new Massive(MOON_MASS, 600, 200, moonVelocity, 0);
-			moon = game.add.sprite(600, 200, 'moon');
+			var moon = game.add.sprite(600, 200, 'moon');
 			moon.anchor.setTo(0.5, 0.5);
 		
 			activeObjects[EARTH] = new Massive(EARTH_MASS, game.world.centerX, game.world.centerY);
-			earth = game.add.sprite(game.world.centerX, game.world.centerY);
+			var earth = game.add.sprite(game.world.centerX, game.world.centerY);
 			earth.anchor.setTo(0.5, 0.5);
 	}
 	function update(){
