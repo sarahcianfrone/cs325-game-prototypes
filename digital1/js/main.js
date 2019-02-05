@@ -37,7 +37,7 @@ window.onload = function(){
 	var background;
 
 	function create(){
-		var moonVelocity = GRAV*EARTH_MASS/200;
+		var moonVelocity = Math.sqrt(EARTH_MASS*100);
 	
 		activeObjects[ROCKET] = new Massive(ROCKET_MASS, 100, 100, 0, 0);
 		rocket = game.add.sprite(100, 100, 'rocket');
@@ -84,8 +84,8 @@ window.onload = function(){
 		var xAccel = (fgrav*xDist)/(dist*ind1M);
 		var yAccel = (fgrav*yDist)/(dist*ind1M);
 
-		activeObjects[ind1].xVel += xAccel*SCALE;
-		activeObjects[ind1].yVel += yAccel*SCALE;
+		activeObjects[ind1].xVel -= xAccel*SCALE;
+		activeObjects[ind1].yVel -= yAccel*SCALE;
 	}
 
 	function moveObjects(){
