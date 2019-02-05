@@ -86,6 +86,8 @@ window.onload = function(){
 		if(!(xDist < 0 || xDist > 0)) gravX=0
 		else gravX = GRAV*ind1M*ind2M/xDist*1.0;
 
+		console.log("xgrav = "+gravX);
+
 		if(yDist > 0){
 			//Ind1 y pos > ind2 y pos --> ind1 gets smaller and ind2 gets bigger
 			activeObjects[ind1].yVel += gravY*-1.0/ind1M;
