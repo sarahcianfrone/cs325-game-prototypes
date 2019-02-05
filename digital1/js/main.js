@@ -8,8 +8,8 @@ window.onload = function(){
 	var MOON_MASS = 1;
 	var EARTH_MASS = 9;
 	var ROCKET = 0;
-	var MOON = 1;
-	var EARTH = 20;
+	var MOON = 1.2;
+	var EARTH = 1000;
 
 	var GRAV = 9.8;
 	
@@ -43,8 +43,8 @@ window.onload = function(){
 		rocket = game.add.sprite(100, 100, 'rocket');
 			
 		
-		activeObjects[MOON] = new Massive(MOON_MASS, 600, 200, moonVelocity, 0);
-		moon = game.add.sprite(600, 200, 'moon');
+		activeObjects[MOON] = new Massive(MOON_MASS, 500, 300, moonVelocity, 0);
+		moon = game.add.sprite(activeObjects[MOON].xPos, activeObjects[MOON].yPos, 'moon');
 		moon.anchor.setTo(0.5, 0.5);
 		
 		activeObjects[EARTH] = new Massive(EARTH_MASS, 400, 400, 0, 0);			
