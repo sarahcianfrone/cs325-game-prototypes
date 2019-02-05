@@ -13,7 +13,7 @@ window.onload = function(){
 
 	var GRAV = 9.8;
 	
-	var SCALE = 0.1;
+	var SCALE = 0.01;
 	function Massive(mass, xPos, yPos, xVel, yVel){
 		this.mass=mass;
 		this.xPos=xPos;
@@ -91,14 +91,19 @@ window.onload = function(){
 		if(yDist > 0){
 			//Ind1 y pos > ind2 y pos --> ind1 gets smaller and ind2 gets bigger
 			activeObjects[ind1].yVel += gravY*-1.0;
-			activeObjects[ind2].yVel+= gravY;
+			activeObjects[ind2].yVel += gravY;
 		} else {
 			activeObjects[ind1].yVel += gravY;
-			activeObjects[ind2].yVel+= gravY*-1.0;
+			activeObjects[ind2].yVel += gravY*-1.0;
 		}
-		
-		activeObjects[ind1].xVel+= gravX*-1.0
-		activeObjects[ind2].xVal+= gravX;
+		if(xDist > 0){
+			//Ind1 x pos > ind2 x pos --> ind1 gets smaller and ind2 gets bigger
+			activeObjects[ind1].xVel += gravX*-1.0;
+			activeObjects[ind2].xVel += gravY;
+		} else {
+			activeObjects[ind1].xVel += gravX;
+			activeObjects[ind2].xVel += gravX*-1.0;
+		}
 		
 	}
 
