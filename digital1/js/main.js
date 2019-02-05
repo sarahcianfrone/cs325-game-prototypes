@@ -11,8 +11,9 @@ window.onload = function(){
 	var MOON = 1;
 	var EARTH = 2;
 
-	var GRAV = 10;
+	var GRAV = 9.8;
 	
+	var SCALE = 0.1;
 	function Massive(mass, xPos, yPos, xVel, yVel){
 		this.mass=mass;
 		this.xPos=xPos;
@@ -57,12 +58,45 @@ window.onload = function(){
 	}
 	var runs = 0;
 	function update(){
+		doGravity();
+		moveObjects();
+		drawObjects();
+	}
 
-		runs++;	
-		rocket=game.add.sprite(100, 100+runs, 'rocket');
-		moon=game.add.sprite(200, 200+runs/2, 'moon');
-		earth=game.add.sprite(game.world.centerX+runs, game.world.centerY+runs, 'earth');	
-		background=game.add.sprite(0, 0);
-		if (runs > 700) runs = 0;
+
+	function doGravity(){
+		/*Uses the other doGravity method to handle gravity of everything on each other*/
+		doGravity(EARTH, MOON, EARTH_MASS, MOON_MASS);
+		doGravity(ROCKET, MOON, ROCKET_MASS, MOON_MASS);
+		doGravity(ROCKET, EARTH, ROCKET_MASS, EARTH_MASS);
+	}
+
+	function doGravity(var ind1, var ind2, var ind1M, var ind2M){
+		var yDist = activeObjects[ind1].yPos - activeObjects[ind2].yPos;
+		var xDist = activeObjects[ind1].xPos - activeObjects[ind2].xPos;
+
+		var gravY = GRAV*ind1M*ind2M/yDist*1.0;
+		var gravX = GRAV*ind1M*ind2M/xDist*1.0;
+
+		activeObjects[ind1].yVel += gravY*-1.0;
+		activeObjects[ind2].yVel+= gravY;
+
+		activeObjects[ind1].xVel += gravX*-1.0
+		activeObjects[ind2].xVal+= gravX;
+	}
+
+	function moveObjects(){
+		activeObjects[MOON].xPos+=activeObjects[MOON].xVel*SCALE;	
+		activeObjects[MOON].yPos+=activeObjects[MOON].yVel*SCALE;
+		
+		activeObjects[EARTH].xPos+=activeObjects[EARTH].xVel*SCALE;
+		activeObjects[EARTH].yPos+=activeObjects[EARTH].yVel*SCALE;
+	}
+
+	function drawObjects(){
+		background = game.add.sprite(0, 0, 'background');
+		rocket = game.add.sprite(activeObjects[ROCKET].xPos, activeObjects[ROCKET].yPos, 'rocket');
+		moon = game.add.sprite(activeObjects[MOON].xPos, activeObjects[MOON].yPos, 'moon');
+		earth = game.add.sprite(activeObjects[EARTH].xPos, activeObjects[EARTH].yPos, 'earth');	
 	}
 }
