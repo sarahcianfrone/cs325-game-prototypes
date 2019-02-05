@@ -46,7 +46,7 @@ window.onload = function(){
 			earth = game.add.sprite(game.world.centerX, game.world.centerY);
 			earth.anchor.setTo(0.5, 0.5);
 		}
-	}
+
 	function update(){
 
 	}
