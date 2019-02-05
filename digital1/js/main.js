@@ -1,5 +1,5 @@
 "use strict";
-//MOST RECENT VERSION : 2/5 11:02AM
+//MOST RECENT VERSION : 2/5 12:42PM
 window.onload = function(){
 	var game = new Phaser.Game(800, 800, Phaser.AUTO, 'game', {preload:preload, create:create, update:update });
 
@@ -81,8 +81,12 @@ window.onload = function(){
 		var yDist = activeObjects[ind1].yPos - activeObjects[ind2].yPos;
 		var xDist = activeObjects[ind1].xPos - activeObjects[ind2].xPos;
 
-		var gravY = GRAV*ind1M*ind2M/yDist*1.0;
-		var gravX = GRAV*ind1M*ind2M/xDist*1.0;
+		var gravY;
+		var gravX;
+		if(yDist == 0) gravY = 0;
+		else gravY = GRAV*ind1M*ind2M/yDist*1.0;
+		if(xDist == 0) gravX=0
+		else gravX = GRAV*ind1M*ind2M/xDist*1.0;
 
 		activeObjects[ind1].yVel += gravY*-1.0;
 		activeObjects[ind2].yVel+= gravY;
