@@ -66,12 +66,12 @@ window.onload = function(){
 
 	function doGravity(){
 		/*Uses the other doGravity method to handle gravity of everything on each other*/
-		doGravity(EARTH, MOON, EARTH_MASS, MOON_MASS);
-		doGravity(ROCKET, MOON, ROCKET_MASS, MOON_MASS);
-		doGravity(ROCKET, EARTH, ROCKET_MASS, EARTH_MASS);
+		doGravityHelper(EARTH, MOON, EARTH_MASS, MOON_MASS);
+		doGravityHelper(ROCKET, MOON, ROCKET_MASS, MOON_MASS);
+		doGravityHelper(ROCKET, EARTH, ROCKET_MASS, EARTH_MASS);
 	}
 
-	function doGravity(ind1, ind2, ind1M, ind2M){
+	function doGravityHelper(ind1, ind2, ind1M, ind2M){
 		var yDist = activeObjects[ind1].yPos - activeObjects[ind2].yPos;
 		var xDist = activeObjects[ind1].xPos - activeObjects[ind2].xPos;
 
