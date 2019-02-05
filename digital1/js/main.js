@@ -88,19 +88,19 @@ window.onload = function(){
 
 		if(yDist > 0){
 			//Ind1 y pos > ind2 y pos --> ind1 gets smaller and ind2 gets bigger
-			activeObjects[ind1].yVel += gravY*-1.0;
-			activeObjects[ind2].yVel += gravY;
+			activeObjects[ind1].yVel += gravY*-1.0/ind1M;
+			activeObjects[ind2].yVel += gravY/ind2M;
 		} else {
-			activeObjects[ind1].yVel += gravY;
-			activeObjects[ind2].yVel += gravY*-1.0;
+			activeObjects[ind1].yVel += gravY/ind1M;
+			activeObjects[ind2].yVel += gravY*-1.0/ind2M;
 		}
 		if(xDist > 0){
 			//Ind1 x pos > ind2 x pos --> ind1 gets smaller and ind2 gets bigger
-			activeObjects[ind1].xVel += gravX*-1.0;
-			activeObjects[ind2].xVel += gravY;
+			activeObjects[ind1].xVel += gravX*-1.0/ind1M;
+			activeObjects[ind2].xVel += gravY/ind2M;
 		} else {
-			activeObjects[ind1].xVel += gravX;
-			activeObjects[ind2].xVel += gravX*-1.0;
+			activeObjects[ind1].xVel += gravX/ind1M;
+			activeObjects[ind2].xVel += gravX*-1.0/ind2M;
 		}
 		
 	}
