@@ -37,26 +37,24 @@ window.onload = function(){
 	var background;
 
 	function create(){
-
-			var moonVelocity = GRAV*EARTH_MASS/200;
+		var moonVelocity = GRAV*EARTH_MASS/200;
 	
-			activeObjects[ROCKET] = new Massive(ROCKET_MASS, 100, 100, 0, 0);
-			rocket = game.add.sprite(100, 100, 'rocket');
+		activeObjects[ROCKET] = new Massive(ROCKET_MASS, 100, 100, 0, 0);
+		rocket = game.add.sprite(100, 100, 'rocket');
 			
 		
-			activeObjects[MOON] = new Massive(MOON_MASS, 400, 200, moonVelocity, 0);
-			moon = game.add.sprite(600, 200, 'moon');
-			moon.anchor.setTo(0.5, 0.5);
+		activeObjects[MOON] = new Massive(MOON_MASS, 400, 200, moonVelocity, 0);
+		moon = game.add.sprite(600, 200, 'moon');
+		moon.anchor.setTo(0.5, 0.5);
 		
-			activeObjects[EARTH] = new Massive(EARTH_MASS, 400, 400, 0, 0);
-			earth = game.add.sprite(400, 400, 'earth');
-			earth.scale.setTo(4, 4);
-			earth.anchor.setTo(0.5, 0.5);
+		activeObjects[EARTH] = new Massive(EARTH_MASS, 400, 400, 0, 0);			
+		earth = game.add.sprite(400, 400, 'earth');
+		earth.scale.setTo(4, 4);
+		earth.anchor.setTo(0.5, 0.5);
 			
-			background = game.add.sprite(0, 0, 'background');
-			
+		background = game.add.sprite(0, 0, 'background');
 	}
-	var runs = 0;
+
 	function update(){
 		doGravity();
 		moveObjects();
@@ -73,8 +71,8 @@ window.onload = function(){
 	function doGravity(){
 		/*Uses the other doGravity method to handle gravity of everything on each other*/
 		doGravityHelper(EARTH, MOON, EARTH_MASS, MOON_MASS);
-		doGravityHelper(ROCKET, MOON, ROCKET_MASS, MOON_MASS);
-		doGravityHelper(ROCKET, EARTH, ROCKET_MASS, EARTH_MASS);
+		//doGravityHelper(ROCKET, MOON, ROCKET_MASS, MOON_MASS);
+		//doGravityHelper(ROCKET, EARTH, ROCKET_MASS, EARTH_MASS);
 	}
 
 	function doGravityHelper(ind1, ind2, ind1M, ind2M){
