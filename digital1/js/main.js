@@ -28,6 +28,7 @@ window.onload = function(){
 		game.load.image('earth', 'assets/earth.png');
 		game.load.image('rocket', 'assets/rocket.png');
 		game.load.image('rocketFire', 'assets/rocket_fire.png');
+		game.load.image('background', 'assets/background.png');
 	}
 	var rocket;
 	var moon;
