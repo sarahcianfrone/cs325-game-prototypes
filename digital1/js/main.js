@@ -9,7 +9,7 @@ window.onload = function(){
 	var EARTH_MASS = 9;
 	var ROCKET = 0;
 	var MOON = 1;
-	var EARTH = 2;
+	var EARTH = 20;
 
 	var GRAV = 9.8;
 	
@@ -88,11 +88,18 @@ window.onload = function(){
 		if(!(xDist < 0 || xDist > 0)) gravX=0
 		else gravX = GRAV*ind1M*ind2M/xDist*1.0;
 
-		activeObjects[ind1].yVel += gravY*-1.0;
-		activeObjects[ind2].yVel+= gravY;
-
-		activeObjects[ind1].xVel += gravX*-1.0
+		if(yDist > 0){
+			//Ind1 y pos > ind2 y pos --> ind1 gets smaller and ind2 gets bigger
+			activeObjects[ind1].yVel += gravY*-1.0;
+			activeObjects[ind2].yVel+= gravY;
+		} else {
+			activeObjects[ind1].yVel += gravY;
+			activeObjects[ind2].yVel+= gravY*-1.0;
+		}
+		
+		activeObjects[ind1].xVel+= gravX*-1.0
 		activeObjects[ind2].xVal+= gravX;
+		
 	}
 
 	function moveObjects(){
