@@ -53,7 +53,7 @@ window.onload = function() {
 		left=game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
 		right=game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
 	}
-	int x=0;
+	var x=0;
 	function update() {
 		if(x%3==0){
 			drawPong();
