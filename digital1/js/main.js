@@ -45,7 +45,7 @@ window.onload = function() {
 		paddle2 = {xPos: WIDTH-(PONG_SPACE+PONG_WIDTH), yPos: PONG_SPACE, xVel: 0, yVel: 0, accel: 10, maxVel: 20};
 		pongBall = {xPos: (WIDTH-PONG_WIDTH)/2, yPos: (HEIGHT-PONG_WIDTH)/2, xVel:10, yVel:10};
 
-		snake = {xPos:10, yPos:10, xVel:0, yVel:0, score:0, tailLength:3, tailX:[10], tailY:[10], speed:1}
+		snake = {xPos:10, yPos:10, xVel:0, yVel:0, score:0, tailLength:3, tailX:[3], tailY:[3], speed:1}
 		apple = {x:Math.floor(Math.random() * 20), y:Math.floor(Math.random()*20)};
 
 		up=game.input.keyboard.addKey(Phaser.Keyboard.UP);
@@ -55,7 +55,7 @@ window.onload = function() {
 	}
 	var x=0;
 	function update() {
-		if(x%3==0){
+		if(x%6==0){
 			drawPong();
 			movePong();
 			testCollision();
