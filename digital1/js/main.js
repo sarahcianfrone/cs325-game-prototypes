@@ -3,8 +3,8 @@
 window.onload = function() {
     
 	//All the constants for my program - mostly just spacing and sizing of things
-	var WIDTH=800;
-	var HEIGHT=800;
+	var WIDTH=400;
+	var HEIGHT=400;
 	
 	var SNAKE_SPACE = 2;
 	var SNAKE_TILE = WIDTH/20;
@@ -53,12 +53,18 @@ window.onload = function() {
 		left=game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
 		right=game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
 	}
+	int x=0;
 	function update() {
-		drawPong();
-		movePong();
-		testCollision();
-		drawSnake();
-		moveSnake();
+		if(x%3==0){
+			drawPong();
+			movePong();
+			testCollision();
+			checkKeys();
+			drawSnake();
+			moveSnake();
+		}
+		x++;
+		if(x == 60) x=0;
 	}
 
 	function drawPong(){
