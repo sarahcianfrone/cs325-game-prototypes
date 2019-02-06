@@ -45,7 +45,7 @@ window.onload = function() {
 		pongBall = {xPos: (WIDTH-PONG_WIDTH)/2, yPos: (HEIGHT-PONG_WIDTH)/2, xVel:10, yVel:10};
 
 		snake = {xPos:10, yPos:10, xVel:0, yVel:0, score:0, tailLength:3, tailX:[10], tailY:[10], speed:10}
-		apple = {x:Math.floor(Math.random() * 20), y:Math.floor(Math.random()*20);}
+		apple = {x:Math.floor(Math.random() * 20), y:Math.floor(Math.random()*20)};
 
 		up=game.input.keyboard.addKey(Phaser.Keyboard.UP);
 		down=game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
