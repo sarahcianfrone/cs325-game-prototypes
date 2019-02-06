@@ -56,11 +56,8 @@ window.onload = function() {
 		if(gameStarted){
 			pongBall.xPos+=pongBall.xVel;
 			pongBall.yPos+=pongBall.yVel;
-
 			accelerateTowards(paddle1, pongBall);
 			accelerateTowards(paddle2, pongBall);
-
-			testCollision();
 		}
 	}
 
@@ -81,7 +78,7 @@ window.onload = function() {
 		if(!(pongBall.xPos > PONG_SPACE+(PONG_WIDTH*3/2) && pongBall.xPos < WIDTH-(PONG_SPACE+(PONG_WIDTH*3/2)))){
 			pongBall.xVel*=-1;
 		}
-		if(pongBall.yPos >= HEIGHT-PONG_WIDTH) pongBall.yVel *= -1;
+		if(pongBall.yPos >= HEIGHT-PONG_WIDTH)	pongBall.yVel *= -1;
 		if(pongBall.yPos <= 0) pongBall.yVel *= -1;
 	}
 	
