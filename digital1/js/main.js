@@ -105,7 +105,7 @@ window.onload = function() {
 	}
 
 	function drawSnake(){
-		for(var i;i<snake.tailLength;i++){
+		for(var i=0;i<snake.tailLength;i++){
 			drawRect(snake.tailX[i]*SNAKE_TILE+SNAKE_SPACE, snake.tailY[i]*SNAKE_TILE+SNAKE_SPACE, SNAKE_TILE-(2*SNAKE_SPACE), SNAKE_TILE-(2*SNAKE_SPACE), 0x0000FF);
 		}
 		console.log(snake.tailX);
