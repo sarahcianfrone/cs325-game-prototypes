@@ -34,7 +34,7 @@ window.onload = function() {
 		paddle1 = {xPos: PONG_SPACE, yPos: PONG_SPACE, xVel: 0, yVel: 0, accel: 10, maxVel: 20};
 		paddle2 = {xPos: WIDTH-(PONG_SPACE+PONG_WIDTH), yPos: PONG_SPACE, xVel: 0, yVel: 0, accel: 10, maxVel: 20};
 
-		pongBall = {xPos: (WIDTH-PONG_WIDTH)/2, yPos: (HEIGHT-PONG_WIDTH)/2, xVel:0, yVel:0};
+		pongBall = {xPos: (WIDTH-PONG_WIDTH)/2, yPos: (HEIGHT-PONG_WIDTH)/2, xVel:10, yVel:10};
 	}
 
 	function update() {
@@ -44,6 +44,8 @@ window.onload = function() {
 	}
 
 	function drawPong(){
+		graphics.beginFill(0x000000, 1);
+		graphics.drawRect(0, 0, WIDTH, HEIGHT);
 		graphics.beginFill(0xFFFFFF, 1);
 		graphics.drawRect(paddle1.xPos, paddle1.yPos, PONG_WIDTH, PONG_HEIGHT);
 		graphics.drawRect(paddle2.xPos, paddle2.yPos, PONG_WIDTH, PONG_HEIGHT);
