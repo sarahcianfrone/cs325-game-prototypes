@@ -15,7 +15,7 @@ window.onload = function() {
 
 	var game = new Phaser.Game(WIDTH, HEIGHT, Phaser.AUTO, 'game', { preload: preload, create: create, update: update } );
     
-	var gameStarted = false;
+	var gameStarted = true;
 
 	var graphics;
 
