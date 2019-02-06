@@ -39,6 +39,8 @@ window.onload = function() {
 
 	function update() {
 		drawPong();
+		movePong();
+		testCollision();
 	}
 
 	function drawPong(){
