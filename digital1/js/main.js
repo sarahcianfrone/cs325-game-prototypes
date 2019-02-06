@@ -34,6 +34,7 @@ window.onload = function() {
 	var pongBall;
 
 	var snake;
+	var apple;
 	var tailX=[10]
 	var tailY=[10]
 
