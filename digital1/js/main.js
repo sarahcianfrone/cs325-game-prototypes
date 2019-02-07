@@ -22,6 +22,7 @@ window.onload = function() {
 	var game = new Phaser.Game(WIDTH, HEIGHT, Phaser.AUTO, 'game', { preload: preload, create: create, update: update } );
     
 	var gameStarted = false;
+	var gameEnded = false;
 
 	var graphics;
 
@@ -39,11 +40,12 @@ window.onload = function() {
 	var tailY=[10]
 
 	function create() {
+		game.time.desiredFps=10;
 		graphics = game.add.graphics(0,0);
 
 		paddle1 = {xPos: PONG_SPACE, yPos: PONG_SPACE, xVel: 0, yVel: 0, accel: 10, maxVel: 20};
 		paddle2 = {xPos: WIDTH-(PONG_SPACE+PONG_WIDTH), yPos: PONG_SPACE, xVel: 0, yVel: 0, accel: 10, maxVel: 20};
-		pongBall = {xPos: (WIDTH-PONG_WIDTH)/2, yPos: (HEIGHT-PONG_WIDTH)/2, xVel:10, yVel:10};
+		pongBall = {xPos: (WIDTH-PONG_WIDTH)/2, yPos: 100, xVel:10, yVel:10};
 
 		snake = {xPos:10, yPos:10, xVel:0, yVel:0, score:0, tailLength:3, tailX:[3], tailY:[3], speed:1}
 		apple = {x:Math.floor(Math.random() * 20), y:Math.floor(Math.random()*20)};
@@ -53,19 +55,22 @@ window.onload = function() {
 		left=game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
 		right=game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
 	}
-	var x=0;
+
 	function update() {
-		if(x%15==0){
-			drawPong();
-			movePong();
-			testCollision();
-			checkKeys();
-			drawSnake();
-			moveSnake();
+		if(gameStarted){
+			if(!gameEnded){
+				drawPong();
+				movePong();
+				testCollision();
+				checkKeys();
+				drawSnake();
+				moveSnake();
+			} else {
+				//Expand this soon
+				drawRect(0, 0, WIDTH, HEIGHT, 0x111111)
+			}
+			if(isDead()) gameEnded = true;
 		}
-		if(isDead()) drawRect(100, 100, 100, 100, 0x00FFFF);
-		x++;
-		if(x == 60) x=0;
 	}
 
 	function drawPong(){
