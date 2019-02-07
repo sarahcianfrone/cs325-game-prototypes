@@ -167,11 +167,11 @@ window.onload = function() {
 		var snX = snake.xPos*SNAKE_TILE;
 		var snY = snake.yPos*SNAKE_TILE;
 		
-		if(isOverlapping(pongBall, snX, snY) || isOverlapping(paddle1, snX, snY) || isOverlapping(paddle2, snX, snY)) return true;
+		if(isOverlapping(pongBall, PONG_WIDTH, PONG_WIDTH, snX, snY) || isOverlapping(paddle1, PONG_WIDTH, PONG_HEIGHT, snX, snY) || isOverlapping(paddle2, PONG_WIDTH, PONG_HEIGHT, snX, snY)) return true;
 		else return false;
 	}
 
-	function isOverlapping(thing, x, y){	
+	function isOverlapping(thing, w, h, x, y){	
 		//My algorithm to determine whether the two squares interlap assumes that there's an imaginary
 		//second square with the bottom right corner the same as the pongBall and the top left corner being
 		//one width of the snake tile to the left and one height of the snake tile above. This way I only
@@ -179,8 +179,8 @@ window.onload = function() {
 		
 		var lft = thing.xPos-(SNAKE_TILE-SNAKE_SPACE);	
 		var upr = thing.yPos-(SNAKE_TILE-SNAKE_SPACE);
-		var rgt = thing.xPos+PONG_WIDTH;
-		var bot = thing.yPos+PONG_WIDTH; 
+		var rgt = thing.xPos+w;
+		var bot = thing.yPos+h; 
 
 		if(x >= lft && x <= rgt && y >= upr && y <= bot) return true;
 		else return false;
