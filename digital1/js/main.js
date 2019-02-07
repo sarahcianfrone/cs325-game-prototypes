@@ -160,7 +160,7 @@ window.onload = function() {
 			//Ball collides with paddle1 (left)
 			pongBall.xVel*=-1;
 			pongBall.yVel+=paddle2.yVel*0.4;
-		} else if(pongBall.xPos >= WIDTH-(PONG_SPACE+PONG_WIDTH && pongBall.yPos >= paddle2.yPos-PONG_WIDTH && pongBall.yPos <= paddle2.yPos+PONG_HEIGHT){
+		} else if(pongBall.xPos >= WIDTH-(PONG_SPACE+PONG_WIDTH && pongBall.yPos >= paddle2.yPos-PONG_WIDTH && pongBall.yPos <= paddle2.yPos+PONG_HEIGHT)){
 			//Ball collides with paddle2 (right)
 			pongBall.xVel*=1;
 			pongBall.yVel+=paddle2.yVel*0.4;
