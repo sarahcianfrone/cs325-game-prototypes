@@ -194,8 +194,7 @@ window.onload = function() {
 		} else if (spaceship.xPos == spaceship.goingTo){
 			spaceship.goingTo = Math.floor(Math.random()*WIDTH/SNAKE_TILE-4)+2;
 		}
-		spaceship.sprite.x=spaceship.xPos*SNAKE_TILE;
-		spaceship.sprite.y=spaceship.yPos;
+		
 
 		if(bullet.yPos == -2) bullet.yPos = INV_BOT;
 		else bullet.yPos -= 1;
