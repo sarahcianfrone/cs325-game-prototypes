@@ -178,7 +178,9 @@ window.onload = function() {
 	function drawSnake(){
 		for(var i=0;i<snake.tailLength;i++){
 			drawRect(snake.tailX[i]*SNAKE_TILE+SNAKE_SPACE, snake.tailY[i]*SNAKE_TILE+SNAKE_SPACE, SNAKE_TILE-(2*SNAKE_SPACE), SNAKE_TILE-(2*SNAKE_SPACE), 0x0000FF);
-			if(snake.tailX[i] == bullet.xPos && snake.tailY[i] == bullet.yPos){
+			var snX = tailX[i]*SNAKE_TILE;
+			var snY = tailY[i]*SNAKE_TILE;
+			if(snake.tailX[i] == bullet.xPos && snake.tailY[i] == bullet.yPos || (isOverlapping(pongBall, PONG_WIDTH, PONG_WIDTH, snX, snY) || isOverlapping(paddle1, PONG_WIDTH, PONG_HEIGHT, snX, snY) || isOverlapping(paddle2, PONG_WIDTH, PONG_HEIGHT, snX, snY)){
 				for(var j=0;j<snake.tailLength;j++){
 					snake.tailX.pop();
 					snake.tailY.pop();
