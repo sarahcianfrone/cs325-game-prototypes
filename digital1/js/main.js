@@ -88,7 +88,7 @@ window.onload = function() {
 		draw();
 		checkKeys();
 		if(!gameStarted){
-			text = game.add.text(0, 0, "PRESS ARROW KEY TO START", {font: "25px Arial", fill: "FF00FF"});	
+			text = game.add.text(0, 0, "PRESS ARROW KEY TO START", {font: "25px Arial", fill: "#FF00FF"});	
 		}
 		if(gameStarted){
 			if(score == -1) increaseScore();
