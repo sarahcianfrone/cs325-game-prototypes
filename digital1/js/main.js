@@ -16,7 +16,7 @@ window.onload = function() {
 	var INV_SPACE = SNAKE_TILE/4;
 	var INV_LOW = 2;
 	var INV_HIGH = WIDTH-((WIDTH/SNAKE_TILE)*2);
-	var INV_BOT = (HEIGHT/SNAKE_TILE)-7;
+	var INV_BOT = (HEIGHT/SNAKE_TILE)-3;
 
 	var up;
 	var down;
@@ -199,6 +199,7 @@ window.onload = function() {
 		}
 			
 		spaceship.sprite.x = spaceship.xPos*SNAKE_TILE;
+		spaceship.sprite.y = spaceship.yPos;
 
 		if(bullet.yPos == -2){
 			bullet.yPos = INV_BOT;
