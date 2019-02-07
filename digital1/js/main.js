@@ -60,7 +60,8 @@ window.onload = function() {
 
 		spaceship = {sprite: game.add.sprite('spaceship'), xPos: INV_LOW+4, yPos:10, speed: 0.5, goingTo: Math.floor(Math.random()*WIDTH/SNAKE_TILE-4)+2};
 		bullet = {xPos: INV_LOW+4, yPos: INV_BOT, speed: 1};
-		spaceship.sprite(0.5, 1);
+		spaceship.sprite.anchor.x=0.5;
+		spaceship.sprite.anchor.x=1;
 		up=game.input.keyboard.addKey(Phaser.Keyboard.UP);
 		down=game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
 		left=game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
