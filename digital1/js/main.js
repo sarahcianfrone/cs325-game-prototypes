@@ -180,7 +180,7 @@ window.onload = function() {
 			drawRect(snake.tailX[i]*SNAKE_TILE+SNAKE_SPACE, snake.tailY[i]*SNAKE_TILE+SNAKE_SPACE, SNAKE_TILE-(2*SNAKE_SPACE), SNAKE_TILE-(2*SNAKE_SPACE), 0x0000FF);
 			var snX = tailX[i]*SNAKE_TILE;
 			var snY = tailY[i]*SNAKE_TILE;
-			if(snake.tailX[i] == bullet.xPos && snake.tailY[i] == bullet.yPos || isOverlapping(pongBall, PONG_WIDTH, PONG_WIDTH, snX, snY) || isOverlapping(paddle1, PONG_WIDTH, PONG_HEIGHT, snX, snY) || isOverlapping(paddle2, PONG_WIDTH, PONG_HEIGHT, snX, snY)){
+			if(snake.tailX[i] == bullet.xPos && snake.tailY[i] == bullet.yPos){
 				for(var j=0;j<snake.tailLength;j++){
 					snake.tailX.pop();
 					snake.tailY.pop();
@@ -299,12 +299,12 @@ window.onload = function() {
 		//one width of the snake tile to the left and one height of the snake tile above. This way I only
 		//have to check if the top left corner of the snake tile is in that area instead of checking all 4 corners
 		
-		var lft = thing.xPos-(SNAKE_TILE-SNAKE_SPACE);	
-		var upr = thing.yPos-(SNAKE_TILE-SNAKE_SPACE);
+		var lft = thing.xPos-(SNAKE_TILE+SNAKE_SPACE);	
+		var upr = thing.yPos-(SNAKE_TILE+SNAKE_SPACE);
 		var rgt = thing.xPos+w;
 		var bot = thing.yPos+h; 
 
-		if(x >= lft && x <= rgt && y >= upr && y <= bot) return true;
+		if(x > lft && x < rgt && y > upr && y < bot) return true;
 		else return false;
 	}
 
