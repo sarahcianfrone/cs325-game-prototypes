@@ -226,9 +226,9 @@ window.onload = function() {
 
 	function startGame(){
 		gameStarted = true;
-		score = 0;
+		score = -1;
+		increaseScore();
 		text.destroy();
-		text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: '#FF00FF', boundsAlignH: "center", boundsAlignV: "middle"});
 	}
 
 	function checkKeys(){
