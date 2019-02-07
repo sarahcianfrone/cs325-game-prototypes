@@ -96,7 +96,7 @@ window.onload = function() {
 					gameEnded = true;
 					spaceship.sprite.destroy();
 					text.destroy();
-					text=game.add.text("You Lost!\nYour score was: "+score, {"bold 30px Arial", fill: 0x111111, boundsAlignH:"center", boundsAlignV: "middle"});
+					text=game.add.text("You Lost!\nYour score was: "+score, {font: "bold 30px Arial", fill: 0x111111, boundsAlignH:"center", boundsAlignV: "middle"});
 				}
 			} else {
 				//Expand this soon
