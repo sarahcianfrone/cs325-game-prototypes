@@ -58,7 +58,7 @@ window.onload = function() {
 		apple = {x:Math.floor(Math.random() * 20), y:Math.floor(Math.random()*20)};
 
 
-		spaceship = {sprite: game.add.sprite('spaceship'), xPos: INV_LOW+4, yPos:10, speed: 0.5, goingTo: Math.floor(Math.random()*WIDTH/SNAKE_TILE-4)+2};
+		spaceship = {xPos: INV_LOW+4, yPos:10, speed: 0.5, goingTo: Math.floor(Math.random()*WIDTH/SNAKE_TILE-4)+2};
 		bullet = {xPos: INV_LOW+4, yPos: INV_BOT, speed: 1};
 		spaceship.sprite.anchor.x=0.5;
 		spaceship.sprite.anchor.x=1;
@@ -183,7 +183,7 @@ window.onload = function() {
 
 	function drawInvaders(){
 		drawRect(bullet.xPos*SNAKE_TILE+INV_SPACE, bullet.yPos*SNAKE_TILE, INV_SPACE*2, INV_SPACE*3, 0xFF2222);
-		var ship = game.add.sprite('spaceship', spaceship.xPos, spaceship.yPos);
+		var ship = game.add.sprite(spaceship.xPos, spaceship.yPos, 'spaceship');
 		ship.anchor.x = 0.5;
 		ship.anchor.y = 1;
 	}
