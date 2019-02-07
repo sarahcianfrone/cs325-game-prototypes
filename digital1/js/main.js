@@ -101,6 +101,9 @@ window.onload = function() {
 					game.world.remove(text);
 					text=game.add.text(0, 0, "You Lost!\nYour score was: "+score, {font: "bold 30px Arial", fill: "#FF00FF", boundsAlignH:"center", boundsAlignV: "middle"});
 				}
+			} else {
+				//Expand this soon
+				drawRect(0, 0, WIDTH, HEIGHT, 0x000000);
 			}
 		} else {
 			drawRect(0, 0, WIDTH, HEIGHT, 0X000000);
