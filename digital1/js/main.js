@@ -51,7 +51,7 @@ window.onload = function() {
 	var shot;
 	var eat;
 
-	var score=0;
+	var score=-1;
 	var text;
 
 	function create() {
@@ -66,7 +66,7 @@ window.onload = function() {
 		apple = {x:Math.floor(Math.random() * 20), y:Math.floor(Math.random()*20)};
 
 
-		spaceship = {sprite: game.add.sprite((INV_LOW+4)*SNAKE_TILE, 10, 'spaceship'), xPos: INV_LOW+4, yPos:HEIGHT-10, speed: 0.5, goingTo: Math.floor(Math.random()*WIDTH/SNAKE_TILE-4)+2};
+		spaceship = {sprite: game.add.sprite((INV_LOW+4)*SNAKE_TILE, -100, 'spaceship'), xPos: INV_LOW+4, yPos:HEIGHT-10, speed: 0.5, goingTo: Math.floor(Math.random()*WIDTH/SNAKE_TILE-4)+2};
 		spaceship.sprite.anchor.x=0.5;
 		spaceship.sprite.anchor.y=1;
 		spaceship.sprite.scale.x=0.7;
@@ -87,7 +87,11 @@ window.onload = function() {
 	function update() {
 		draw();
 		checkKeys();
+		if(!gameStarted){
+			text = game.add.text(0, 0, "PRESS ARROW KEY TO START", {font: "25px Arial", fill: "FF00FF"});	
+		}
 		if(gameStarted){
+			if(score == -1) increaseScore();
 			if(!gameEnded){
 				movePong();
 				moveSnake();
@@ -142,14 +146,35 @@ window.onload = function() {
 			if(distance <= paddle.accel) paddle.yPos = ball.yPos;
 			else paddle.yPos += paddle.accel;
 		}
+
+		if(paddle.yPos == ball.yPos) paddle.yVel = 0;
+		if(paddle.yPos > HEIGHT-(PONG_HEIGHT+PONG_SPACE)) paddle.yPos = HEIGHT-(PONG_HEIGHT+PONG_SPACE);
+		if(paddle.yPos < PONG_SPACE) paddle.yPos = PONG_SPACE;
 	}
 
 	function testCollision(){
-		if(!(pongBall.xPos > PONG_SPACE+(PONG_WIDTH*3/2) && pongBall.xPos < WIDTH-(PONG_SPACE+(PONG_WIDTH*3/2)))){
+		if(pongBall.xPos < PONG_SPACE+PONG_WIDTH*0.4 || pongBall.xPos > WIDTH-(PONG_SPACE+PONG_WIDTH*0.4)){
+			//The ball is out of bounds
+			resetBall();
+		} else if(pongBall.xPos <= PONG_SPACE+PONG_WIDTH && pongBall.yPos >= paddle1.yPos-PONG_WIDTH && pongBall.yPos <= paddle1.yPos+PONG_HEIGHT){
+			//Ball collides with paddle1 (left)
 			pongBall.xVel*=-1;
+			pongBall.yVel+=paddle2.yVel*0.4;
+		} else if(pongBall.xPos >= WIDTH-(PONG_SPACE+PONG_WIDTH && pongBall.yPos >= paddle2.yPos-PONG_WIDTH && pongBall.yPos <= paddle2.yPos+PONG_HEIGHT){
+			//Ball collides with paddle2 (right)
+			pongBall.xVel*=1;
+			pongBall.yVel+=paddle2.yVel*0.4;
 		}
+
 		if(pongBall.yPos >= HEIGHT-PONG_WIDTH)	pongBall.yVel *= -1;
 		if(pongBall.yPos <= 0) pongBall.yVel *= -1;
+	}
+
+	function resetBall(){
+		pongBall.xPos = WIDTH-PONG_WIDTH/2;
+		pongBall.yPos = HEIGHT/4 + PONG_WIDTH/2;
+		pongBall.xVel = Math.floor(Math.random() * 20)-10;
+		pongBall.yVel = Math.floor(Math.random() * 20)-10;
 	}
 
 	function drawSnake(){
@@ -230,7 +255,8 @@ window.onload = function() {
 
 		if(bullet.yPos == -2){
 			bullet.yPos = INV_BOT;
-			bullet.xPos = spaceship.xPos;
+			if(spaceship.goingTo > spaceship.xPos) bullet.xPos = Math.ceil(spaceship.xPos)
+			else bullet.xPos = Math.floor(spaceship.xPos);
 			shot.play();
 		}
 		else bullet.yPos -= 1;
