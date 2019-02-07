@@ -134,14 +134,14 @@ window.onload = function() {
 	}
 
 	function accelerateTowards(paddle, ball){
-		var distance = ball.yPos - paddle.yPos;
+		var distance = ball.yPos - paddle.yPos-PONG_HEIGHT/2;
 		if(distance < 0){
 			//Ball position < paddle position - paddle position goes down
-			if(distance >= -1*paddle.accel) paddle.yPos = ball.yPos;
+			if(distance >= -1*paddle.accel) paddle.yPos = ball.yPos-PONG_HEIGHT/2;
 			else paddle.yPos -= paddle.accel;
 		} else if (distance > 0){
 			//Ball position > paddle position - paddle position goes up
-			if(distance <= paddle.accel) paddle.yPos = ball.yPos;
+			if(distance <= paddle.accel) paddle.yPos = ball.yPos-PONG_HEIGHT/2;
 			else paddle.yPos += paddle.accel;
 		}
 
@@ -178,6 +178,13 @@ window.onload = function() {
 	function drawSnake(){
 		for(var i=0;i<snake.tailLength;i++){
 			drawRect(snake.tailX[i]*SNAKE_TILE+SNAKE_SPACE, snake.tailY[i]*SNAKE_TILE+SNAKE_SPACE, SNAKE_TILE-(2*SNAKE_SPACE), SNAKE_TILE-(2*SNAKE_SPACE), 0x0000FF);
+			if(snake.tailX[i] == bullet.xPos && snake.tailY[i] == bullet.yPos){
+				for(var j=0;j<snake.tailLength;j++){
+					snake.tailX.pop();
+					snake.tailY.pop();
+					snake.tailLength--;
+				}
+			}
 		}
 		drawRect(apple.x*SNAKE_TILE, apple.y*SNAKE_TILE, SNAKE_TILE, SNAKE_TILE, 0xFF0000);
 		drawRect(snake.xPos*SNAKE_TILE+SNAKE_SPACE, snake.yPos*SNAKE_TILE+SNAKE_SPACE, SNAKE_TILE-(2*SNAKE_SPACE), SNAKE_TILE-(2*SNAKE_SPACE), 0x00FF00);
@@ -219,7 +226,7 @@ window.onload = function() {
 		gameStarted = true;
 		score = 0;
 		text.destroy();
-		//text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: '#FF00FF', boundsAlignH: "center", boundsAlignV: "middle"});
+		text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: '#FF00FF', boundsAlignH: "center", boundsAlignV: "middle"});
 	}
 
 	function checkKeys(){
