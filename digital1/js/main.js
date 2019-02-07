@@ -220,6 +220,7 @@ window.onload = function() {
 		gameStarted = true;
 		score = 0;
 		game.world.remove(text);
+		game.world.remove(text);
 		text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: '#FF00FF', boundsAlignH: "center", boundsAlignV: "middle"});
 	}
 
@@ -245,7 +246,7 @@ window.onload = function() {
 
 
 	function drawInvaders(){
-		drawRect(bullet.xPos*SNAKE_TILE+INV_SPACE, bullet.yPos*SNAKE_TILE, INV_SPACE*2, INV_SPACE*3, 0xFF2222);
+		drawRect(bullet.xPos*SNAKE_TILE+INV_SPACE, bullet.yPos*SNAKE_TILE, INV_SPACE*2, INV_SPACE*3, 0x990099);
 	}
 
 	function moveInvaders(){
