@@ -81,6 +81,7 @@ window.onload = function() {
 	
 		shot = game.add.audio('laser');
 		eat = game.add.audio('eat');
+		text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: 0x111111, boundsAlignH: "center", boundsAlignV: "middle"});
 	}
 
 	function update() {
