@@ -81,7 +81,7 @@ window.onload = function() {
 	
 		shot = game.add.audio('laser');
 		eat = game.add.audio('eat');
-		//text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: "#FF00FF", boundsAlignH: "center", boundsAlignV: "middle"});
+
 	}
 
 	function update() {
@@ -115,7 +115,7 @@ window.onload = function() {
 		drawPong();
 		drawSnake();
 		drawInvaders();
-	}
+	}	
 
 	function drawPong(){
 		drawRect(0, 0, WIDTH, HEIGHT, 0x000000);
@@ -219,9 +219,8 @@ window.onload = function() {
 	function startGame(){
 		gameStarted = true;
 		score = 0;
-		game.world.remove(text);
-		game.world.remove(text);
-		text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: '#FF00FF', boundsAlignH: "center", boundsAlignV: "middle"});
+		text.destroy();
+		//text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: '#FF00FF', boundsAlignH: "center", boundsAlignV: "middle"});
 	}
 
 	function checkKeys(){
