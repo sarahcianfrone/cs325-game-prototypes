@@ -81,7 +81,7 @@ window.onload = function() {
 	
 		shot = game.add.audio('laser');
 		eat = game.add.audio('eat');
-		text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: "0xFF00FF", boundsAlignH: "center", boundsAlignV: "middle"});
+		text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: "#FF00FF", boundsAlignH: "center", boundsAlignV: "middle"});
 	}
 
 	function update() {
@@ -97,7 +97,7 @@ window.onload = function() {
 					gameEnded = true;
 					spaceship.sprite.destroy();
 					text.destroy();
-					text=game.add.text(0, 0, "You Lost!\nYour score was: "+score, {font: "bold 30px Arial", fill: "0xFF00FF", stroke: "0xFF00FF", boundsAlignH:"center", boundsAlignV: "middle"});
+					text=game.add.text(0, 0, "You Lost!\nYour score was: "+score, {font: "bold 30px Arial", fill: "#FF00FF", boundsAlignH:"center", boundsAlignV: "middle"});
 				}
 			} else {
 				//Expand this soon
@@ -187,7 +187,7 @@ window.onload = function() {
 	function increaseScore(){
 		score++;
 		text.destroy();
-		text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: '0xFF00FF', stroke:0xFF00FF, boundsAlignH: "center", boundsAlignV: "middle"});
+		text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: '#FF00FF', boundsAlignH: "center", boundsAlignV: "middle"});
 		text.setTextBounds(0, 0, WIDTH, HEIGHT/8);
 	}
 
