@@ -82,14 +82,13 @@ window.onload = function() {
 		shot = game.add.audio('laser');
 		eat = game.add.audio('eat');
 
+		
+		text = game.add.text(0, 0, "PRESS ARROW KEY TO START", {font: "25px Arial", fill: "#FF00FF"});	
 	}
 
 	function update() {
 		draw();
 		checkKeys();
-		if(!gameStarted){
-			text = game.add.text(0, 0, "PRESS ARROW KEY TO START", {font: "25px Arial", fill: "#FF00FF"});	
-		}
 		if(gameStarted){
 			if(!gameEnded){
 				movePong();
