@@ -58,7 +58,7 @@ window.onload = function() {
 		apple = {x:Math.floor(Math.random() * 20), y:Math.floor(Math.random()*20)};
 
 
-		spaceship = {sprite=game.add.sprite((INV_LOW+4)*SNAKE_TILE, 10, 'spaceship'), xPos: INV_LOW+4, yPos:10, speed: 0.5, goingTo: Math.floor(Math.random()*WIDTH/SNAKE_TILE-4)+2};
+		spaceship = {sprite: game.add.sprite((INV_LOW+4)*SNAKE_TILE, 10, 'spaceship'), xPos: INV_LOW+4, yPos:10, speed: 0.5, goingTo: Math.floor(Math.random()*WIDTH/SNAKE_TILE-4)+2};
 		spaceship.sprite.anchor.x=0.5;
 		spaceship.sprite.anchor.y=1;
 
