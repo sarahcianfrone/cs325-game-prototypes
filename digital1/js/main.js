@@ -184,8 +184,6 @@ window.onload = function() {
 	function drawInvaders(){
 		drawRect(bullet.xPos*SNAKE_TILE+INV_SPACE, bullet.yPos*SNAKE_TILE, INV_SPACE*2, INV_SPACE*3, 0xFF2222);
 		var ship = game.add.sprite(spaceship.xPos, spaceship.yPos, 'spaceship');
-		ship.anchor.x = 0.5;
-		ship.anchor.y = 1;
 	}
 
 	function moveInvaders(){
