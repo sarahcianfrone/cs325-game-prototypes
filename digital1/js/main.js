@@ -55,7 +55,7 @@ window.onload = function() {
 	}
 	var x=0;
 	function update() {
-		if(x%6==0){
+		if(x%15==0){
 			drawPong();
 			movePong();
 			testCollision();
