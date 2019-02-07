@@ -91,7 +91,6 @@ window.onload = function() {
 			text = game.add.text(0, 0, "PRESS ARROW KEY TO START", {font: "25px Arial", fill: "#FF00FF"});	
 		}
 		if(gameStarted){
-			if(score == -1) increaseScore();
 			if(!gameEnded){
 				movePong();
 				moveSnake();
@@ -100,7 +99,7 @@ window.onload = function() {
 				if(isDead()){
 					gameEnded = true;
 					spaceship.sprite.destroy();
-					text.destroy();
+					game.world.remove(text);
 					text=game.add.text(0, 0, "You Lost!\nYour score was: "+score, {font: "bold 30px Arial", fill: "#FF00FF", boundsAlignH:"center", boundsAlignV: "middle"});
 				}
 			} else {
@@ -212,26 +211,32 @@ window.onload = function() {
 	function increaseScore(){
 		score++;
 		console.log("text destroyed");
-		text.destroy();
+		game.world.remove(text);
 		text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: '#FF00FF', boundsAlignH: "center", boundsAlignV: "middle"});
 		text.setTextBounds(0, 0, WIDTH, HEIGHT/8);
+	}
+
+	function startGame(){
+		score = 0;
+		game.world.remove(text);
+		text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: '#FF00FF', boundsAlignH: "center", boundsAlignV: "middle"});
 	}
 
 	function checkKeys(){
 		if(left.isDown){
 			snake.xVel=-1*snake.speed;
 			snake.yVel=0;
-			gameStarted=true;
+			if(!gameStarted) startGame();
 		} else if(right.isDown){
-			gameStarted=true;
+			if(!gameStarted) startGame();
 			snake.xVel=snake.speed;
 			snake.yVel=0;
 		} else if(up.isDown){
-			gameStarted=true;
+			if(!gameStarted) startGame();
 			snake.xVel=0;
 			snake.yVel=-1*snake.speed;
 		} else if(down.isDown){
-			gameStarted=true;
+			if(!gameStarted) startGame();
 			snake.xVel=0;
 			snake.yVel=snake.speed;
 		} 
