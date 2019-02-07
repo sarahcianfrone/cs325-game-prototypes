@@ -132,7 +132,7 @@ window.onload = function() {
 
 		if(snake.xPos >= WIDTH/SNAKE_TILE) snake.xPos = 0;
 		if(snake.xPos < 0) snake.xPos = WIDTH/SNAKE_TILE-1;
-		if(snake.yPos >= HEIGHT.SNAKE_TILE) snake.yPos = 0;
+		if(snake.yPos >= HEIGHT/SNAKE_TILE) snake.yPos = 0;
 		if(snake.yPos < 0) snake.yPos = HEIGHT/SNAKE_TILE-1;
 	}
 
@@ -154,6 +154,35 @@ window.onload = function() {
 			snake.xVel=0;
 			snake.yVel=snake.speed;
 		} 
+	}
+
+
+	function isDead(){
+		//The player dies if they hit their own tail
+		for(var i=0;i<snake.tailLength;i++){
+			if(snake.xPos == snake.tailX[i] && snake.yPos == snake.tailY[i]) return true;
+		}
+		//Convert the snake's x and y from tiles to pixels so it's compatible with the pong stuff
+		var snX = snake.xPos*SNAKE_TILE;
+		var snY = snake.yPos*SNAKE_TILE;
+		
+		if(isOverlapping(pongBall, snX, snY) || isOverlapping(paddle1, snX, snY) || isOverlapping(paddle2, snX, snY)) return true;
+		else return false;
+	}
+
+	function isOverlapping(thing, x, y){	
+		//My algorithm to determine whether the two squares interlap assumes that there's an imaginary
+		//second square with the bottom right corner the same as the pongBall and the top left corner being
+		//one width of the snake tile to the left and one height of the snake tile above. This way I only
+		//have to check if the top left corner of the snake tile is in that area instead of checking all 4 corners
+		
+		var lft = thing.xPos-(SNAKE_TILE-SNAKE_SPACE);	
+		var upr = thing.yPos-(SNAKE_TILE-SNAKE_SPACE);
+		var rgt = thing.xPos+PONG_WIDTH;
+		var bot = thing.yPos+PONG_WIDTH; 
+
+		if(x >= lft && x <= rgt && y >= upr && y <= bot) return true;
+		else return false;
 	}
 
 	function drawRect(x, y, w, h, c){
