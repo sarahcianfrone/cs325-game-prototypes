@@ -32,6 +32,8 @@ window.onload = function() {
 
 	function preload() {
 		game.load.image('spaceship', 'assets/spaceship.png');
+		game.load.audio('laser', 'assets/laser.wav');
+		game.load.audio('eat', 'assets/eat.wav');
 	}
 	//The objects that are used for the pong portion of the game
 	var paddle1;
@@ -45,6 +47,12 @@ window.onload = function() {
 
 	var spaceship;
 	var bullet;
+
+	var shot;
+	var eat;
+
+	var score=0;
+	var text;
 
 	function create() {
 		game.time.desiredFps=10;
@@ -70,6 +78,9 @@ window.onload = function() {
 		down=game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
 		left=game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
 		right=game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+	
+		shot = game.add.audio('laser');
+		eat = game.add.audio('eat');
 	}
 
 	function update() {
@@ -80,12 +91,17 @@ window.onload = function() {
 				movePong();
 				moveSnake();
 				moveInvaders();
-				testCollision();
+				testCollision();	
+				if(isDead()){
+					gameEnded = true;
+					spaceship.sprite.destroy();
+					text.destroy();
+					text=game.add.text("You Lost!\nYour score was: "+score, "bold 30px Arial", fill: 0x111111, boundsAlignH:"center", boundsAlignV: "middle");
+				}
 			} else {
 				//Expand this soon
-				drawRect(0, 0, WIDTH, HEIGHT, 0x111111)
+				drawRect(0, 0, WIDTH, HEIGHT, 0x000000);
 			}
-			if(isDead()) gameEnded = true;
 		}
 	}
 
@@ -145,7 +161,8 @@ window.onload = function() {
 	function moveSnake(){
 		if(snake.xPos == apple.x && snake.yPos == apple.y){
 			snake.tailLength++;
-			//score increase
+			increaseScore();
+			eat.play();
 			apple.x = Math.floor(Math.random() * 20);
 			apple.y = Math.floor(Math.random() * 20);
 		}
@@ -162,6 +179,13 @@ window.onload = function() {
 		if(snake.xPos < 0) snake.xPos = WIDTH/SNAKE_TILE-1;
 		if(snake.yPos >= HEIGHT/SNAKE_TILE) snake.yPos = 0;
 		if(snake.yPos < 0) snake.yPos = HEIGHT/SNAKE_TILE-1;
+	}
+
+	function increaseScore(){
+		score++;
+		text.destroy();
+		text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: 0x111111, boundsAlignH: "center", boundsAlignV: "middle"});
+		text.setTextBounds(0, 0, WIDTH, HEIGHT/8);
 	}
 
 	function checkKeys(){
@@ -204,6 +228,7 @@ window.onload = function() {
 		if(bullet.yPos == -2){
 			bullet.yPos = INV_BOT;
 			bullet.xPos = spaceship.xPos;
+			shot.play();
 		}
 		else bullet.yPos -= 1;
 	}
