@@ -56,12 +56,14 @@ window.onload = function() {
 	var x=0;
 	function update() {
 		if(x%6==0){
-			drawPong();
-			movePong();
-			testCollision();
-			checkKeys();
-			drawSnake();
-			moveSnake();
+			if(!isDead()){
+				drawPong();
+				movePong();
+				testCollision();
+				checkKeys();
+				drawSnake();
+				moveSnake();
+			}
 		}
 		x++;
 		if(x == 60) x=0;
