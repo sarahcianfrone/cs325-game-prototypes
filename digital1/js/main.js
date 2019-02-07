@@ -133,7 +133,6 @@ window.onload = function() {
 		for(var i=0;i<snake.tailLength;i++){
 			drawRect(snake.tailX[i]*SNAKE_TILE+SNAKE_SPACE, snake.tailY[i]*SNAKE_TILE+SNAKE_SPACE, SNAKE_TILE-(2*SNAKE_SPACE), SNAKE_TILE-(2*SNAKE_SPACE), 0x0000FF);
 		}
-		console.log(snake.tailX);
 		drawRect(apple.x*SNAKE_TILE, apple.y*SNAKE_TILE, SNAKE_TILE, SNAKE_TILE, 0xFF0000);
 		drawRect(snake.xPos*SNAKE_TILE+SNAKE_SPACE, snake.yPos*SNAKE_TILE+SNAKE_SPACE, SNAKE_TILE-(2*SNAKE_SPACE), SNAKE_TILE-(2*SNAKE_SPACE), 0x00FF00);
 
