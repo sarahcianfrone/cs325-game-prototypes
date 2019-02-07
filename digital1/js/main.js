@@ -57,20 +57,24 @@ window.onload = function() {
 	}
 
 	function update() {
+		draw();
+		checkKeys();
 		if(gameStarted){
 			if(!gameEnded){
-				drawPong();
 				movePong();
-				testCollision();
-				checkKeys();
-				drawSnake();
 				moveSnake();
+				testCollision();
 			} else {
 				//Expand this soon
 				drawRect(0, 0, WIDTH, HEIGHT, 0x111111)
 			}
 			if(isDead()) gameEnded = true;
 		}
+	}
+
+	function draw(){
+		drawPong();
+		drawSnake();
 	}
 
 	function drawPong(){
