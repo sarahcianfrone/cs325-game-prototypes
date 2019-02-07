@@ -58,9 +58,11 @@ window.onload = function() {
 		apple = {x:Math.floor(Math.random() * 20), y:Math.floor(Math.random()*20)};
 
 
-		spaceship = {sprite: game.add.sprite((INV_LOW+4)*SNAKE_TILE, 10, 'spaceship'), xPos: INV_LOW+4, yPos:10, speed: 0.5, goingTo: Math.floor(Math.random()*WIDTH/SNAKE_TILE-4)+2};
+		spaceship = {sprite: game.add.sprite((INV_LOW+4)*SNAKE_TILE, 10, 'spaceship'), xPos: INV_LOW+4, yPos:HEIGHT-10, speed: 0.5, goingTo: Math.floor(Math.random()*WIDTH/SNAKE_TILE-4)+2};
 		spaceship.sprite.anchor.x=0.5;
 		spaceship.sprite.anchor.y=1;
+		spaceship.sprite.scale.x=0.7;
+		spaceship.sprite.scale.y=0.7;
 
 		bullet = {xPos: INV_LOW+4, yPos: INV_BOT, speed: 1};
 
@@ -198,7 +200,10 @@ window.onload = function() {
 			
 		spaceship.sprite.x = spaceship.xPos*SNAKE_TILE;
 
-		if(bullet.yPos == -2) bullet.yPos = INV_BOT;
+		if(bullet.yPos == -2){
+			bullet.yPos = INV_BOT;
+			bullet.xPos = spaceship.xPos;
+		}
 		else bullet.yPos -= 1;
 	}
 
