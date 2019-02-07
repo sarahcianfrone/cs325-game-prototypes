@@ -75,6 +75,7 @@ window.onload = function() {
 			if(!gameEnded){
 				movePong();
 				moveSnake();
+				moveInvaders();
 				testCollision();
 			} else {
 				//Expand this soon
@@ -95,6 +96,7 @@ window.onload = function() {
 		drawRect(paddle1.xPos, paddle1.yPos, PONG_WIDTH, PONG_HEIGHT, 0xFFFFFF);
 		drawRect(paddle2.xPos, paddle2.yPos, PONG_WIDTH, PONG_HEIGHT,0xFFFFFF);
 		drawRect(pongBall.xPos, pongBall.yPos, PONG_WIDTH, PONG_WIDTH, 0xFFFFFF);
+		
 	}
 
 	function movePong(){
@@ -182,6 +184,9 @@ window.onload = function() {
 
 	function drawInvaders(){
 		drawRect(bullet.xPos*SNAKE_TILE+INV_SPACE, bullet.yPos*SNAKE_TILE, INV_SPACE*2, INV_SPACE*3, 0xFF2222);
+		ship = game.add.sprite('spaceship', spaceship.xPos, spaceship.yPos);
+		ship.anchor.x = 0.5;
+		ship.anchor.y = 1;
 	}
 
 	function moveInvaders(){
