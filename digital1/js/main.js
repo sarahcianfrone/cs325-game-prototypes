@@ -13,6 +13,10 @@ window.onload = function() {
 	var PONG_WIDTH = 20;
 	var PONG_HEIGHT = 100;
 
+	var INV_SPACE = SNAKE_TILE/4;
+	var INV_LOW = 2;
+	var INV_HIGH = WIDTH-((WIDTH/SNAKE_TILE)*2);
+	var INV_BOT = (HEIGHT/SNAKE_TILE)-7;
 
 	var up;
 	var down;
@@ -27,7 +31,7 @@ window.onload = function() {
 	var graphics;
 
 	function preload() {
-
+		game.load.image('spaceship', 'assets/spaceship.png');
 	}
 	//The objects that are used for the pong portion of the game
 	var paddle1;
@@ -38,6 +42,9 @@ window.onload = function() {
 	var apple;
 	var tailX=[10]
 	var tailY=[10]
+
+	var spaceship;
+	var bullet;
 
 	function create() {
 		game.time.desiredFps=10;
@@ -50,6 +57,10 @@ window.onload = function() {
 		snake = {xPos:10, yPos:10, xVel:0, yVel:0, score:0, tailLength:3, tailX:[3], tailY:[3], speed:1}
 		apple = {x:Math.floor(Math.random() * 20), y:Math.floor(Math.random()*20)};
 
+
+		spaceship = {sprite: game.add.sprite('spaceship'), xPos: INV_LOW+4, yPos:10, speed: 0.5, goingTo: Math.floor(Math.random()*WIDTH/SNAKE_TILE-4)+2};
+		bullet = {xPos: INV_LOW+4, yPos: INV_BOT, speed: 1};
+		spaceship.sprite(0.5, 1);
 		up=game.input.keyboard.addKey(Phaser.Keyboard.UP);
 		down=game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
 		left=game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
@@ -75,6 +86,7 @@ window.onload = function() {
 	function draw(){
 		drawPong();
 		drawSnake();
+		drawInvaders();
 	}
 
 	function drawPong(){
@@ -167,6 +179,25 @@ window.onload = function() {
 	}
 
 
+	function drawInvaders(){
+		drawRect(bullet.xPos*SNAKE_TILE+INV_SPACE, bullet.yPos*SNAKE_TILE, INV_SPACE*2, INV_SPACE*3, 0xFF2222);
+	}
+
+	function moveInvaders(){
+		if(spaceship.xPos < spaceship.goingTo){
+			spaceship.xPos+=spaceship.speed;
+		} else if (spaceship.xPos > spaceship.goingTo){
+			spaceship.xPos -= spaceship.speed;
+		} else if (spaceship.xPos == spaceship.goingTo){
+			spaceship.goingTo = Math.floor(Math.random()*WIDTH/SNAKE_TILE-4)+2;
+		}
+		spaceship.sprite.x=spaceship.xPos*SNAKE_TILE;
+		spaceship.sprite.y=spaceship.yPos;
+
+		if(bullet.yPos == -2) bullet.yPos = INV_BOT;
+		else bullet.yPos -= 1;
+	}
+
 	function isDead(){
 		//The player dies if they hit their own tail
 		for(var i=0;i<snake.tailLength;i++){
@@ -177,7 +208,10 @@ window.onload = function() {
 		var snY = snake.yPos*SNAKE_TILE;
 		
 		if(isOverlapping(pongBall, PONG_WIDTH, PONG_WIDTH, snX, snY) || isOverlapping(paddle1, PONG_WIDTH, PONG_HEIGHT, snX, snY) || isOverlapping(paddle2, PONG_WIDTH, PONG_HEIGHT, snX, snY)) return true;
-		else return false;
+		
+		if(bullet.xPos == snake.xPos && bullet.yPos == snake.yPos) return true;
+		
+		return false;
 	}
 
 	function isOverlapping(thing, w, h, x, y){	
