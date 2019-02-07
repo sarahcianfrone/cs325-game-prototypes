@@ -211,6 +211,7 @@ window.onload = function() {
 
 	function increaseScore(){
 		score++;
+		console.log("text destroyed");
 		text.destroy();
 		text = game.add.text(0, 0, "SCORE: "+score, {font:"15px Arial", fill: '#FF00FF', boundsAlignH: "center", boundsAlignV: "middle"});
 		text.setTextBounds(0, 0, WIDTH, HEIGHT/8);
