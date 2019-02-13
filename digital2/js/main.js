@@ -85,25 +85,25 @@ window.onload = function(){
 		p1Solid.width = 64;
 		p1Solid.height = 64;
 		game.physics.arcade.enable(p1Solid);
-		p1Solid.body.gravity.y = 100;
+		p1Solid.body.gravity.y = 300;
 		
 		p1Pattern = game.add.sprite(100, 300, 'p1pattern');
-		p1Pattern.width = 64;
-		p1Pattern.height = 64;
+		p1Pattern.width = 50;
+		p1Pattern.height = 50;
 		game.physics.arcade.enable(p1Pattern);
-		p1Pattern.body.gravity.y = 100;
+		p1Pattern.body.gravity.y = 300;
 		
 		p2Solid = game.add.sprite(300, 100, 'p2solid');
-		p2Solid.width = 64;
-		p2Solid.height = 64;
+		p2Solid.width = 50;
+		p2Solid.height = 50;
 		game.physics.arcade.enable(p2Solid);
-		p2Solid.body.gravity.y = 100;
+		p2Solid.body.gravity.y = 300;
 		
 		p2Pattern = game.add.sprite(300, 300, 'p2pattern');
-		p2Pattern.width=64;
-		p2Pattern.height=64;
+		p2Pattern.width=50;
+		p2Pattern.height=50;
 		game.physics.arcade.enable(p2Pattern);
-		p2Pattern.body.gravity.y = 100;
+		p2Pattern.body.gravity.y = 300;
 	
 		w=game.input.keyboard.addKey(Phaser.Keyboard.W);
 		a=game.input.keyboard.addKey(Phaser.Keyboard.A);
@@ -132,13 +132,19 @@ window.onload = function(){
 
 	function checkKeys(p1hit, p2hit){
 		if(w.isDown){
-			if(p1hit || (!p1JumpPressed && !p1DoubleJump)) p1Pattern.body.velocity.y = -300;
+			if(p1hit){
+				p1DoubleJump=false;
+				p1Pattern.body.velocity.y = -300;
+			} else if(!p1DoubleJump && !p1JumpPressed){
+				p1DoubleJump=true;
+				p1Pattern.body.velocity.y = -300;
+			}
 			p1JumpPressed = true;
 		} else p1JumpPressed = false; 
 		if(a.isDown){
-			p1Pattern.body.velocity.x = -100;
+			p1Pattern.body.velocity.x = -250;
 		} else if(d.isDown){
-			p1Pattern.body.velocity.x = 100;
+			p1Pattern.body.velocity.x = 250;
 		} else {
 			p1Pattern.body.velocity.x = 0;
 		}
