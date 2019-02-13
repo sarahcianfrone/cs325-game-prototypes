@@ -25,6 +25,18 @@ window.onload = function(){
 
 	var platforms;
 
+	var w;
+	var a;
+	var s;
+	var d;
+	var f;
+	
+	var j;
+ 	var k;
+	var l;
+	var h;
+	var i;
+
 	function create() {
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 		//game.physics.arcade.gravity.y = 100;
@@ -70,22 +82,67 @@ window.onload = function(){
 
 
 		p1Solid = game.add.sprite(100, 100, 'p1solid');
-		p1Solid.width = 32;
-		p1Solid.height = 32;
+		p1Solid.width = 64;
+		p1Solid.height = 64;
+		game.physics.arcade.enable(p1Solid);
+
 		p1Pattern = game.add.sprite(100, 300, 'p1pattern');
-		p1Pattern.width = 32;
-		p1Pattern.height = 32;
+		p1Pattern.width = 64;
+		p1Pattern.height = 64;
+		game.physics.arcade.enable(p1Pattern);
+		
 		p2Solid = game.add.sprite(300, 100, 'p2solid');
-		p2Solid.width = 32;
-		p2Solid.height = 32;
+		p2Solid.width = 64;
+		p2Solid.height = 64;
+		game.physics.arcade.enable(p2Solid);
+		
 		p2Pattern = game.add.sprite(300, 300, 'p2pattern');
-		p2Pattern.width=32;
-		p2Pattern.height=32;
+		p2Pattern.width=64;
+		p2Pattern.height=64;
+		game.physics.arcade.enable(p2Pattern);
+	
+		w=game.input.keyboard.addKey(Phaser.Keyboard.W);
+		a=game.input.keyboard.addKey(Phaser.Keyboard.A);
+		s=game.input.keyboard.addKey(Phaser.Keyboard.S);
+		d=game.input.keyboard.addKey(Phaser.Keyboard.D);
+
+		j=game.input.keyboard.addKey(Phaser.Keyboard.J);
+		k=game.input.keyboard.addKey(Phaser.Keyboard.K);
+		l=game.input.keyboard.addKey(Phaser.Keyboard.L);
+		i=game.input.keyboard.addKey(Phaser.Keyboard.I);
+	}
+
+	var p1DoubleJump = false;
+	var p1JumpPressed = false;
+	var p2DoubleJump = false;
+	var p2JumpPressed = false;
+	function update() {
+		var p1SGround = game.physics.arcade.collide(p1Solid, platforms);
+		var p1PGround = game.physics.arcade.collide(p1Pattern, platforms);
+		var p2SGround = game.physics.arcade.collide(p2Solid, platforms);
+		var p2PGround = game.physics.arcade.collide(p2Pattern, platforms);
+		checkKeys();
+	
+	}
 	
 
-	}
-	function update() {
+	function checkKeys(p1hit, p2hit){
+		if(w.isDown){
+			if(p1hit || (!p1JumpPressed && !p1DoubleJump)) p1Pattern.body.velocity.y = -300;
+			p1JumpPressed = true;
+		} else p1JumpPressed = false; 
+		if(a.isDown){
+			p1Pattern.body.velocity.x = -100;
+		} else if(d.isDown){
+			p1Pattern.body.velocity.x = 100;
+		} else {
+			p1Pattern.body.velocity.x = 0;
+		}
+		if(s.isDown){
+			//Player 1 shoot
+		}
 
+		
 	}
 
 }
