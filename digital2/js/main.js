@@ -29,14 +29,16 @@ window.onload = function(){
 	var a;
 	var s;
 	var d;
-	var f;
 	
 	var j;
  	var k;
 	var l;
-	var h;
 	var i;
 
+	var p1DoubleJump = false;
+	var p1JumpPressed = false;
+	var p2DoubleJump = false;
+	var p2JumpPressed = false;
 	function create() {
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 		//game.physics.arcade.gravity.y = 100;
@@ -114,12 +116,12 @@ window.onload = function(){
 		k=game.input.keyboard.addKey(Phaser.Keyboard.K);
 		l=game.input.keyboard.addKey(Phaser.Keyboard.L);
 		i=game.input.keyboard.addKey(Phaser.Keyboard.I);
+	
+		p1Pattern.body.onCollide = new Phaser.Signal();
+		p1Pattern.body.onCollide.add(function () { p1DoubleJump = false }, this);
 	}
 
-	var p1DoubleJump = false;
-	var p1JumpPressed = false;
-	var p2DoubleJump = false;
-	var p2JumpPressed = false;
+
 	function update() {
 		var p1SGround = game.physics.arcade.collide(p1Solid, platforms);
 		var p1PGround = game.physics.arcade.collide(p1Pattern, platforms);
