@@ -35,30 +35,37 @@ window.onload = function(){
 		var plat = platforms.create(0, HEIGHT-50, 'ground');
 		plat.body.immovable = true;
 		plat.body.gravity.y = 0;	
-		
+		plat.body.moves = false;
+
 		plat = platforms.create(0, HEIGHT-220, 'ground');
 		plat.scale.setTo(0.25 , 0.4);
 		plat.body.immovable = true;
 		plat.body.gravity.y = 0;	
+		plat.body.moves = false;
+		
 		plat = platforms.create(WIDTH-200, HEIGHT-220, 'ground');
 		plat.scale.setTo(0.25, 0.4);
 		plat.body.immovable = true;
 		plat.body.gravity.y = 0;	
+		plat.body.moves = false;
 		
 		plat = platforms.create(250, HEIGHT-390, 'ground');
 		plat.scale.setTo(0.625, 0.4);
 		plat.body.immovable = true;
 		plat.body.gravity.y = 0;	
+		plat.body.moves = false;
 
 		plat = platforms.create(20, 100, 'ground');
 		plat.scale.setTo(0.3, 0.4);
 		plat.body.immovable = true;
 		plat.body.gravity.y = 0;	
+		plat.body.moves = false;
 
 		plat = platforms.create(WIDTH-260, 100, 'ground');
 		plat.scale.setTo(0.3, 0.4);
 		plat.body.immovable = true;
 		plat.body.gravity.y = 0;	
+		plat.body.moves = false;
 
 
 		p1Solid = game.add.sprite(100, 100, 'p1solid');
