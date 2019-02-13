@@ -22,6 +22,7 @@ window.onload = function(){
 	var p1Pattern;
 	var p2Solid;
 	var p2Pattern;
+	var gold;
 
 	var platforms;
 
@@ -107,6 +108,9 @@ window.onload = function(){
 		game.physics.arcade.enable(p2Pattern);
 		p2Pattern.body.gravity.y = 300;
 	
+		gold = game.add.sprite(200, WIDTH/2, 'gold');
+		gold.anchor = (0.5, 0.5);
+
 		w=game.input.keyboard.addKey(Phaser.Keyboard.W);
 		a=game.input.keyboard.addKey(Phaser.Keyboard.A);
 		s=game.input.keyboard.addKey(Phaser.Keyboard.S);
@@ -119,22 +123,34 @@ window.onload = function(){
 	
 		p1Pattern.body.onCollide = new Phaser.Signal();
 		p1Pattern.body.onCollide.add(function () { p1Jumps=2 }, this);
+		p2Pattern.body.onCollide = new Phaser.Signal();	
+		p2Pattern.body.onCollide.add(function () { p2Jumps=2 }, this);
+	
 	}
 
 
 	function update() {
-		var p1SGround = game.physics.arcade.collide(p1Solid, platforms);
-		var p1PGround = game.physics.arcade.collide(p1Pattern, platforms);
-		var p2SGround = game.physics.arcade.collide(p2Solid, platforms);
-		var p2PGround = game.physics.arcade.collide(p2Pattern, platforms);
+
+		
 		checkKeys();
 	
 	}
 	
+	function checkCollision(){
+		game.physics.arcade.collide(p1Solid, platforms);
+		game.physics.arcade.collide(p1Pattern, platforms);
+		game.physics.arcade.collide(p2Solid, platforms);
+		game.physics.arcade.collide(p2Pattern, platforms);
+		
+		game.physics.arcade.collide(p1Solid, p1Pattern);
+		game.physics.arcade.collide(p1Solid, p2Pattern);
+		game.physics.arcade.collide(p2Solid, p1Pattern);
+		game.physics.arcade.collide(p2Solid, p2Pattern);
+	}
 
 	function checkKeys(){
 		if(w.isDown){
-			if(p1Jumps > 0 && !p1JumpPressed;){
+			if(p1Jumps > 0 && !p1JumpPressed){
 				p1Pattern.body.velocity.y = -350;
 				p1Jumps--;
 			}
@@ -151,7 +167,26 @@ window.onload = function(){
 			//Player 1 shoot
 		}
 
-		
+	
+
+
+		if(i.isDown){
+			if(p2Jumps > 0 && !p2JumpPressed){
+				p2Pattern.body.velocity.y = -350;
+				p2Jumps--;
+			}
+			p2JumpPressed = true;
+		} else p2JumpPressed = false; 
+		if(j.isDown){
+			p2Pattern.body.velocity.x = -250;
+		} else if(l.isDown){
+			p2Pattern.body.velocity.x = 250;
+		} else {
+			p2Pattern.body.velocity.x = 0;
+		}
+		if(k.isDown){
+			//Player 2 shoot
+		}
 	}
 
 }
