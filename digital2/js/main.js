@@ -36,9 +36,14 @@ window.onload = function(){
 	var l;
 	var i;
 
-	var p1Jumps = 2;
+	var MAX_JUMPS = 4
+
+	var p1Weight = 5;
+	var p2Weight = 8;
+
+	var p1Jumps = MAX_JUMPS;
 	var p1JumpPressed = false;
-	var p2Jumps = 2;
+	var p2Jumps = MAX_JUMPS;
 	var p2JumpPressed = false;
 	function create() {
 		game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -84,7 +89,7 @@ window.onload = function(){
 		plat.body.moves = false;
 
 
-		p1Solid = game.add.sprite(100, 100, 'p1solid');
+		p1Solid = game.add.sprite(80, HEIGHT-260, 'p1solid');
 		p1Solid.width = 40;
 		p1Solid.height = 40;
 		game.physics.arcade.enable(p1Solid);
@@ -96,7 +101,7 @@ window.onload = function(){
 		game.physics.arcade.enable(p1Pattern);
 		p1Pattern.body.gravity.y = 500;
 		
-		p2Solid = game.add.sprite(300, 100, 'p2solid');
+		p2Solid = game.add.sprite(WIDTH-120, HEIGHT-260, 'p2solid');
 		p2Solid.width = 40;
 		p2Solid.height = 40;
 		game.physics.arcade.enable(p2Solid);
@@ -108,7 +113,7 @@ window.onload = function(){
 		game.physics.arcade.enable(p2Pattern);
 		p2Pattern.body.gravity.y = 500;
 	
-		gold = game.add.sprite(WIDTH/2, HEIGHT-150, 'gold');
+		gold = game.add.sprite(WIDTH/2, HEIGHT-240, 'gold');
 		gold.anchor = (0.5, 0.5);
 		gold.width = 25;
 		gold.height = 25;
@@ -137,6 +142,7 @@ window.onload = function(){
 		checkCollision();	
 		checkKeys();
 	
+		gold.x += (p2Weight - p1Weight);
 	}
 	
 	function checkCollision(){
