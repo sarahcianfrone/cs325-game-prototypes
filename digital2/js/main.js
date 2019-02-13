@@ -35,9 +35,9 @@ window.onload = function(){
 	var l;
 	var i;
 
-	var p1DoubleJump = false;
+	var p1Jumps = 2;
 	var p1JumpPressed = false;
-	var p2DoubleJump = false;
+	var p2Jump2 = 2;
 	var p2JumpPressed = false;
 	function create() {
 		game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -118,7 +118,7 @@ window.onload = function(){
 		i=game.input.keyboard.addKey(Phaser.Keyboard.I);
 	
 		p1Pattern.body.onCollide = new Phaser.Signal();
-		p1Pattern.body.onCollide.add(function () { p1DoubleJump = false }, this);
+		p1Pattern.body.onCollide.add(function () { p1Jumps=2 }, this);
 	}
 
 
@@ -132,17 +132,13 @@ window.onload = function(){
 	}
 	
 
-	function checkKeys(p1hit, p2hit){
+	function checkKeys(){
 		if(w.isDown){
-			if(p1hit){
-				p1DoubleJump=false;
-				p1Pattern.body.velocity.y = -300;
-			} else if(!p1DoubleJump && !p1JumpPressed){
-				p1DoubleJump=true;
-				p1Pattern.body.velocity.y = -300;
+			if(p1Jumps > 0 && p1JumpPressed = false;){
+				p1Pattern.body.velocity.y = -350;
+				p1Jumps--;
 			}
 			p1JumpPressed = true;
-			console.log("JP : "+p1JumpPressed+"  DJ : "+p1DoubleJump+"  H : "+p1hit);
 		} else p1JumpPressed = false; 
 		if(a.isDown){
 			p1Pattern.body.velocity.x = -250;
