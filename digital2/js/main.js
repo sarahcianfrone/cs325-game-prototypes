@@ -140,6 +140,7 @@ window.onload = function(){
 				p1Pattern.body.velocity.y = -300;
 			}
 			p1JumpPressed = true;
+			console.log("JP : "+p1JumpPressed+"  DJ : "+p1DoubleJump+"  H : "+p1hit);
 		} else p1JumpPressed = false; 
 		if(a.isDown){
 			p1Pattern.body.velocity.x = -250;
