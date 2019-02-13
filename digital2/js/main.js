@@ -134,7 +134,7 @@ window.onload = function(){
 
 	function checkKeys(){
 		if(w.isDown){
-			if(p1Jumps > 0 && p1JumpPressed = false;){
+			if(p1Jumps > 0 && !p1JumpPressed;){
 				p1Pattern.body.velocity.y = -350;
 				p1Jumps--;
 			}
