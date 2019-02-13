@@ -85,31 +85,35 @@ window.onload = function(){
 
 
 		p1Solid = game.add.sprite(100, 100, 'p1solid');
-		p1Solid.width = 64;
-		p1Solid.height = 64;
+		p1Solid.width = 40;
+		p1Solid.height = 40;
 		game.physics.arcade.enable(p1Solid);
-		p1Solid.body.gravity.y = 300;
+		p1Solid.body.moves = false;
 		
 		p1Pattern = game.add.sprite(100, 300, 'p1pattern');
-		p1Pattern.width = 50;
-		p1Pattern.height = 50;
+		p1Pattern.width = 40;
+		p1Pattern.height = 40;
 		game.physics.arcade.enable(p1Pattern);
-		p1Pattern.body.gravity.y = 300;
+		p1Pattern.body.gravity.y = 500;
 		
 		p2Solid = game.add.sprite(300, 100, 'p2solid');
-		p2Solid.width = 50;
-		p2Solid.height = 50;
+		p2Solid.width = 40;
+		p2Solid.height = 40;
 		game.physics.arcade.enable(p2Solid);
-		p2Solid.body.gravity.y = 300;
+		p2Solid.body.moves = false;
 		
 		p2Pattern = game.add.sprite(300, 300, 'p2pattern');
-		p2Pattern.width=50;
-		p2Pattern.height=50;
+		p2Pattern.width=40;
+		p2Pattern.height=40;
 		game.physics.arcade.enable(p2Pattern);
-		p2Pattern.body.gravity.y = 300;
+		p2Pattern.body.gravity.y = 500;
 	
-		gold = game.add.sprite(200, WIDTH/2, 'gold');
+		gold = game.add.sprite(WIDTH/2, HEIGHT-150, 'gold');
 		gold.anchor = (0.5, 0.5);
+		gold.width = 25;
+		gold.height = 25;
+		game.physics.arcade.enable(gold);
+		gold.body.gravity.y = 0;
 
 		w=game.input.keyboard.addKey(Phaser.Keyboard.W);
 		a=game.input.keyboard.addKey(Phaser.Keyboard.A);
@@ -130,7 +134,6 @@ window.onload = function(){
 
 
 	function update() {
-
 		checkCollision();	
 		checkKeys();
 	
@@ -151,7 +154,7 @@ window.onload = function(){
 	function checkKeys(){
 		if(w.isDown){
 			if(p1Jumps > 0 && !p1JumpPressed){
-				p1Pattern.body.velocity.y = -350;
+				p1Pattern.body.velocity.y = -550;
 				p1Jumps--;
 			}
 			p1JumpPressed = true;
