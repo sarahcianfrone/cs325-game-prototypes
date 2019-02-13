@@ -38,7 +38,7 @@ window.onload = function(){
 
 	var p1Jumps = 2;
 	var p1JumpPressed = false;
-	var p2Jump2 = 2;
+	var p2Jumps = 2;
 	var p2JumpPressed = false;
 	function create() {
 		game.physics.startSystem(Phaser.Physics.ARCADE);
