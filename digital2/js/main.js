@@ -85,21 +85,25 @@ window.onload = function(){
 		p1Solid.width = 64;
 		p1Solid.height = 64;
 		game.physics.arcade.enable(p1Solid);
-
+		p1Solid.body.gravity.y = 100;
+		
 		p1Pattern = game.add.sprite(100, 300, 'p1pattern');
 		p1Pattern.width = 64;
 		p1Pattern.height = 64;
 		game.physics.arcade.enable(p1Pattern);
+		p1Pattern.body.gravity.y = 100;
 		
 		p2Solid = game.add.sprite(300, 100, 'p2solid');
 		p2Solid.width = 64;
 		p2Solid.height = 64;
 		game.physics.arcade.enable(p2Solid);
+		p2Solid.body.gravity.y = 100;
 		
 		p2Pattern = game.add.sprite(300, 300, 'p2pattern');
 		p2Pattern.width=64;
 		p2Pattern.height=64;
 		game.physics.arcade.enable(p2Pattern);
+		p2Pattern.body.gravity.y = 100;
 	
 		w=game.input.keyboard.addKey(Phaser.Keyboard.W);
 		a=game.input.keyboard.addKey(Phaser.Keyboard.A);
