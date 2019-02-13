@@ -15,6 +15,7 @@ window.onload = function(){
 		game.load.image('p2pattern', 'assets/greenpattern.png');
 		game.load.image('ground', 'assets/Ground.png');
 		game.load.image('background', 'assets/background.png');
+		game.load.image('gold', 'assets/gold.png');
 	}
 	
 	var p1Solid;
@@ -69,10 +70,17 @@ window.onload = function(){
 
 
 		p1Solid = game.add.sprite(100, 100, 'p1solid');
+		p1Solid.width = 32;
+		p1Solid.height = 32;
 		p1Pattern = game.add.sprite(100, 300, 'p1pattern');
+		p1Pattern.width = 32;
+		p1Pattern.height = 32;
 		p2Solid = game.add.sprite(300, 100, 'p2solid');
+		p2Solid.width = 32;
+		p2Solid.height = 32;
 		p2Pattern = game.add.sprite(300, 300, 'p2pattern');
-
+		p2Pattern.width=32;
+		p2Pattern.height=32;
 	
 
 	}
