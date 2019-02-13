@@ -131,7 +131,7 @@ window.onload = function(){
 
 	function update() {
 
-		
+		checkCollision();	
 		checkKeys();
 	
 	}
