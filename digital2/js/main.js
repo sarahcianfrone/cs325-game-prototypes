@@ -122,6 +122,8 @@ window.onload = function(){
 
 		p1Weapon = game.add.weapon(20, 'p1bullet');
 		p1Weapon.bulletSpeed = 600;
+		p1Weapon.bullets.setAll('scale.x', 0.05);
+		p1Weapon.bullets.setAll('scale.y', 0.05);
 		p1Weapon.fireRate = 80;
 		p1Weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
 		p1Weapon.bulletKillDistance = 500;
@@ -132,6 +134,8 @@ window.onload = function(){
 		p2Weapon.bulletSpeed = 600;
 		p2Weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
 		p2Weapon.fireRate = 80;
+		p2Weapon.bullets.setAll('scale.x', 0.05);
+		p2Weapon.bullets.setAll('scale.y', 0.05);
 		p2Weapon.bulletKillDistance = 500;
 		p2Weapon.trackSprite(p2Pattern);
 
@@ -163,7 +167,11 @@ window.onload = function(){
 	function update() {
 		checkCollision();	
 		checkKeys();
-	
+		console.log("GX: "+gold.x);
+		console.log("GY: "+gold.y);
+		console.log("GW: "+gold.width);
+		console.log("GH: "+gold.height);
+
 		gold.x += (p2Weight - p1Weight);
 	}
 	
