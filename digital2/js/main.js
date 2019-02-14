@@ -174,15 +174,21 @@ window.onload = function(){
 
 
 	function update() {
-		checkCollision();	
-		checkKeys();
-		console.log("GX: "+gold.x);
-		console.log("GY: "+gold.y);
-		console.log("GW: "+gold.width);
-		console.log("GH: "+gold.height);
-		if(p1ShootTimer > 0) p1ShootTimer--;
-		if(p2ShootTimer > 0) p2ShootTimer--;
-		gold.x += (p2Weight - p1Weight)/10;
+		if(p1.score >= 200){
+
+		} else if (p2.score >= 200){
+
+		} else {
+			checkCollision();	
+			checkKeys();
+			console.log("GX: "+gold.x);
+			console.log("GY: "+gold.y);
+			console.log("GW: "+gold.width);
+			console.log("GH: "+gold.height);
+			if(p1ShootTimer > 0) p1ShootTimer--;
+			if(p2ShootTimer > 0) p2ShootTimer--;
+			gold.x += (p2Weight - p1Weight)/10;
+		}
 	}
 	
 	function checkCollision(){
@@ -238,11 +244,13 @@ window.onload = function(){
 	function p1hitSolid(sprite, bullet){
 		bullet.kill();
 		if(p2Weight > 0) p2Weight--;
+		else p1Weight+=0.5;
 	}
 
 	function p2hitSolid(sprite, bullet){
 		bullet.kill();
 		if(p1Weight > 0) p1Weight--;
+		else p2Weight+=0.5
 	}
 
 
