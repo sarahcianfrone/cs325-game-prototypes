@@ -48,6 +48,9 @@ window.onload = function(){
 	var p1Weight = 5;
 	var p2Weight = 8;
 
+	var p1ShootTimer = 0;
+	var p2ShootTimer = 0;
+
 	var p1Jumps = MAX_JUMPS;
 	var p1JumpPressed = false;
 	var p2Jumps = MAX_JUMPS;
@@ -176,7 +179,8 @@ window.onload = function(){
 		console.log("GY: "+gold.y);
 		console.log("GW: "+gold.width);
 		console.log("GH: "+gold.height);
-
+		if(p1ShootTimer > 0) p1ShootTimer--;
+		if(p2ShootTimer > 0) p2ShootTimer--;
 		gold.x += (p2Weight - p1Weight);
 	}
 	
@@ -238,7 +242,7 @@ window.onload = function(){
 			p1Pattern.body.velocity.x = 0;
 		}
 		if(s.isDown){
-			p1Weapon.fire();
+			if(p1ShootTimer == 0) p1Weapon.fire();
 		}
 
 	
@@ -261,7 +265,7 @@ window.onload = function(){
 			p2Pattern.body.velocity.x = 0;
 		}
 		if(k.isDown){
-			p2Weapon.fire();
+			if(p2ShootTimer == 0) p2Weapon.fire();
 		}
 	}
 
