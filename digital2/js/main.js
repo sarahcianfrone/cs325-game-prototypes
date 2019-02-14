@@ -174,9 +174,9 @@ window.onload = function(){
 
 
 	function update() {
-		if(p1.score >= 200){
+		if(p1Score >= 200){
 
-		} else if (p2.score >= 200){
+		} else if (p2Score >= 200){
 
 		} else {
 			checkCollision();	
