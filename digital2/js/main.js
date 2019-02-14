@@ -150,7 +150,7 @@ window.onload = function(){
 		p2Weapon.offsetX = 20;
 		p2Weapon.offsetY = 20;
 
-		gold = game.add.sprite(WIDTH/2, HEIGHT-240, 'gold');
+		gold = game.add.sprite(WIDTH/2, HEIGHT-255, 'gold');
 		//gold.anchor = (0.5, 0.5);
 		game.physics.arcade.enable(gold);
 		//gold.x = 200;
@@ -169,7 +169,7 @@ window.onload = function(){
 		l=game.input.keyboard.addKey(Phaser.Keyboard.L);
 		i=game.input.keyboard.addKey(Phaser.Keyboard.I);
 	
-		text = game.add.text(WIDTH/2, 75, "Player 1: "+p1Score+"\nPlayer 2: "+p2Score, {font: "28px Arial", fill: "#fff", boundsAlignH: "center"}); 
+		text = game.add.text(WIDTH/2-100, 25, "Player 1: "+p1Score+"\nPlayer 2: "+p2Score, {font: "20px Arial", fill: "#fff", boundsAlignH: "center"}); 
 	}
 
 
@@ -208,17 +208,17 @@ window.onload = function(){
 	function p1ScoreIncrease(amount){
 		p1Score+=amount;
 		text.destroy();
-		text = game.add.text(WIDTH/2, 75, "Player 1: "+p1Score+"\nPlayer 2: "+p2Score, {font: "28px Arial", fill: "#fff", boundsAlignH: "center"}); 
+		text = game.add.text(WIDTH/2, 25, "Player 1: "+p1Score+"\nPlayer 2: "+p2Score, {font: "20px Arial", fill: "#fff", boundsAlignH: "center"}); 
 	}
 
 	function p2ScoreIncrease(amount){
 		p2Score+=amount;
 		text.destroy();
-		text = game.add.text(WIDTH/2, 75, "Player 1: "+p1Score+"\nPlayer 2: "+p2Score, {font: "28px Arial", fill: "#fff", boundsAlignH: "center"}); 
+		text = game.add.text(WIDTH/2-100, 25, "Player 1: "+p1Score+"\nPlayer 2: "+p2Score, {font: "20px Arial", fill: "#fff", boundsAlignH: "center"}); 
 	}
 
 	function resetGold(){
-		gold.x = WIDTH - 12.5;
+		gold.x = WIDTH/2 - 12.5;
 		p1Weight = 8;
 		p2Weight = 8;
 	}
