@@ -58,6 +58,8 @@ window.onload = function(){
 	var p1JumpPressed = false;
 	var p2Jumps = MAX_JUMPS;
 	var p2JumpPressed = false;
+
+	var text;
 	function create() {
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 		//game.physics.arcade.gravity.y = 100;
@@ -166,6 +168,8 @@ window.onload = function(){
 		k=game.input.keyboard.addKey(Phaser.Keyboard.K);
 		l=game.input.keyboard.addKey(Phaser.Keyboard.L);
 		i=game.input.keyboard.addKey(Phaser.Keyboard.I);
+	
+		text = game.add.text(WIDTH/2, 75, "Player 1: "+p1Score+"\nPlayer 2: "+p2Score, {font: "28px Arial", fill: "#fff", boundsAlignH: "center"}); 
 	}
 
 
@@ -197,18 +201,18 @@ window.onload = function(){
 		game.physics.arcade.collide(p2Weapon.bullets, p1Pattern, p2hitPattern);
 		game.physics.arcade.collide(p2Weapon.bullets, p1Solid, p2hitSolid);
 
-		game.physics.arcade.collide(gold, p1Solid, function(){ resetGold(); p1ScoreIncrease(); });
-		game.physics.arcade.collide(gold, p2Solid, function(){ resetGold(); p2ScoreIncrease(); });
+		game.physics.arcade.collide(gold, p1Solid, function(){ resetGold(); p1ScoreIncrease(50); });
+		game.physics.arcade.collide(gold, p2Solid, function(){ resetGold(); p2ScoreIncrease(50); });
 	}
 
-	function p1ScoreIncrease(){
-		p1Score++;
+	function p1ScoreIncrease(amount){
+		p1Score+=amount;
 		text.destroy();
 		text = game.add.text(WIDTH/2, 75, "Player 1: "+p1Score+"\nPlayer 2: "+p2Score, {font: "28px Arial", fill: "#fff", boundsAlignH: "center"}); 
 	}
 
-	function p2ScoreIncrease(){
-		p2Score++;
+	function p2ScoreIncrease(amount){
+		p2Score+=amount;
 		text.destroy();
 		text = game.add.text(WIDTH/2, 75, "Player 1: "+p1Score+"\nPlayer 2: "+p2Score, {font: "28px Arial", fill: "#fff", boundsAlignH: "center"}); 
 	}
