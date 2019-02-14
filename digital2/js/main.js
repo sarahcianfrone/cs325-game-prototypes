@@ -118,7 +118,7 @@ window.onload = function(){
 		game.physics.arcade.enable(p1Solid);
 		p1Solid.body.moves = false;
 		
-		p1Pattern = game.add.sprite(100, 300, 'p1pattern');
+		p1Pattern = game.add.sprite(WIDTH/2-100, 300, 'p1pattern');
 		p1Pattern.width = 40;
 		p1Pattern.height = 40;
 		game.physics.arcade.enable(p1Pattern);
@@ -130,7 +130,7 @@ window.onload = function(){
 		game.physics.arcade.enable(p2Solid);
 		p2Solid.body.moves = false;
 		
-		p2Pattern = game.add.sprite(300, 300, 'p2pattern');
+		p2Pattern = game.add.sprite(WIDTH/2+60, 300, 'p2pattern');
 		p2Pattern.width=40;
 		p2Pattern.height=40;
 		game.physics.arcade.enable(p2Pattern);
@@ -198,10 +198,6 @@ window.onload = function(){
 			if(hasShot == 4) hasShot = 0;
 			checkCollision();	
 			checkKeys();
-			console.log("GX: "+gold.x);
-			console.log("GY: "+gold.y);
-			console.log("GW: "+gold.width);
-			console.log("GH: "+gold.height);
 			if(p1ShootTimer > 0) p1ShootTimer--;
 			if(p2ShootTimer > 0) p2ShootTimer--;
 			gold.x += (p2Weight - p1Weight)/10;
