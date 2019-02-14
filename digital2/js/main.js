@@ -19,6 +19,9 @@ window.onload = function(){
 		game.load.image('p2bullet', 'assets/greenbullet.png');
 		
 		game.load.image('gold', 'assets/gold.png');
+	
+		game.load.audio('shoot', 'assets/shoot.wav');
+		game.load.audio('coin', 'assets/coin.wav');
 	}
 	
 	var p1Solid;
@@ -59,12 +62,17 @@ window.onload = function(){
 	var p2Jumps = MAX_JUMPS;
 	var p2JumpPressed = false;
 
+	var shoot;
+	var eat;
+
 	var text;
 	function create() {
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 		//game.physics.arcade.gravity.y = 100;
 		//game.add.sprite(0, 0, 'background');
 
+		shoot = game.add.audio('shoot');
+		eat = game.add.audio('eat');
 
 		platforms = game.add.group();
 		platforms.enableBody = true;
@@ -219,8 +227,8 @@ window.onload = function(){
 		game.physics.arcade.collide(p2Weapon.bullets, p1Pattern, p2hitPattern);
 		game.physics.arcade.collide(p2Weapon.bullets, p1Solid, p2hitSolid);
 
-		game.physics.arcade.collide(gold, p1Solid, function(){ resetGold(); p1ScoreIncrease(50); });
-		game.physics.arcade.collide(gold, p2Solid, function(){ resetGold(); p2ScoreIncrease(50); });
+		game.physics.arcade.collide(gold, p1Solid, function(){ resetGold(); p1ScoreIncrease(50); coin.play();});
+		game.physics.arcade.collide(gold, p2Solid, function(){ resetGold(); p2ScoreIncrease(50); coin.play();});
 	}
 
 	function p1ScoreIncrease(amount){
@@ -286,7 +294,10 @@ window.onload = function(){
 			p1Pattern.body.velocity.x = 0;
 		}
 		if(s.isDown){
-			if(p1ShootTimer == 0) p1Weapon.fire();
+			if(p1ShootTimer == 0){
+				p1Weapon.fire();
+				shoot.play();
+			}
 		}
 
 	
@@ -309,7 +320,10 @@ window.onload = function(){
 			p2Pattern.body.velocity.x = 0;
 		}
 		if(k.isDown){
-			if(p2ShootTimer == 0) p2Weapon.fire();
+			if(p2ShootTimer == 0){
+				p2Weapon.fire();
+				shoot.play();
+			}
 		}
 	}
 
