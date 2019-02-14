@@ -128,7 +128,8 @@ window.onload = function(){
 		p1Weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
 		p1Weapon.bulletKillDistance = 500;
 		p1Weapon.trackSprite(p1Pattern);
-		
+		p1Weapon.offsetX = 20;
+		p1Weapon.offsetY = 20;
 
 		p2Weapon = game.add.weapon(20, 'p2bullet');
 		p2Weapon.bulletSpeed = 600;
@@ -138,6 +139,8 @@ window.onload = function(){
 		p2Weapon.bullets.setAll('scale.y', 0.004);
 		p2Weapon.bulletKillDistance = 500;
 		p2Weapon.trackSprite(p2Pattern);
+		p2Weapon.offsetX = 20;
+		p2Weapon.offsetY = 20;
 
 		gold = game.add.sprite(WIDTH/2, HEIGHT-240, 'gold');
 		gold.anchor = (0.5, 0.5);
@@ -187,7 +190,35 @@ window.onload = function(){
 		game.physics.arcade.collide(p1Solid, p2Pattern);
 		game.physics.arcade.collide(p2Solid, p1Pattern);
 		game.physics.arcade.collide(p2Solid, p2Pattern);
+		
+		game.physics.arcade.collide(p1Weapon.bullets, p2Solid);
+		game.physics.arcade.collide(p1Weapon.bullets, p2Pattern);
+		game.physics.arcade.collide(p2Weapon.bullets, p1Pattern);
+		game.physics.arcade.collide(p2Weapon.bullets, p1Solid, bulletHit);
 	}
+
+	function p1hitPattern(sprite, bullet){
+		bullet.kill();
+		if(p2ShootTimer < 20) p2ShootTimer = 120;
+	}
+
+
+	function p2hitPattern(sprite, bullet){
+		bullet.kill();
+		if(p1ShootTimer < 20) p1ShootTimer = 120;
+	}
+
+
+	function p1hitSolid(sprite, bullet){
+		bullet.kill();
+		if(p2Weight > 0) p2Weight--;
+	}
+
+	function p2hitPattern(sprite, bullet){
+		bullet.kill();
+		if(p1Weight > 0) p1Weight--;
+	}
+
 
 	function checkKeys(){
 		if(w.isDown){
