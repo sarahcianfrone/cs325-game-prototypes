@@ -214,7 +214,7 @@ window.onload = function(){
 		if(p2Weight > 0) p2Weight--;
 	}
 
-	function p2hitPattern(sprite, bullet){
+	function p2hitSolid(sprite, bullet){
 		bullet.kill();
 		if(p1Weight > 0) p1Weight--;
 	}
