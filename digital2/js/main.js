@@ -197,8 +197,20 @@ window.onload = function(){
 		game.physics.arcade.collide(p2Weapon.bullets, p1Pattern, p2hitPattern);
 		game.physics.arcade.collide(p2Weapon.bullets, p1Solid, p2hitSolid);
 
-		game.physics.arcade.collide(gold, p1Solid, function(){ resetGold(); p1Score++; });
-		game.physics.arcade.collide(gold, p2Solid, function(){ resetGold(); p2Score++; });
+		game.physics.arcade.collide(gold, p1Solid, function(){ resetGold(); p1ScoreIncrease(); });
+		game.physics.arcade.collide(gold, p2Solid, function(){ resetGold(); p2ScoreIncrease(); });
+	}
+
+	function p1ScoreIncrease(){
+		p1Score++;
+		text.destroy();
+		text = game.add.text(WIDTH/2, 75, "Player 1: "+p1Score+"\nPlayer 2: "+p2Score, {font: "28px Arial", fill: "#fff", boundsAlignH: "center"}); 
+	}
+
+	function p2ScoreIncrease(){
+		p2Score++;
+		text.destroy();
+		text = game.add.text(WIDTH/2, 75, "Player 1: "+p1Score+"\nPlayer 2: "+p2Score, {font: "28px Arial", fill: "#fff", boundsAlignH: "center"}); 
 	}
 
 	function resetGold(){
