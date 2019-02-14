@@ -15,6 +15,9 @@ window.onload = function(){
 		game.load.image('p2pattern', 'assets/greenpattern.png');
 		game.load.image('ground', 'assets/Ground.png');
 		game.load.image('background', 'assets/background.png');
+		game.load.image('p1bullet', 'assets/purplebullet.png');
+		game.load.image('p2bullet', 'assets/greenbullet.png');
+		
 		game.load.image('gold', 'assets/gold.png');
 	}
 	
@@ -22,6 +25,10 @@ window.onload = function(){
 	var p1Pattern;
 	var p2Solid;
 	var p2Pattern;
+	
+	var p1Weapon;
+	var p2Weapon;
+
 	var gold;
 
 	var platforms;
@@ -112,7 +119,22 @@ window.onload = function(){
 		p2Pattern.height=40;
 		game.physics.arcade.enable(p2Pattern);
 		p2Pattern.body.gravity.y = 500;
-	
+
+		p1Weapon = game.add.weapon(20, 'p1bullet');
+		p1Weapon.bulletSpeed = 600;
+		p1Weapon.fireRate = 80;
+		p1Weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
+		p1Weapon.bulletKillDistance = 500;
+		p1Weapon.trackSprite(p1Pattern);
+		
+
+		p2Weapon = game.add.weapon(20, 'p2bullet');
+		p2Weapon.bulletSpeed = 600;
+		p2Weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
+		p2Weapon.fireRate = 80;
+		p2Weapon.bulletKillDistance = 500;
+		p2Weapon.trackSprite(p2Pattern);
+
 		gold = game.add.sprite(WIDTH/2, HEIGHT-240, 'gold');
 		gold.anchor = (0.5, 0.5);
 		gold.width = 25;
@@ -167,13 +189,15 @@ window.onload = function(){
 		} else p1JumpPressed = false; 
 		if(a.isDown){
 			p1Pattern.body.velocity.x = -250;
+			p1Weapon.fireAngle = 180;
 		} else if(d.isDown){
+			p1Weapon.fireAngle = 0;
 			p1Pattern.body.velocity.x = 250;
 		} else {
 			p1Pattern.body.velocity.x = 0;
 		}
 		if(s.isDown){
-			//Player 1 shoot
+			p1Weapon.fire();
 		}
 
 	
@@ -187,14 +211,16 @@ window.onload = function(){
 			p2JumpPressed = true;
 		} else p2JumpPressed = false; 
 		if(j.isDown){
+			p2Weapon.fireAngle = 180;
 			p2Pattern.body.velocity.x = -250;
 		} else if(l.isDown){
+			p2Weapon.fireAngle = 0;
 			p2Pattern.body.velocity.x = 250;
 		} else {
 			p2Pattern.body.velocity.x = 0;
 		}
 		if(k.isDown){
-			//Player 2 shoot
+			p2Weapon.fire();
 		}
 	}
 
