@@ -191,10 +191,10 @@ window.onload = function(){
 		game.physics.arcade.collide(p2Solid, p1Pattern);
 		game.physics.arcade.collide(p2Solid, p2Pattern);
 		
-		game.physics.arcade.collide(p1Weapon.bullets, p2Solid);
-		game.physics.arcade.collide(p1Weapon.bullets, p2Pattern);
-		game.physics.arcade.collide(p2Weapon.bullets, p1Pattern);
-		game.physics.arcade.collide(p2Weapon.bullets, p1Solid, bulletHit);
+		game.physics.arcade.collide(p1Weapon.bullets, p2Solid, p1hitSolid);
+		game.physics.arcade.collide(p1Weapon.bullets, p2Pattern, p1hitPattern);
+		game.physics.arcade.collide(p2Weapon.bullets, p1Pattern, p2hitPattern);
+		game.physics.arcade.collide(p2Weapon.bullets, p1Solid, p2hitSolid);
 	}
 
 	function p1hitPattern(sprite, bullet){
