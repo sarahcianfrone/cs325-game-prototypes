@@ -63,7 +63,7 @@ window.onload = function(){
 	var p2JumpPressed = false;
 
 	var shoot;
-	var eat;
+	var coin;
 
 	var text;
 	function create() {
@@ -72,7 +72,7 @@ window.onload = function(){
 		//game.add.sprite(0, 0, 'background');
 
 		shoot = game.add.audio('shoot');
-		eat = game.add.audio('eat');
+		coin = game.add.audio('coin');
 
 		platforms = game.add.group();
 		platforms.enableBody = true;
@@ -181,7 +181,7 @@ window.onload = function(){
 	}
 	
 	var gameEnded = false;
-
+	int hasShot = 0;
 	function update() {
 		if(p1Score >= 200){
 			if(!gameEnded){
@@ -194,6 +194,8 @@ window.onload = function(){
 				text = game.add.text(WIDTH/2-100, 25, "Player 2 Wins!", {font: "25px Arial", fill: "#fff", boundsAlignH: "center"});
 			} 
 		} else {
+			hasShot++;
+			if(hasShot == 4) hasShot = 0;
 			checkCollision();	
 			checkKeys();
 			console.log("GX: "+gold.x);
@@ -296,7 +298,7 @@ window.onload = function(){
 		if(s.isDown){
 			if(p1ShootTimer == 0){
 				p1Weapon.fire();
-				shoot.play();
+				if(hasShot == 0) shoot.play();
 			}
 		}
 
@@ -322,7 +324,7 @@ window.onload = function(){
 		if(k.isDown){
 			if(p2ShootTimer == 0){
 				p2Weapon.fire();
-				shoot.play();
+				if(hasShot == 0) shoot.play();
 			}
 		}
 	}
