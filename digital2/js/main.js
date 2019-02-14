@@ -146,12 +146,12 @@ window.onload = function(){
 		p2Weapon.offsetY = 20;
 
 		gold = game.add.sprite(WIDTH/2, HEIGHT-240, 'gold');
-		gold.anchor = (0.5, 0.5);
-		gold.x = WIDTH/2;
-		gold.y = HEIGHT-240;
+		//gold.anchor = (0.5, 0.5);
+		game.physics.arcade.enable(gold);
+		//gold.x = 200;
+		//gold.y = 200;
 		gold.width = 25;
 		gold.height = 25;
-		game.physics.arcade.enable(gold);
 		gold.body.gravity.y = 0;
 
 		w=game.input.keyboard.addKey(Phaser.Keyboard.W);
@@ -165,9 +165,9 @@ window.onload = function(){
 		i=game.input.keyboard.addKey(Phaser.Keyboard.I);
 	
 		p1Pattern.body.onCollide = new Phaser.Signal();
-		p1Pattern.body.onCollide.add(function () { p1Jumps=2 }, this);
+		p1Pattern.body.onCollide.add(function () { p1Jumps=MAX_JUMPS }, this);
 		p2Pattern.body.onCollide = new Phaser.Signal();	
-		p2Pattern.body.onCollide.add(function () { p2Jumps=2 }, this);
+		p2Pattern.body.onCollide.add(function () { p2Jumps=MAX_JUMPS }, this);
 	
 	}
 
