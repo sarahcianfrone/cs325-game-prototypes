@@ -182,7 +182,7 @@ window.onload = function(){
 		console.log("GH: "+gold.height);
 		if(p1ShootTimer > 0) p1ShootTimer--;
 		if(p2ShootTimer > 0) p2ShootTimer--;
-		gold.x += (p2Weight - p1Weight);
+		gold.x += (p2Weight - p1Weight)/10;
 	}
 	
 	function checkCollision(){
@@ -249,7 +249,7 @@ window.onload = function(){
 	function checkKeys(){
 		if(w.isDown){
 			if(p1Jumps > 0 && !p1JumpPressed){
-				p1Pattern.body.velocity.y = -550;
+				p1Pattern.body.velocity.y = -250;
 				p1Jumps--;
 			}
 			p1JumpPressed = true;
@@ -272,7 +272,7 @@ window.onload = function(){
 
 		if(i.isDown){
 			if(p2Jumps > 0 && !p2JumpPressed){
-				p2Pattern.body.velocity.y = -350;
+				p2Pattern.body.velocity.y = -250;
 				p2Jumps--;
 			}
 			p2JumpPressed = true;
