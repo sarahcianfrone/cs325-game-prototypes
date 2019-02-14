@@ -55,7 +55,7 @@ window.onload = function(){
 	function create() {
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 		//game.physics.arcade.gravity.y = 100;
-		game.add.sprite(0, 0, 'background');
+		//game.add.sprite(0, 0, 'background');
 
 
 		platforms = game.add.group();
