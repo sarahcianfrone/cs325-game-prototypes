@@ -181,7 +181,7 @@ window.onload = function(){
 	}
 	
 	var gameEnded = false;
-	int hasShot = 0;
+	var hasShot = 0;
 	function update() {
 		if(p1Score >= 200){
 			if(!gameEnded){
