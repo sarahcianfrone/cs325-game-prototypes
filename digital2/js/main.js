@@ -122,8 +122,8 @@ window.onload = function(){
 
 		p1Weapon = game.add.weapon(20, 'p1bullet');
 		p1Weapon.bulletSpeed = 600;
-		p1Weapon.bullets.setAll('scale.x', 0.05);
-		p1Weapon.bullets.setAll('scale.y', 0.05);
+		p1Weapon.bullets.setAll('scale.x', 0.004);
+		p1Weapon.bullets.setAll('scale.y', 0.004);
 		p1Weapon.fireRate = 80;
 		p1Weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
 		p1Weapon.bulletKillDistance = 500;
@@ -134,13 +134,15 @@ window.onload = function(){
 		p2Weapon.bulletSpeed = 600;
 		p2Weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
 		p2Weapon.fireRate = 80;
-		p2Weapon.bullets.setAll('scale.x', 0.05);
-		p2Weapon.bullets.setAll('scale.y', 0.05);
+		p2Weapon.bullets.setAll('scale.x', 0.004);
+		p2Weapon.bullets.setAll('scale.y', 0.004);
 		p2Weapon.bulletKillDistance = 500;
 		p2Weapon.trackSprite(p2Pattern);
 
 		gold = game.add.sprite(WIDTH/2, HEIGHT-240, 'gold');
 		gold.anchor = (0.5, 0.5);
+		gold.x = WIDTH/2;
+		gold.y = HEIGHT-240;
 		gold.width = 25;
 		gold.height = 25;
 		game.physics.arcade.enable(gold);
