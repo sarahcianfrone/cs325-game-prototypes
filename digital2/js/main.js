@@ -45,8 +45,11 @@ window.onload = function(){
 
 	var MAX_JUMPS = 4
 
-	var p1Weight = 5;
+	var p1Weight = 8;
 	var p2Weight = 8;
+	var p1Score = 0;
+	var p2Score = 0;
+
 
 	var p1ShootTimer = 0;
 	var p2ShootTimer = 0;
@@ -163,12 +166,6 @@ window.onload = function(){
 		k=game.input.keyboard.addKey(Phaser.Keyboard.K);
 		l=game.input.keyboard.addKey(Phaser.Keyboard.L);
 		i=game.input.keyboard.addKey(Phaser.Keyboard.I);
-	
-		p1Pattern.body.onCollide = new Phaser.Signal();
-		p1Pattern.body.onCollide.add(function () { p1Jumps=MAX_JUMPS }, this);
-		p2Pattern.body.onCollide = new Phaser.Signal();	
-		p2Pattern.body.onCollide.add(function () { p2Jumps=MAX_JUMPS }, this);
-	
 	}
 
 
@@ -186,9 +183,9 @@ window.onload = function(){
 	
 	function checkCollision(){
 		game.physics.arcade.collide(p1Solid, platforms);
-		game.physics.arcade.collide(p1Pattern, platforms);
+		game.physics.arcade.collide(p1Pattern, platforms, function() {p1Jumps = MAX_JUMPS;});
 		game.physics.arcade.collide(p2Solid, platforms);
-		game.physics.arcade.collide(p2Pattern, platforms);
+		game.physics.arcade.collide(p2Pattern, platforms, function() {p2Jumps = MAX_JUMPS;});
 		
 		game.physics.arcade.collide(p1Solid, p1Pattern);
 		game.physics.arcade.collide(p1Solid, p2Pattern);
@@ -199,8 +196,17 @@ window.onload = function(){
 		game.physics.arcade.collide(p1Weapon.bullets, p2Pattern, p1hitPattern);
 		game.physics.arcade.collide(p2Weapon.bullets, p1Pattern, p2hitPattern);
 		game.physics.arcade.collide(p2Weapon.bullets, p1Solid, p2hitSolid);
+
+		game.physics.arcade.collide(gold, p1Solid, function(){ resetGold(); p1Score++; });
+		game.physics.arcade.collide(gold, p2Solid, function(){ resetGold(); p2Score++; });
 	}
 
+	function resetGold(){
+		gold.x = WIDTH - 12.5;
+		p1Weight = 8;
+		p2Weight = 8;
+	}
+		
 	function p1hitPattern(sprite, bullet){
 		bullet.kill();
 		if(p2ShootTimer < 20) p2ShootTimer = 120;
