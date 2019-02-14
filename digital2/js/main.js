@@ -171,13 +171,20 @@ window.onload = function(){
 	
 		text = game.add.text(WIDTH/2-100, 25, "Player 1: "+p1Score+"\nPlayer 2: "+p2Score, {font: "20px Arial", fill: "#fff", boundsAlignH: "center"}); 
 	}
-
+	
+	var gameEnded = false;
 
 	function update() {
 		if(p1Score >= 200){
-
+			if(!gameEnded){
+				text.destroy();
+				text = game.add.text(WIDTH/2-100, 25, "Player 1 Wins!", {font: "25px Arial", fill: "#fff", boundsAlignH: "center"});
+			} 
 		} else if (p2Score >= 200){
-
+			if(!gameEnded){
+				text.destroy();
+				text = game.add.text(WIDTH/2-100, 25, "Player 2 Wins!", {font: "25px Arial", fill: "#fff", boundsAlignH: "center"});
+			} 
 		} else {
 			checkCollision();	
 			checkKeys();
@@ -188,6 +195,11 @@ window.onload = function(){
 			if(p1ShootTimer > 0) p1ShootTimer--;
 			if(p2ShootTimer > 0) p2ShootTimer--;
 			gold.x += (p2Weight - p1Weight)/10;
+
+			if(p1Pattern.x < 0) p1Pattern.x = WIDTH;
+			if(p2Pattern.x < 0) p2Pattern.x = WIDTH;
+			if(p1Pattern.x > WIDTH) p1Pattern.x = 0;
+			if(p2Pattern.x > WIDTH) p2Pattern.x = 0;
 		}
 	}
 	
@@ -231,12 +243,14 @@ window.onload = function(){
 		
 	function p1hitPattern(sprite, bullet){
 		bullet.kill();
+		p1ScoreIncrease(1);
 		if(p2ShootTimer < 20) p2ShootTimer = 120;
 	}
 
 
 	function p2hitPattern(sprite, bullet){
 		bullet.kill();
+		p2ScoreIncrease(1);
 		if(p1ShootTimer < 20) p1ShootTimer = 120;
 	}
 
