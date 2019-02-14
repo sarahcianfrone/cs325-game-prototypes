@@ -122,7 +122,7 @@ window.onload = function(){
 		p1Pattern.width = 40;
 		p1Pattern.height = 40;
 		game.physics.arcade.enable(p1Pattern);
-		p1Pattern.body.gravity.y = 500;
+		p1Pattern.body.gravity.y = 600;
 		
 		p2Solid = game.add.sprite(WIDTH-120, HEIGHT-260, 'p2solid');
 		p2Solid.width = 40;
@@ -134,7 +134,7 @@ window.onload = function(){
 		p2Pattern.width=40;
 		p2Pattern.height=40;
 		game.physics.arcade.enable(p2Pattern);
-		p2Pattern.body.gravity.y = 500;
+		p2Pattern.body.gravity.y = 600;
 
 		p1Weapon = game.add.weapon(20, 'p1bullet');
 		p1Weapon.bulletSpeed = 600;
@@ -277,17 +277,17 @@ window.onload = function(){
 	function checkKeys(){
 		if(w.isDown){
 			if(p1Jumps > 0 && !p1JumpPressed){
-				p1Pattern.body.velocity.y = -250;
+				p1Pattern.body.velocity.y = -350;
 				p1Jumps--;
 			}
 			p1JumpPressed = true;
 		} else p1JumpPressed = false; 
 		if(a.isDown){
-			p1Pattern.body.velocity.x = -250;
+			p1Pattern.body.velocity.x = -350;
 			p1Weapon.fireAngle = 180;
 		} else if(d.isDown){
 			p1Weapon.fireAngle = 0;
-			p1Pattern.body.velocity.x = 250;
+			p1Pattern.body.velocity.x = 350;
 		} else {
 			p1Pattern.body.velocity.x = 0;
 		}
@@ -303,17 +303,17 @@ window.onload = function(){
 
 		if(i.isDown){
 			if(p2Jumps > 0 && !p2JumpPressed){
-				p2Pattern.body.velocity.y = -250;
+				p2Pattern.body.velocity.y = -350;
 				p2Jumps--;
 			}
 			p2JumpPressed = true;
 		} else p2JumpPressed = false; 
 		if(j.isDown){
 			p2Weapon.fireAngle = 180;
-			p2Pattern.body.velocity.x = -250;
+			p2Pattern.body.velocity.x = -350;
 		} else if(l.isDown){
 			p2Weapon.fireAngle = 0;
-			p2Pattern.body.velocity.x = 250;
+			p2Pattern.body.velocity.x = 350;
 		} else {
 			p2Pattern.body.velocity.x = 0;
 		}
