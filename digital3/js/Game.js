@@ -3,7 +3,10 @@
 GameStates.makeGame = function( game, shared ) {
     // Create your own variables.
 	var bouncy = null;
-	var cursors = null;
+	var w;
+	var a;
+	var s;
+	var d;
 	var timeLeft = 60;
 	var frame = 0;	
 	var player = null;
@@ -19,18 +22,18 @@ GameStates.makeGame = function( game, shared ) {
     }
     
     function checkKeys(){
-	if(cursors.up.isDown){
-		player.body.velocity.y = -20;
-	} else if (cursors.down.isDown){
-		player.body.velocity.y = 20;
+	if(w.isDown){
+		player.body.velocity.y = -200;
+	} else if (s.isDown){
+		player.body.velocity.y = 200;
 	} else {
 		player.body.velocity.y = 0;
 	}
 
-	if(cursors.left.isDown){
-		player.body.velocity.x = -20;
-	} else if(cursors.right.isDown){
-		player.body.velocity.x = 20;
+	if(a.isDown){
+		player.body.velocity.x = -200;
+	} else if(d.isDown){
+		player.body.velocity.x = 200;
 	} else {
 		player.body.velocity.x = 0;
 	}
@@ -39,12 +42,18 @@ GameStates.makeGame = function( game, shared ) {
     return {
     
         create: function () {
-    		cursors = game.input.keyboard.createCursorKeys();
+    		w = game.input.keyboard.addKey(Phaser.Keyboard.W);
+    		a = game.input.keyboard.addKey(Phaser.Keyboard.A);
+    		s = game.input.keyboard.addKey(Phaser.Keyboard.S);
+    		d = game.input.keyboard.addKey(Phaser.Keyboard.D);
+		
 		game.world.setBounds(0, 0, 800, 1400);
 		background = game.add.sprite(0, 0, 'background');
             	player = game.add.sprite(400, 400, 'player');
         	game.physics.arcade.enable(player);
 		game.camera.follow(player);
+
+
 	},
     
         update: function () {
