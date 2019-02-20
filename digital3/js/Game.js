@@ -48,7 +48,7 @@ GameStates.makeGame = function( game, shared ) {
             	s = game.input.keyboard.addKey(Phaser.Keyboard.S);
             	d = game.input.keyboard.addKey(Phaser.Keyboard.D);
 		
-		game.world.setBounds(0, 0 800, 1400);
+		game.world.setBounds(0, 0, 800, 1400);
 		background = game.add.sprite(0, 0, 'background');
 		player = game.add.sprite( game.world.centerX, game.world.centerY, 'player' );
        		player.anchor.setTo( 0.5, 0.5 );
