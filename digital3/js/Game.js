@@ -23,8 +23,6 @@ GameStates.makeGame = function( game, shared ) {
     
     function checkKeys(){
 
-	console.log("y");
-
 	if(w.isDown){
 		player.body.velocity.y = -200;
 		console.log("z");
@@ -68,7 +66,7 @@ GameStates.makeGame = function( game, shared ) {
 			}
 			frame++;
 			checkKeys();
-			console.log("X");
+			console.log(w);
 		}
         }
 
