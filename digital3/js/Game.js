@@ -22,8 +22,12 @@ GameStates.makeGame = function( game, shared ) {
     }
     
     function checkKeys(){
+
+	console.log("y");
+
 	if(w.isDown){
 		player.body.velocity.y = -200;
+		console.log("z");
 	} else if (s.isDown){
 		player.body.velocity.y = 200;
 	} else {
