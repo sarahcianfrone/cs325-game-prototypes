@@ -21,7 +21,8 @@ GameStates.makeGame = function( game, shared ) {
             //  Honestly, just about anything could go here. It's YOUR game after all. Eat your heart out!
             
             // Create a sprite at the center of the screen using the 'logo' image.
-            player = game.add.sprite( game.world.centerX, game.world.centerY, 'player' );
+            	game.add.sprite(0, 0, 'background');
+		player = game.add.sprite( game.world.centerX, game.world.centerY, 'player' );
             // Anchor the sprite at its center, as opposed to its top-left corner.
             // so it will be truly centered.
             player.anchor.setTo( 0.5, 0.5 );
@@ -41,7 +42,7 @@ GameStates.makeGame = function( game, shared ) {
             // in X or Y.
             // This function returns the rotation angle that makes it visually match its
             // new trajectory.
-            bouncy.rotation = game.physics.arcade.accelerateToPointer( bouncy, game.input.activePointer, 500, 500, 500 );
+            game.physics.arcade.accelerateToPointer(player, game.input.activePointer, 500, 500, 500 );
         }
     };
 };
