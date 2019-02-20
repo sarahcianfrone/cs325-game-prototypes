@@ -25,7 +25,7 @@ GameStates.makePreloader = function( game ) {
             //	As this is just a Project Template I've not provided these assets, swap them for your own.
             game.load.image( 'logo', 'assets/phaser.png' );
             game.load.image('background', 'assets/basicgrass.png');
-	    game.load.image('player', 'circle.png');
+	    game.load.image('player', 'assets/circle.png');
 	},
     
         create: function () {
