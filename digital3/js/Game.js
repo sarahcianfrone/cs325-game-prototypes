@@ -66,8 +66,8 @@ GameStates.makeGame = function( game, shared ) {
 				timeLeft--;
 			}
 			frame++;
-			//checkKeys();
 			game.physics.arcade.accelerateToPointer(player, game.input.activePointer, 500, 500, 500);
+			console.log("x");
 		}
         }
 
