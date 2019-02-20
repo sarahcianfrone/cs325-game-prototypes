@@ -7,13 +7,14 @@ GameStates.makeGame = function( game, shared ) {
 	var timeLeft = 60;
 	var frame = 0;	
 	var player = null;
+    	var background = null;
     function quitGame() {
 
         //  Here you should destroy anything you no longer need.
         //  Stop music, delete sprites, purge caches, free resources, all that good stuff.
 
         //  Then let's go back to the main menu.
-        game.state.start('MainMenu');
+        //game.state.start('MainMenu');
 
     }
     
