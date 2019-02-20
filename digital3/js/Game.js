@@ -52,6 +52,7 @@ GameStates.makeGame = function( game, shared ) {
 		game.world.setBounds(0, 0, 800, 1400);
 		background = game.add.sprite(0, 0, 'background');
             	player = game.add.sprite(400, 400, 'player');
+		player.anchor.setTo(0.5, 0.5);
         	game.physics.arcade.enable(player);
 		game.camera.follow(player);
 
@@ -65,8 +66,8 @@ GameStates.makeGame = function( game, shared ) {
 				timeLeft--;
 			}
 			frame++;
-			checkKeys();
-			console.log(w);
+			//checkKeys();
+			game.physics.arcade.accelerateToPointer(player, game.input.activePointer, 500, 500, 500);
 		}
         }
 
