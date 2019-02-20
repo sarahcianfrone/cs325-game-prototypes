@@ -52,7 +52,7 @@ GameStates.makeGame = function( game, shared ) {
 		background = game.add.sprite(0, 0, 'background');
             	player = game.add.sprite(400, 400, 'player');
 		player.anchor.setTo(0.5, 0.5);
-        	game.physics.enable(player, ARCADE);
+        	game.physics.arcade.enable(player);
 		player.body.collideWorldBounds = true;
 		game.camera.follow(player);
 
