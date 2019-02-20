@@ -56,6 +56,7 @@ GameStates.makeGame = function( game, shared ) {
 			frame++;
 			checkKeys();
 		}
+		console.log("x");
         }
 
 
