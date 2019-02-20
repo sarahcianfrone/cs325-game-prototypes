@@ -2,7 +2,6 @@
 
 GameStates.makeGame = function( game, shared ) {
     // Create your own variables.
-	var bouncy = null;
 	var w;
 	var a;
 	var s;
@@ -53,7 +52,8 @@ GameStates.makeGame = function( game, shared ) {
 		background = game.add.sprite(0, 0, 'background');
             	player = game.add.sprite(400, 400, 'player');
 		player.anchor.setTo(0.5, 0.5);
-        	game.physics.arcade.enable(player);
+        	game.physics.enable(player, ARCADE);
+		player.body.collideWorldBounds = true;
 		game.camera.follow(player);
 
 
