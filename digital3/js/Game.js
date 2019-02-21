@@ -44,10 +44,10 @@ GameStates.makeGame = function( game, shared ) {
 		//Every second the house is  there is a 1/patience chance that generocity will decrease
 		wait(){
 			if(this.requested){
-				var rand = random() % patience;
+				var rand = Math.random() % this.patience;
 				if(rand == 0) this.generocity--;
 			} else {
-				var rand = random() % 8;
+				var rand = Math.random() % 8;
 				if(rand == 0) this.newRequest();
 			}
 		}
