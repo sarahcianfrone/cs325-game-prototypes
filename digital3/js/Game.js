@@ -16,46 +16,39 @@ GameStates.makeGame = function( game, shared ) {
 	
 	
 	class House{
-	
-		var patience = 1;
-		var generocity = 20;
-		var sprite;
-		var requested = false;
-		var numRequested = 0;
-		var text;
 		constructor(x, y, spritename){
-			sprite = game.add.sprite(x, y, spritename);
-			requested = false;
-			numRequested = 0;
-			generocity = 20;
+			this.sprite = game.add.sprite(x, y, spritename);
+			this.requested = false;
+			this.numRequested = 0;
+			this.generocity = 20;
 		}
 
 		//Returns the amount of tip money that the house gives 
 		fulfillRequest(){
-			var tip = numRequested * generocity / 20.0;
-			requested = false;
-			numRequested = 0;
-			text.destroy();
+			var tip = this.numRequested * this.generocity / 20.0;
+			this.requested = false;
+			this.numRequested = 0;
+			this.text.destroy();
 			return tip;
 		}
 
 		//Generates a new request with generocity
 		newRequest(){
-			requested = true;
-			numRequested = random() % 11 + 5;
-			generocity = random() % 11 + 15;
-			patience = random() % 5 + 1;
-			text = game.add.text(sprite.x, sprite.y - 20, numRequested+"", {font: "15px Arial"});
+			this.requested = true;
+			this.numRequested = random() % 11 + 5;
+			this.generocity = random() % 11 + 15;
+			this.patience = random() % 5 + 1;
+			this.text = game.add.text(sprite.x, sprite.y - 20, numRequested+"", {font: "15px Arial"});
 		}
 
 		//Every second the house is  there is a 1/patience chance that generocity will decrease
 		wait(){
 			if(requested){
 				var rand = random() % patience;
-				if(rand == 0) generocity--;
+				if(rand == 0) this.generocity--;
 			} else {
 				var rand = random() % 8;
-				if(rand == 0) newRequest();
+				if(rand == 0) this.newRequest();
 			}
 		}
 
