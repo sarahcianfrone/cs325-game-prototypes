@@ -56,15 +56,15 @@ GameStates.makeGame = function( game, shared ) {
 	}
 
 
-    function quitGame() {
+   	 function quitGame() {
 
-        //  Here you should destroy anything you no longer need.
-        //  Stop music, delete sprites, purge caches, free resources, all that good stuff.
+   	     //  Here you should destroy anything you no longer need.
+   	     //  Stop music, delete sprites, purge caches, free resources, all that good stuff.
 
-        //  Then let's go back to the main menu.
-        game.state.start('MainMenu');
+   	     //  Then let's go back to the main menu.
+   	     game.state.start('MainMenu');
 
-    }
+    	}
     
 	function checkKeys(){
 		if(w.isDown){
@@ -82,6 +82,10 @@ GameStates.makeGame = function( game, shared ) {
 		} else {
 			player.body.velocity.x = 0;
 		}
+	}
+
+	function checkCollision(){
+		game.physics.arcade.collide(greenHouse.sprite, player)
 	}
 
     return {
@@ -118,8 +122,5 @@ GameStates.makeGame = function( game, shared ) {
 		checkCollision();
         }
 
-	function checkCollision(){
-		game.physics.arcade.collide(greenHouse.sprite, player)
-	}
     };
 };
