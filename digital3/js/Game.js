@@ -18,6 +18,7 @@ GameStates.makeGame = function( game, shared ) {
 	class House{
 		constructor(x, y, spritename){
 			this.sprite = game.add.sprite(x, y, spritename);
+			console.log(this.sprite);
 			this.requested = false;
 			this.numRequested = 0;
 			this.generocity = 20;
