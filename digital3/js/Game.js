@@ -15,7 +15,7 @@ GameStates.makeGame = function( game, shared ) {
 	var greenHouse;
 	
 	
-	class House(){
+	class House{
 	
 		var patience = 1;
 		var generocity = 20;
