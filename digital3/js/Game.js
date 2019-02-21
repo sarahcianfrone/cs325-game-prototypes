@@ -9,8 +9,8 @@ GameStates.makeGame = function( game, shared ) {
 	var s;
 	var d;
 
-	int timeLeft = 60;
-	int frame = 0;
+	var timeLeft = 60;
+	var frame = 0;
 	
 	var greenHouse;
 	
