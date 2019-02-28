@@ -6,7 +6,8 @@ GameStates.makeGame = function( game, shared ) {
 	var p1Pattern;
 	var p2Solid;
 	var p2Pattern;
-	
+	var HEIGHT = 800;
+	var WIDTH = 800;
 	var p1Weapon;
 	var p2Weapon;
 
