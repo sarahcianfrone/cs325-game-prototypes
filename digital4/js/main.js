@@ -203,8 +203,8 @@ window.onload = function(){
 			if(p1ShootTimer > 0) p1ShootTimer--;
 			if(p2ShootTimer > 0) p2ShootTimer--;
 			moveGold();
-			if(p1SwapTimer > 60*5) p1SwapTimer--;
-			if(p2SwapTimer > 60*5) p2SwapTimer--;
+			if(p1SwapTimer > 0) p1SwapTimer--;
+			if(p2SwapTimer > 0) p2SwapTimer--;
 			if(p1Pattern.x < 0) p1Pattern.x = WIDTH;
 			if(p2Pattern.x < 0) p2Pattern.x = WIDTH;
 			if(p1Pattern.x > WIDTH) p1Pattern.x = 0;
@@ -216,8 +216,8 @@ window.onload = function(){
 		var theta1 = game.math.angleBetween(p1Solid.x, p1Solid.y, gold.x, gold.y);
 		var theta2 = game.math.angleBetween(p2Solid.x, p2Solid.y, gold.x, gold.y);
 
-		gold.y+=(p1Weight*Math.sin(theta1) - p2Weight*Math.sin(theta2))/10;
-		gold.x+=(p1Weight*Math.cos(theta1) - p2Weight*Math.cos(theta2))/10;
+		gold.y+=(p1Weight*Math.sin(theta1) + p2Weight*Math.sin(theta2))/10;
+		gold.x+=(p1Weight*Math.cos(theta1) + p2Weight*Math.cos(theta2))/10;
 	}
 
 	function checkCollision(){
