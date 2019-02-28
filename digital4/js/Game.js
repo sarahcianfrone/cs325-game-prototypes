@@ -1,6 +1,5 @@
 "use strict";
 GameStates.makeGame = function(game, shared){
-window.onload = function(){
 
 	var WIDTH = 800;
 	var HEIGHT = 800;
@@ -324,6 +323,6 @@ window.onload = function(){
 			if(p2Pattern.x > WIDTH) p2Pattern.x = 0;
 		}
 	}
-}
+};
 
-}
+};
