@@ -3,7 +3,7 @@
 GameStates.makeMainMenu = function( game, shared ) {
 
 	var music = null;
-	var keyboard = null;
+	var space = null;
     
     function startGame() {
 
@@ -24,12 +24,11 @@ GameStates.makeMainMenu = function( game, shared ) {
     
             game.add.sprite(0, 0, 'titlePage');
     
-           keyboard = new Keyboard(game);
-    
+           keyboard = game.input.keyboard.addKey(Phaser.keyboard.SPACEBAR);
         },
     
         update: function () {
-    	if(keyboard.isDown(Phaser.KeyCode.SPACEBAR)) startGame();
+    	if(space.isDown) startGame();
             //	Do some nice funky main menu effect here
     
         }
