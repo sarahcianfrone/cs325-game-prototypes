@@ -216,8 +216,8 @@ window.onload = function(){
 		var theta1 = game.math.angleBetween(p1Solid.x, p1Solid.y, gold.x, gold.y);
 		var theta2 = game.math.angleBetween(p2Solid.x, p2Solid.y, gold.x, gold.y);
 
-		gold.y+=(p1Weight*Math.sin(theta1) + p2Weight*Math.sin(theta2))/10;
-		gold.x+=(p1Weight*Math.cos(theta1) + p2Weight*Math.cos(theta2))/10;
+		gold.y+=(-p1Weight*Math.sin(theta1) + p2Weight*Math.sin(theta2))/10;
+		gold.x+=(-p1Weight*Math.cos(theta1) + p2Weight*Math.cos(theta2))/10;
 	}
 
 	function checkCollision(){
