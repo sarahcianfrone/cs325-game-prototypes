@@ -24,7 +24,7 @@ GameStates.makeMainMenu = function( game, shared ) {
     
             game.add.sprite(0, 0, 'titlePage');
     
-            space = input.keyboard.addKey(Phaser.Keys.SPACE);
+            space = game.input.keyboard.addKey(Phaser.Keys.SPACE);
     
         },
     
