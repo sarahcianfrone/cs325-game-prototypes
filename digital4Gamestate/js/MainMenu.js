@@ -3,9 +3,9 @@
 GameStates.makeMainMenu = function( game, shared ) {
 
 	var music = null;
-	var space = null;
+	var playButton = null;
     
-    function startGame() {
+    function startGame(pointer) {
 
         //	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
 
@@ -24,13 +24,11 @@ GameStates.makeMainMenu = function( game, shared ) {
     
             game.add.sprite(0, 0, 'titlePage');
     
-           keyboard = game.input.keyboard.addKey(Phaser.keyboard.SPACEBAR);
+           playButton = game.add.button(0, 500, 'playButton', startGame, null, 'over', 'out', 'down');
         },
     
         update: function () {
-    	if(space.isDown) startGame();
-            //	Do some nice funky main menu effect here
-    
+    	
         }
         
     };
