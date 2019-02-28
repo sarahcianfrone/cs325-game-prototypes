@@ -16,6 +16,7 @@ GameStates.makeBoot = function( game ) {
             {
                 //  If you have any desktop specific settings, they can go in here
                 game.scale.pageAlignHorizontally = true;
+            
             }
             else
             {
@@ -26,6 +27,8 @@ GameStates.makeBoot = function( game ) {
                 game.scale.forceLandscape = true;
                 game.scale.pageAlignHorizontally = true;
             }
+            game.width = 800;
+            game.height = 800;
     
         },
     
