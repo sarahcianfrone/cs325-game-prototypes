@@ -202,6 +202,8 @@ window.onload = function(){
 			checkKeys();
 			if(p1ShootTimer > 0) p1ShootTimer--;
 			if(p2ShootTimer > 0) p2ShootTimer--;
+			if(p1ShootTimer < 0) p1ShootTimer++;
+			if(p2ShootTimer > 0) p2ShootTimer++;
 			moveGold();
 			if(p1SwapTimer > 0) p1SwapTimer--;
 			if(p2SwapTimer > 0) p2SwapTimer--;
@@ -284,14 +286,14 @@ window.onload = function(){
 	function p1hitPattern(sprite, bullet){
 		bullet.kill();
 		p1ScoreIncrease(1);
-		if(p2ShootTimer < 20) p2ShootTimer = 120;
+		if(p2ShootTimer < -60) p2ShootTimer = 60;
 	}
 
 
 	function p2hitPattern(sprite, bullet){
 		bullet.kill();
 		p2ScoreIncrease(1);
-		if(p1ShootTimer < 20) p1ShootTimer = 120;
+		if(p1ShootTimer < -60) p1ShootTimer = 60;
 	}
 
 
@@ -326,7 +328,7 @@ window.onload = function(){
 			p1Pattern.body.velocity.x = 0;
 		}
 		if(s.isDown){
-			if(p1ShootTimer == 0){
+			if(p1ShootTimer <= 0){
 				p1Weapon.fire();
 				if(hasShot == 0) shoot.play();
 			}
@@ -352,7 +354,7 @@ window.onload = function(){
 			p2Pattern.body.velocity.x = 0;
 		}
 		if(k.isDown){
-			if(p2ShootTimer == 0){
+			if(p2ShootTimer <= 0){
 				p2Weapon.fire();
 				if(hasShot == 0) shoot.play();
 			}
