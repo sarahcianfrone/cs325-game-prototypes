@@ -213,8 +213,8 @@ window.onload = function(){
 	}
 
 	function moveGold(){
-		theta1 = game.math.angleBetween(p1Solid.x, p1Solid.y, gold.x, gold.y);
-		theta2 = game.math.angleBetween(p2Solid.x, p2Solid.y, gold.x, gold.y);
+		var theta1 = game.math.angleBetween(p1Solid.x, p1Solid.y, gold.x, gold.y);
+		var theta2 = game.math.angleBetween(p2Solid.x, p2Solid.y, gold.x, gold.y);
 
 		gold.y+=(p1Weight*game.math.sin(theta1) - p2Weight*game.math.sin(theta2))/10;
 		gold.x+=(p1Weight*game.math.cos(theta1) - p2Weight*game.math.cos(theta2))/10;
