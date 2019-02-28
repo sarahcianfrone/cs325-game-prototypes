@@ -5,7 +5,7 @@ GameStates.makePreloader = function( game ) {
 	var background = null;
 	var preloadBar = null;
 
-	var ready = false;
+	var ready = true;
 
     return {
     
@@ -62,11 +62,8 @@ GameStates.makePreloader = function( game ) {
             //	If you don't have any music in your game then put the game.state.start line into the create function and delete
             //	the update function completely.
             
-            if (game.cache.isSoundDecoded('titleMusic') && ready == false)
-            {
-                ready = true;
                 game.state.start('MainMenu');
-            }
+   
     
         }
     
