@@ -200,10 +200,10 @@ window.onload = function(){
 			if(hasShot == 4) hasShot = 0;
 			checkCollision();	
 			checkKeys();
-			if(p1ShootTimer > 0) p1ShootTimer--;
-			if(p2ShootTimer > 0) p2ShootTimer--;
-			if(p1ShootTimer < 0) p1ShootTimer++;
-			if(p2ShootTimer > 0) p2ShootTimer++;
+			if(p1ShootTimer > -60) p1ShootTimer--;
+			if(p2ShootTimer > -60) p2ShootTimer--;
+	
+		
 			moveGold();
 			if(p1SwapTimer > 0) p1SwapTimer--;
 			if(p2SwapTimer > 0) p2SwapTimer--;
@@ -286,14 +286,14 @@ window.onload = function(){
 	function p1hitPattern(sprite, bullet){
 		bullet.kill();
 		p1ScoreIncrease(1);
-		if(p2ShootTimer < -60) p2ShootTimer = 60;
+		if(p2ShootTimer <= -60) p2ShootTimer = 60;
 	}
 
 
 	function p2hitPattern(sprite, bullet){
 		bullet.kill();
 		p2ScoreIncrease(1);
-		if(p1ShootTimer < -60) p1ShootTimer = 60;
+		if(p1ShootTimer <= -60) p1ShootTimer = 60;
 	}
 
 
