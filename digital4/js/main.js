@@ -229,7 +229,7 @@ window.onload = function(){
 				var temp = p1Pattern.x;
 				p1Pattern.x = p1Solid.x;
 				p1Solid.x = temp;
-				temp = p2Pattern.y;
+				temp = p1Pattern.y;
 				p1Pattern.y = p1Solid.y;
 				p1Solid.y = temp;
 			}
@@ -276,6 +276,7 @@ window.onload = function(){
 
 	function resetGold(){
 		gold.x = WIDTH/2 - 12.5;
+		gold.y = HEIGHT-255;
 		p1Weight = 8;
 		p2Weight = 8;
 	}
