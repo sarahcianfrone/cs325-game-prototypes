@@ -1,10 +1,13 @@
 "use strict";
 
 GameStates.makeGame = function( game, shared ) {
-    // Create your own variables.
+    //Constant fields
     var WIDTH = 800;
     var HEIGHT = 800;
     
+    //Sprites
+    var background;
+
     //Used for the timer to include a loss case
     var timeLeft = 300;
     var timeLeftText = null;
@@ -42,7 +45,7 @@ GameStates.makeGame = function( game, shared ) {
         }
         enemyMoney+=enemyEarningPerTick;
         if(enemyMoneyText != null) enemyMoneyText.destroy();
-        enemyMoneyText = timeLeftText = game.add.text(WIDTH - 50, 50, ""+numberToString(enemyMoney)+"", {font: "25px Arial", fill: "#fff", boundsAlignH: "center"});
+        enemyMoneyText = timeLeftText = game.add.text(WIDTH - 200, 50, ""+numberToString(enemyMoney)+"", {font: "25px Arial", fill: "#fff", boundsAlignH: "center"});
     }
 
     //Converts a number from 12345678 format -> 12,345,678 format
@@ -68,6 +71,8 @@ GameStates.makeGame = function( game, shared ) {
         //  Here you should destroy anything you no longer need.
         //  Stop music, delete sprites, purge caches, free resources, all that good stuff.
         if(timeLeftText != null) timeLeftText.destroy();
+        if(enemyMoneyText != null) enemyMoneyText.destroy();
+        background.destroy();
         //  Then let's go back to the main menu.
         game.state.start('MainMenu');
 
@@ -76,7 +81,7 @@ GameStates.makeGame = function( game, shared ) {
     return {
     
         create: function () {
-    
+            background = game.add.sprite(0, 0, 'background');
        
         },
     
