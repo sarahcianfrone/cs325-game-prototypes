@@ -47,19 +47,18 @@ GameStates.makeGame = function( game, shared ) {
         }
         enemyMoney+=enemyEarningPerTick;
         if(enemyMoneyText != null) enemyMoneyText.destroy();
-        enemyMoneyText = game.add.text(WIDTH - 200, 50, ""+numberToString(enemyMoney)+"", {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
+        enemyMoneyText = game.add.text(WIDTH - 100, 50, ""+numberToString(enemyMoney)+"", {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
     }
 
     //Converts a number from 12345678 format -> 12,345,678 format
     function numberToString(num){
         var ret = "";
         var numChanging = num;
-        var place = 1000;
         while(numChanging > 0){
             if(ret.length!=0) ret = ","+ret;
-            ret = ""+numChanging%place + ret;
-            numChanging-=numChanging%place;
-            place*=1000;
+            ret = ""+numChanging%1000 + ret;
+            numChanging-=numChanging%1000;
+            numChanging/=1000;
         }
         return ret;
     }
