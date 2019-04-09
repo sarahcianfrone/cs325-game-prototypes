@@ -10,7 +10,7 @@ GameStates.makeGame = function( game, shared ) {
 
     //Used for the timer to include a loss case
     var timeLeft = 300;
-    var timeLeftText = game.add.text(0, 0, "");
+    var timeLeftText;
     var frame = 0;
 
     function decreaseTimeLeft(){
@@ -84,7 +84,7 @@ GameStates.makeGame = function( game, shared ) {
     
         create: function () {
             background = game.add.sprite(0, 0, 'background');
-       
+            timeLeftText = game.add.text(0, 0, "");
         },
     
         update: function () {
