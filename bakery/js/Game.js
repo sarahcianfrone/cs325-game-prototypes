@@ -60,6 +60,7 @@ GameStates.makeGame = function( game, shared ) {
             numChanging-=numChanging%place;
             place*=1000;
         }
+        return ret;
     }
     //Player money decreases when they buy things, lifetimeEarnings does not.
     var lifetimeEarnings = 0;
