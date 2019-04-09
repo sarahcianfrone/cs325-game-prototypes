@@ -2,13 +2,72 @@
 
 GameStates.makeGame = function( game, shared ) {
     // Create your own variables.
-    var bouncy = null;
+    var WIDTH = 800;
+    var HEIGHT = 800;
     
+    //Used for the timer to include a loss case
+    var timeLeft = 300;
+    var timeLeftText = null;
+    var frame = 0;
+
+    function decreaseTimeLeft(){
+        frame = 0;
+        timeLeft--;
+        if(timeLeftText != null) timeLeftText.destroy();
+        var secondsLeft = timeLeft%60;
+        var minutesLeft = (timeLeft - secondsLeft) / 60;
+        timeLeftText = game.add.text(WIDTH - 50, 10, ""+minutesLeft+":"+secondsLeft, {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
+        if(timeLeft == 0) timeUp();
+    }
+
+    function timeUp(){
+        if(lifetimeEarnings > enemyMoney) console.log("Win");
+        else console.log("Lose");
+        quitGame();
+    }
+
+    //EnemyMoney and enemyEarningPerSecond used for the loss case also
+    //By the end of 5 minutes = 300 seconds, the enemy will have 100,000+300*10,000 = 400,000
+    //These numbers subject to change
+    var enemyMoney = 100000;
+    var enemyEarningPerSecond = 1000;
+    var enemyMoneyEarnedThisSecond = 0;
+    var enemyMoneyText = null;
+
+    function enemyMoneyIncrease(){
+        var enemyEarningPerTick = Math.floor(enemyEarningPerSecond/60);
+        enemyMoneyEarnedThisSecond+=enemyEarningPerTick;
+        if(frame == 60 && enemyMoneyEarnedThisSecond != enemyEarningPerSecond){
+            enemyEarningPerTick = enemyEarningPerSecond-enemyMoneyEarnedThisSecond;
+        }
+        enemyMoney+=enemyEarningPerTick;
+        if(enemyMoneyText != null) enemyMoneyText.destroy();
+        enemyMoneyText = timeLeftText = game.add.text(WIDTH - 50, 50, ""+numberToString(enemyNum)+"", {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
+    }
+
+    //Converts a number from 12345678 format -> 12,345,678 format
+    function numberToString(num){
+        var ret = "";
+        var numChanging = num;
+        var place = 1000;
+        while(numChanging > 0){
+            if(ret.length!=0) ret = ","+ret;
+            ret = ""+numchanging%place + ret;
+            numChanging-=numChanging%place;
+            place*=1000;
+        }
+    }
+    //Player money decreases when they buy things, lifetimeEarnings does not.
+    var lifetimeEarnings = 0;
+    var money = 0;
+
+
+
     function quitGame() {
 
         //  Here you should destroy anything you no longer need.
         //  Stop music, delete sprites, purge caches, free resources, all that good stuff.
-
+        if(timeLeftText != null) timeLeftText.destroy();
         //  Then let's go back to the main menu.
         game.state.start('MainMenu');
 
@@ -18,40 +77,13 @@ GameStates.makeGame = function( game, shared ) {
     
         create: function () {
     
-            //  Honestly, just about anything could go here. It's YOUR game after all. Eat your heart out!
-            
-            // Create a sprite at the center of the screen using the 'logo' image.
-            bouncy = game.add.sprite( game.world.centerX, game.world.centerY, 'logo' );
-            // Anchor the sprite at its center, as opposed to its top-left corner.
-            // so it will be truly centered.
-            bouncy.anchor.setTo( 0.5, 0.5 );
-            
-            // Turn on the arcade physics engine for this sprite.
-            game.physics.enable( bouncy, Phaser.Physics.ARCADE );
-            // Make it bounce off of the world bounds.
-            bouncy.body.collideWorldBounds = true;
-            
-            // Add some text using a CSS style.
-            // Center it in X, and position its top 15 pixels from the top of the world.
-            var style = { font: "25px Verdana", fill: "#9999ff", align: "center" };
-            var text = game.add.text( game.world.centerX, 15, "Build something amazing.", style );
-            text.anchor.setTo( 0.5, 0.0 );
-            
-            // When you click on the sprite, you go back to the MainMenu.
-            bouncy.inputEnabled = true;
-            bouncy.events.onInputDown.add( function() { quitGame(); }, this );
+       
         },
     
         update: function () {
-    
-            //  Honestly, just about anything could go here. It's YOUR game after all. Eat your heart out!
-            
-            // Accelerate the 'logo' sprite towards the cursor,
-            // accelerating at 500 pixels/second and moving no faster than 500 pixels/second
-            // in X or Y.
-            // This function returns the rotation angle that makes it visually match its
-            // new trajectory.
-            bouncy.rotation = game.physics.arcade.accelerateToPointer( bouncy, game.input.activePointer, 500, 500, 500 );
+            frame++;
+            if(frame == 60) decreaseTimeLeft();
+            enemyMoneyIncrease();
         }
     };
 };
