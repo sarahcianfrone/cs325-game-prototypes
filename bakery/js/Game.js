@@ -10,16 +10,17 @@ GameStates.makeGame = function( game, shared ) {
 
     //Used for the timer to include a loss case
     var timeLeft = 300;
-    var timeLeftText = null;
+    var timeLeftText = game.add.text(0, 0, "");
     var frame = 0;
 
     function decreaseTimeLeft(){
         frame = 0;
         timeLeft--;
-        if(timeLeftText != null) timeLeftText.destroy();
+        timeLeftText.destroy();
         var secondsLeft = timeLeft%60;
         var minutesLeft = (timeLeft - secondsLeft) / 60;
-        timeLeftText = game.add.text(WIDTH - 50, 10, ""+minutesLeft+":"+secondsLeft, {font: "25px Arial", fill: "#fff", boundsAlignH: "center"});
+        if(minutesLeft > 0) timeLeftText = game.add.text(WIDTH - 50, 10, ""+minutesLeft+":"+secondsLeft, {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
+        else timeLeftText = game.add.text(WIDTH - 50, 10, ""+secondsLeft, {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
         if(timeLeft == 0) timeUp();
     }
 
@@ -45,7 +46,7 @@ GameStates.makeGame = function( game, shared ) {
         }
         enemyMoney+=enemyEarningPerTick;
         if(enemyMoneyText != null) enemyMoneyText.destroy();
-        enemyMoneyText = timeLeftText = game.add.text(WIDTH - 200, 50, ""+numberToString(enemyMoney)+"", {font: "25px Arial", fill: "#fff", boundsAlignH: "center"});
+        enemyMoneyText = timeLeftText = game.add.text(WIDTH - 200, 50, ""+numberToString(enemyMoney)+"", {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
     }
 
     //Converts a number from 12345678 format -> 12,345,678 format
