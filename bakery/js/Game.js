@@ -52,7 +52,7 @@ GameStates.makeGame = function( game, shared ) {
         var place = 1000;
         while(numChanging > 0){
             if(ret.length!=0) ret = ","+ret;
-            ret = ""+numchanging%place + ret;
+            ret = ""+numChanging%place + ret;
             numChanging-=numChanging%place;
             place*=1000;
         }
