@@ -86,6 +86,7 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function moneyIncrease(){
+        var increase = 0;
         for(var i=0;i<units.length;i++){
             increase = units[i].perSec*units[i].numOwned/60.0;
             money+=increase;
