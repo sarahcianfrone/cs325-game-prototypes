@@ -98,7 +98,7 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function Button(x, y, ind, clickFunc){
-        var styleL = {font: "30px Arial", fill: "#fff", boundsAlignH: "left"};
+        var styleL = {font: "25px Arial", fill: "#fff", boundsAlignH: "left"};
         var styleR = {font: "20px Arial", fill: "#fff", boundsAlignH: "right"};
         var button = {  sprite: game.add.sprite(x, y, 'buttonBase'),
                         nameText: game.add.text(x+5, y+5, units[ind].name, styleL),
