@@ -131,6 +131,7 @@ GameStates.makeGame = function( game, shared ) {
             moneyIncrease();
 
             if (key.isDown) units[BRIOCHE].numOwned++;
+            console.log(units);
         }
     };
 };
