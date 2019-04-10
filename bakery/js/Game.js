@@ -129,9 +129,8 @@ GameStates.makeGame = function( game, shared ) {
             if(frame == 60) decreaseTimeLeft();
             if(timeLeft > 0) enemyMoneyIncrease();
             moneyIncrease();
-
+            displayMoney();
             if (key.isDown) units[BRIOCHE].numOwned++;
-            console.log(units);
         }
     };
 };
