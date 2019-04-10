@@ -16,12 +16,10 @@ GameStates.makeMainMenu = function( game, shared ) {
             case 1:
                 story.destroy();
                 story = game.add.sprite(0, 0, 'story1');
-                story.scale.setTo(2, 2);
             break;
             case 2:
                 story.destroy();
-                story = game.add.sprite(0, 0, 'story2');
-                story.scale.setTo(2, 2);
+                story = game.add.sprite(0, 0, 'story2')
             break;
             case 3:
                 story.destroy();
@@ -38,7 +36,6 @@ GameStates.makeMainMenu = function( game, shared ) {
         create: function () {
     
             story = game.add.sprite(0, 0, 'story0');
-            story.scale.setTo(2, 2);
             key = game.input.keyboard.addKey(Phaser.KeyCode.ENTER);
             key.onDown.add(nextIndex);
 
