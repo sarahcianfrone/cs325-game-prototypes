@@ -11,7 +11,7 @@ GameStates.makeGame = function( game, shared ) {
     const BRIOCHE = 3;
     const SOURDOUGH = 4;
 
-    var cursors;
+    var key;
 
     //Sprites
     var background;
@@ -119,7 +119,7 @@ GameStates.makeGame = function( game, shared ) {
             timeLeftText = game.add.text(WIDTH - 50, 10, "5:00", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
             enemyMoneyText = game.add.text(WIDTH - 100, 50, ""+enemyMoney, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
             moneyText = game.add.text(WIDTH/2, 100, "0", {font: "40px Arial", fill: "#000", boundsAlignH: "right"});
-            cursors = game.input.keyboard.createCursorKeys();
+            key = game.input.keyboard.addKey(Phaser.keyboard.W);
             
             makeUnits();
         },
@@ -130,7 +130,7 @@ GameStates.makeGame = function( game, shared ) {
             if(timeLeft > 0) enemyMoneyIncrease();
             moneyIncrease();
 
-            if (cursors.up.isDown) units[BRIOCHE].numOwned++;
+            if (key.isDown) units[BRIOCHE].numOwned++;
         }
     };
 };
