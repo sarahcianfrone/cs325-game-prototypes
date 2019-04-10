@@ -159,8 +159,9 @@ GameStates.makeGame = function( game, shared ) {
             enemyMoneyText = game.add.text(WIDTH - 100, 50, ""+enemyMoney, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
             moneyText = game.add.text(WIDTH/2, 100, "0", {font: "40px Arial", fill: "#000", boundsAlignH: "center"});
             key = game.input.keyboard.addKey(Phaser.Keyboard.W);
-            makeButtons();
+     
             makeUnits();
+            makeButtons();
         },
     
         update: function () {
