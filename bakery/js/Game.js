@@ -119,8 +119,8 @@ GameStates.makeGame = function( game, shared ) {
     
         create: function () {
             background = game.add.sprite(0, 0, 'background');
-            timeLeftText = game.add.text(WIDTH - 50, 10, ""+minutesLeft+":"+secondsLeft, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
-            enemyMoneyText = game.add.text(WIDTH - 100, 50, "5:00", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
+            timeLeftText = game.add.text(WIDTH - 50, 10, "5:00", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
+            enemyMoneyText = game.add.text(WIDTH - 100, 50, ""+enemyMoney, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
             moneyText = game.add.text(WIDTH - 100, 50, "0", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
             cursors = game.input.keyboard.createCursorKeys();
             
