@@ -77,16 +77,12 @@ GameStates.makeGame = function( game, shared ) {
         units.push({name: newName, cost: newCost, perSec: newPerSec, numOwned: newNumOwned});
     }
 
-    function Unit(newName, newCost, newPerSec){
-        Unit(newName, newCost, newPerSec, 0);
-    }
-
     function makeUnits(){
         Unit("White Bread", 5, 1, 1);
-        Unit("Wheat Bread", 20, 5);
-        Unit("Banana Bread", 100, 35);
-        Unit("Brioche", 1000, 400);
-        Unit("Sourdough", 10000, 5000);
+        Unit("Wheat Bread", 20, 5, 0);
+        Unit("Banana Bread", 100, 35, 0);
+        Unit("Brioche", 1000, 400, 0);
+        Unit("Sourdough", 10000, 5000, 0);
     }
 
     function moneyIncrease(){
