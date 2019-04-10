@@ -26,7 +26,7 @@ GameStates.makePreloader = function( game ) {
 	    	game.load.image('story1', 'assets/story_2.png');
 		    game.load.image('story2', 'assets/story_3.png');
            	game.load.image('background', 'assets/background.png')
-
+            game.load.image('tabBottom', 'assets/tabBottom.png')
             game.load.image( 'logo', 'assets/phaser.png' );
         },
     

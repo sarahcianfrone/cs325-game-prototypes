@@ -2,26 +2,33 @@
 
 GameStates.makeGame = function( game, shared ) {
     //Constant fields
-    var WIDTH = 800;
-    var HEIGHT = 800;
-    
+    const WIDTH = 800;
+    const HEIGHT = 800;
+
+    const WHITE_BREAD = 0;
+    const WHEAT_BREAD = 1;
+    const BANANA_BREAD = 2;
+    const BRIOCHE = 3;
+    const SOURDOUGH = 4;
+
+    var cursors;
+
     //Sprites
     var background;
 
     //Used for the timer to include a loss case
-    var timeLeft = 300;
+    var timeLeft = 301;
     var timeLeftText;
     var frame = 0;
+
+    var units = [];
 
     function decreaseTimeLeft(){
         frame = 0;
         timeLeft--;
-
-        timeLeftText.destroy();
         var secondsLeft = timeLeft%60;
         var minutesLeft = (timeLeft - secondsLeft) / 60;
-        if(minutesLeft > 0) timeLeftText = game.add.text(WIDTH - 50, 10, ""+minutesLeft+":"+secondsLeft, {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
-        else timeLeftText = game.add.text(WIDTH - 50, 10, ""+secondsLeft, {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
+        timeLeftText.setText(""+minutesLeft+":"+secondsLeft)
         if(timeLeft == 0) timeUp();
     }
 
@@ -46,8 +53,7 @@ GameStates.makeGame = function( game, shared ) {
             enemyEarningPerTick = enemyEarningPerSecond-enemyMoneyEarnedThisSecond;
         }
         enemyMoney+=enemyEarningPerTick;
-        if(enemyMoneyText != null) enemyMoneyText.destroy();
-        enemyMoneyText = game.add.text(WIDTH - 100, 50, ""+numberToString(enemyMoney)+"", {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
+        enemyMoneyText.setText(numberToString(enemyMoney));
     }
 
     //Converts a number from 12345678 format -> 12,345,678 format
@@ -65,15 +71,44 @@ GameStates.makeGame = function( game, shared ) {
     //Player money decreases when they buy things, lifetimeEarnings does not.
     var lifetimeEarnings = 0;
     var money = 0;
+    var moneyText;
 
+    function Unit(newName, newCost, newPerSec, newNumOwned){
+        units.push({name: newName, cost: newCost, perSec: newPerSec, numOwned: newNumOwned});
+    }
 
+    function Unit(newName, newCost, newPerSec){
+        Unit(newName, newCost, newPerSec, 0);
+    }
+
+    function makeUnits(){
+        Unit("White Bread", 5, 1, 1);
+        Unit("Wheat Bread", 20, 5);
+        Unit("Banana Bread", 100, 35);
+        Unit("Brioche", 1000, 400);
+        Unit("Sourdough", 10000, 5000);
+    }
+
+    function moneyIncrease(){
+        for(var i=0;i<units.length;i++){
+            increase = units[i].perSec*numOwned/60.0;
+            money+=increase;
+            lifetimeEarnings+=increase;
+        }
+    }
+
+    function displayMoney(){
+        var floorMoney = Math.floor(money);
+        moneyText.setText(numberToString(floorMoney));
+    }
 
     function quitGame() {
 
         //  Here you should destroy anything you no longer need.
         //  Stop music, delete sprites, purge caches, free resources, all that good stuff.
-        if(timeLeftText != null) timeLeftText.destroy();
-        if(enemyMoneyText != null) enemyMoneyText.destroy();
+        timeLeftText.destroy();
+        enemyMoneyText.destroy();
+        moneyText.destroy();
         background.destroy();
         //  Then let's go back to the main menu.
         game.state.start('MainMenu');
@@ -84,13 +119,21 @@ GameStates.makeGame = function( game, shared ) {
     
         create: function () {
             background = game.add.sprite(0, 0, 'background');
-            timeLeftText = game.add.text(0, 0, "");
+            timeLeftText = game.add.text(WIDTH - 50, 10, ""+minutesLeft+":"+secondsLeft, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
+            enemyMoneyText = game.add.text(WIDTH - 100, 50, "5:00", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
+            moneyText = game.add.text(WIDTH - 100, 50, "0", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
+            cursors = game.input.keyboard.createCursorKeys();
+            
+            makeUnits();
         },
     
         update: function () {
             frame++;
             if(frame == 60) decreaseTimeLeft();
-            enemyMoneyIncrease();
+            if(timeLeft > 0) enemyMoneyIncrease();
+            moneyIncrease();
+
+            if (cursors.up.isDown) units[BRIOCHE].numOwned++;
         }
     };
 };
