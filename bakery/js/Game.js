@@ -124,7 +124,7 @@ GameStates.makeGame = function( game, shared ) {
             money-=units[info].cost;
             units[info].numOwned++;
             units[info].cost*=INCREASE;
-            buttbuttonsInfo[info].numOwnedText.setText("Owned: "+units[info].numOwned);
+            buttonsInfo[info].numOwnedText.setText("Owned: "+units[info].numOwned);
             buttonsInfo[info].costText.setText("Cost = "+units[info].cost);
             displayMoney();
         }
