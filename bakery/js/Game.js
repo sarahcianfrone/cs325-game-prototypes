@@ -30,9 +30,7 @@ GameStates.makeGame = function( game, shared ) {
     function decreaseTimeLeft(){
         frame = 0;
         timeLeft--;
-        var secondsLeft = timeLeft%60;
-        var minutesLeft = (timeLeft - secondsLeft) / 60;
-        timeLeftText.setText(timeToString(secondsLeft))
+        timeLeftText.setText(timeToString(timeLeft))
         if(timeLeft == 0) timeUp();
     }
 
@@ -109,13 +107,13 @@ GameStates.makeGame = function( game, shared ) {
     function Button(x, y, ind){
         var styleL = {font: "25px Arial", fill: "#fff", boundsAlignH: "left"};
         var styleR = {font: "20px Arial", fill: "#fff", boundsAlignH: "right"};
+        var bttn =  game.add.button(x, y, 'buttonBase', function(){buttonClicked(ind)});
+        bttn.scale.setTo(2, 1);
         var buttonInfo =  { nameText: game.add.text(x+5, y+5, units[ind].name, styleL),
             perSecText: game.add.text(x+150, y+5, "$/s = "+units[ind].perSec, styleR),
             numOwnedText: game.add.text(x+150, y+35, "Owned : "+units[ind].numOwned, styleR),
             costText: game.add.text(x+150, y+65, "Cost = "+units[ind].cost, styleR), 
             index: ind};
-        var bttn =  game.add.button(x, y, 'buttonBase', function(){buttonClicked(ind)});
-        bttn.scale.setTo(2, 1);
         buttonsInfo.push(buttonInfo);
         buttons.push(bttn);
        
@@ -130,6 +128,7 @@ GameStates.makeGame = function( game, shared ) {
             unit.cost*=INCREASE;
             buttonInfo.numOwnedText.setText("Owned: "+unit.numOwned);
             buttonInfo.costText.setText("Cost = "+unit.cost);
+            displayMoney();
         }
     }
 
