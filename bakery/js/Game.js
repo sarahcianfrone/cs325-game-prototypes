@@ -25,6 +25,7 @@ GameStates.makeGame = function( game, shared ) {
 
     var units = [];
     var buttons = [];
+    var buttonsInfo = [];
 
     function decreaseTimeLeft(){
         frame = 0;
@@ -104,32 +105,36 @@ GameStates.makeGame = function( game, shared ) {
         }
     }
 
-    function Button(x, y, ind, clickFunc){
+    function Button(x, y, ind){
         var styleL = {font: "25px Arial", fill: "#fff", boundsAlignH: "left"};
         var styleR = {font: "20px Arial", fill: "#fff", boundsAlignH: "right"};
-        var bttn =  {   button: game.add.button(x, y, 'buttonBase', buttonClicked, ind),
-                        nameText: game.add.text(x+5, y+5, units[ind].name, styleL),
-                        perSecText: game.add.text(x+150, y+5, "$/s = "+units[ind].perSec, styleR),
-                        numOwnedText: game.add.text(x+150, y+35, "Owned : "+units[ind].numOwned, styleR),
-                        costText: game.add.text(x+150, y+65, "Cost = "+units[ind].cost, styleR), 
-                        index: ind,
-                        func: clickFunc
-                    };
+        var buttonInfo =  { nameText: game.add.text(x+5, y+5, units[ind].name, styleL),
+            perSecText: game.add.text(x+150, y+5, "$/s = "+units[ind].perSec, styleR),
+            numOwnedText: game.add.text(x+150, y+35, "Owned : "+units[ind].numOwned, styleR),
+            costText: game.add.text(x+150, y+65, "Cost = "+units[ind].cost, styleR), 
+            index: ind};
+        var bttn =  game.add.button(x, y, 'buttonBase', function(){buttonClicked(ind)});
+        bttn.scale.setTo(2, 1);
+        buttonsInfo.push_back(buttonInfo);
+        buttons.push_back(bttn);
        
     }
 
     function buttonClicked(info){
-        console.log(info);
+        var unit = units[info];
+        var buttonInfo = buttonInfo[info];
+        if(money >= unit.cost){
+            money-=unit.cost;
+            unit.numOwned++;
+            unit.cost*=INCREASE;
+            buttonInfo.numOwnedText.setText("Owned: "+unit.numOwned);
+            buttonInfo.costText.setText("Cost = "+unit.cost);
+        }
     }
 
     function makeButtons(){
-        Button(20, 50, WHITE_BREAD, function(){
-            if(money >= units[WHITE_BREAD].cost){
-                money-=units[WHITE_BREAD].cost;
-                units[WHITE_BREAD].cost*=INCREASE;
-                units[WHITE_BREAD].numOwned++;
-            }
-        });
+        Button(20, 50, WHITE_BREAD);
+        Button(20, 200, WHEAT_BREAD);
     }
 
     function destroyButtons(){
