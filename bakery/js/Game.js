@@ -123,7 +123,7 @@ GameStates.makeGame = function( game, shared ) {
             console.log(info);
             money-=units[info].cost;
             units[info].numOwned++;
-            units[info].cost*=INCREASE;
+            units[info].cost = Math.floor(units[info].cost*INCREASE);
             buttonsInfo[info].numOwnedText.setText("Owned: "+units[info].numOwned);
             buttonsInfo[info].costText.setText("Cost = "+units[info].cost);
             displayMoney();
