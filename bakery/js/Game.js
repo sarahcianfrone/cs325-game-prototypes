@@ -46,6 +46,7 @@ GameStates.makeGame = function( game, shared ) {
     function timeToString(seconds){
         var sec = seconds % 60;
         var min = (seconds - sec) / 60;
+        console.log(min+"  "+sec+"  "+seconds);
         if(sec < 10) return ""+min+":0"+sec;
         else return ""+min+":"+sec;
     }
@@ -115,8 +116,8 @@ GameStates.makeGame = function( game, shared ) {
             index: ind};
         var bttn =  game.add.button(x, y, 'buttonBase', function(){buttonClicked(ind)});
         bttn.scale.setTo(2, 1);
-        buttonsInfo.push_back(buttonInfo);
-        buttons.push_back(bttn);
+        buttonsInfo.push(buttonInfo);
+        buttons.push(bttn);
        
     }
 
