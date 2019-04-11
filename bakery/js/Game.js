@@ -31,7 +31,7 @@ GameStates.makeGame = function( game, shared ) {
         timeLeft--;
         var secondsLeft = timeLeft%60;
         var minutesLeft = (timeLeft - secondsLeft) / 60;
-        timeLeftText.setText(""+minutesLeft+":"+secondsLeft)
+        timeLeftText.setText(timeToString(secondsLeft))
         if(timeLeft == 0) timeUp();
     }
 
@@ -41,6 +41,13 @@ GameStates.makeGame = function( game, shared ) {
         quitGame();
     }
 
+
+    function timeToString(seconds){
+        var sec = seconds % 60;
+        var min = (seconds - sec) / 60;
+        if(sec < 10) return ""+min+":0"+sec;
+        else return ""+min+":"+sec;
+    }
     //EnemyMoney and enemyEarningPerSecond used for the loss case also
     //By the end of 5 minutes = 300 seconds, the enemy will have 100,000+300*10,000 = 400,000
     //These numbers subject to change
@@ -100,7 +107,7 @@ GameStates.makeGame = function( game, shared ) {
     function Button(x, y, ind, clickFunc){
         var styleL = {font: "25px Arial", fill: "#fff", boundsAlignH: "left"};
         var styleR = {font: "20px Arial", fill: "#fff", boundsAlignH: "right"};
-        var button = {  sprite: game.add.sprite(x, y, 'buttonBase'),
+        var bttn =  {   button: game.add.button(x, y, 'buttonBase', buttonClicked, this),
                         nameText: game.add.text(x+5, y+5, units[ind].name, styleL),
                         perSecText: game.add.text(x+150, y+5, "$/s = "+units[ind].perSec, styleR),
                         numOwnedText: game.add.text(x+150, y+35, "Owned : "+units[ind].numOwned, styleR),
@@ -108,7 +115,11 @@ GameStates.makeGame = function( game, shared ) {
                         index: ind,
                         func: clickFunc
                     };
-         
+       
+    }
+
+    function buttonClicked(info){
+        console.log(info);
     }
 
     function makeButtons(){
@@ -148,7 +159,6 @@ GameStates.makeGame = function( game, shared ) {
         destroyButtons();
         //  Then let's go back to the main menu.
         game.state.start('MainMenu');
-
     }
     
     return {
