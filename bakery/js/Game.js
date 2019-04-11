@@ -107,7 +107,7 @@ GameStates.makeGame = function( game, shared ) {
     function Button(x, y, ind, clickFunc){
         var styleL = {font: "25px Arial", fill: "#fff", boundsAlignH: "left"};
         var styleR = {font: "20px Arial", fill: "#fff", boundsAlignH: "right"};
-        var bttn =  {   button: game.add.button(x, y, 'buttonBase', buttonClicked, this),
+        var bttn =  {   button: game.add.button(x, y, 'buttonBase', buttonClicked, ind),
                         nameText: game.add.text(x+5, y+5, units[ind].name, styleL),
                         perSecText: game.add.text(x+150, y+5, "$/s = "+units[ind].perSec, styleR),
                         numOwnedText: game.add.text(x+150, y+35, "Owned : "+units[ind].numOwned, styleR),
