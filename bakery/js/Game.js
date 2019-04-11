@@ -119,16 +119,13 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function buttonClicked(info){
-
-        var unit = units[info];
-        var buttonInfo = buttonInfo[info];
         if(money >= units[info].cost){
             console.log(info);
             money-=units[info].cost;
             units[info].numOwned++;
             units[info].cost*=INCREASE;
-            buttonInfo.numOwnedText.setText("Owned: "+units[info].numOwned);
-            buttonInfo.costText.setText("Cost = "+units[info].cost);
+            buttbuttonsInfo[info].numOwnedText.setText("Owned: "+units[info].numOwned);
+            buttonsInfo[info].costText.setText("Cost = "+units[info].cost);
             displayMoney();
         }
     }
