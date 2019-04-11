@@ -44,7 +44,6 @@ GameStates.makeGame = function( game, shared ) {
     function timeToString(seconds){
         var sec = seconds % 60;
         var min = (seconds - sec) / 60;
-        console.log(min+"  "+sec+"  "+seconds);
         if(sec < 10) return ""+min+":0"+sec;
         else return ""+min+":"+sec;
     }
@@ -120,6 +119,7 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function buttonClicked(info){
+        console.log(info);
         var unit = units[info];
         var buttonInfo = buttonInfo[info];
         if(money >= unit.cost){
