@@ -172,7 +172,7 @@ GameStates.makeGame = function( game, shared ) {
             background = game.add.sprite(0, 0, 'background');
             timeLeftText = game.add.text(WIDTH - 50, 10, "5:00", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
             enemyMoneyText = game.add.text(WIDTH - 100, 50, ""+enemyMoney, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
-            moneyText = game.add.text(WIDTH/2, 100, "0", {font: "40px Arial", fill: "#000", boundsAlignH: "center"});
+            moneyText = game.add.text(WIDTH*0.75, 500, "0", {font: "40px Arial", fill: "#000", boundsAlignH: "center"});
             key = game.input.keyboard.addKey(Phaser.Keyboard.W);
      
             makeUnits();
