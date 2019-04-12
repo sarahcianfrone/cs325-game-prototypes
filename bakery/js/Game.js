@@ -71,7 +71,12 @@ GameStates.makeGame = function( game, shared ) {
         var numChanging = num;
         while(numChanging > 0){
             if(ret.length!=0) ret = ","+ret;
-            ret = ""+numChanging%1000 + ret;
+            var hundreds = numChanging % 1000;
+            
+            if(hundreds >= 100 || ret.length == 1) ret = ""+hundreds+ret;
+            else if(hundreds >= 10) ret = "0"+hundreds+ret
+            else ret = "00"+hundreds+ret;
+           
             numChanging-=numChanging%1000;
             numChanging/=1000;
         }
@@ -88,10 +93,10 @@ GameStates.makeGame = function( game, shared ) {
 
     function makeUnits(){
         Unit("White Bread", 5, 1, 1);
-        Unit("Wheat Bread", 20, 5, 0);
-        Unit("Banana Bread", 100, 35, 0);
-        Unit("Brioche", 1000, 400, 0);
-        Unit("Sourdough", 10000, 5000, 0);
+        Unit("Wheat Bread", 100, 20, 0);
+        Unit("Banana Bread", 1000, 100, 0);
+        Unit("Brioche", 10000, 1000, 0);
+        Unit("Sourdough", 25000, 2000, 0);
     }
 
     function moneyIncrease(){
@@ -120,7 +125,6 @@ GameStates.makeGame = function( game, shared ) {
 
     function buttonClicked(info){
         if(money >= units[info].cost){
-            console.log(info);
             money-=units[info].cost;
             units[info].numOwned++;
             units[info].cost = Math.floor(units[info].cost*INCREASE);
@@ -133,6 +137,8 @@ GameStates.makeGame = function( game, shared ) {
     function makeButtons(){
         Button(20, 50, WHITE_BREAD);
         Button(20, 200, WHEAT_BREAD);
+        Button(20, 350, BANANA_BREAD);
+        Button(20, 500, BRIOCHE);
     }
 
     function destroyButtons(){
