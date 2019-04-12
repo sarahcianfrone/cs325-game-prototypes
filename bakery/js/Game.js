@@ -73,13 +73,15 @@ GameStates.makeGame = function( game, shared ) {
         while(numChanging > 0){
             if(ret.length!=0) ret = ","+ret;
             var hundreds = numChanging % 1000;
-            
-            if(hundreds >= 100 || ret.length == 1) ret = ""+hundreds+ret;
+            numChanging-=numChanging%1000;
+            numChanging/=1000;
+
+            if(hundreds >= 100 || ret.length == 0 || numChanging == 0) ret = ""+hundreds+ret;
             else if(hundreds >= 10) ret = "0"+hundreds+ret
             else ret = "00"+hundreds+ret;
            
-            numChanging-=numChanging%1000;
-            numChanging/=1000;
+            
+            
         }
         return ret;
     }
