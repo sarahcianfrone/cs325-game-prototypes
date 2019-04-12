@@ -72,6 +72,7 @@ GameStates.makeGame = function( game, shared ) {
         var numChanging = num;
         while(numChanging > 0){
             if(ret.length!=0) ret = ","+ret;
+
             var hundreds = numChanging % 1000;
             numChanging-=numChanging%1000;
             numChanging/=1000;
@@ -79,8 +80,6 @@ GameStates.makeGame = function( game, shared ) {
             if(hundreds >= 100 || ret.length == 0 || numChanging == 0) ret = ""+hundreds+ret;
             else if(hundreds >= 10) ret = "0"+hundreds+ret
             else ret = "00"+hundreds+ret;
-           
-            
             
         }
         return ret;
@@ -146,11 +145,11 @@ GameStates.makeGame = function( game, shared ) {
 
     function destroyButtons(){
         for(var i=0;i<buttons.length;i++){
-            buttons[i].sprite.destroy();
-            buttons[i].nameText.destroy();
-            buttons[i].perSecText.destroy();
-            buttons[i].numOwnedText.destroy();
-            buttons[i].costText.destroy();
+            buttons[i].destroy();
+            buttonsInfo[i].nameText.destroy();
+            buttonsInfo[i].perSecText.destroy();
+            buttonsInfo[i].numOwnedText.destroy();
+            buttonsInfo[i].costText.destroy();
         }
     }
 
@@ -160,12 +159,12 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function quitGame() {
-
         //  Here you should destroy anything you no longer need.
         //  Stop music, delete sprites, purge caches, free resources, all that good stuff.
         timeLeftText.destroy();
         enemyMoneyText.destroy();
         moneyText.destroy();
+        lifetimeMoneyText.destroy();
         background.destroy();
 
         destroyButtons();
@@ -173,6 +172,16 @@ GameStates.makeGame = function( game, shared ) {
         game.state.start('MainMenu');
     }
     
+    function toggleVisibility(){
+        for(var i = 0; i < buttonsInfo.length ; i++){
+            buttons[i].visibility = !buttons[i].visibility;
+            buttonsInfo[i].nameText.visibility = !buttonsInfo[i].nameText.visibility;
+            buttonsInfo[i].perSecText.visibility = !buttonsInfo[i].perSecText.visibility;
+            buttonsInfo[i].numOwnedText.visibility = ! buttonsInfo[i].numOwnedText.visibility;
+            buttonsInfo[i].costTest.visibility = !buttonsInfo[i].costTest.visibility.visibility;
+        }
+    }
+
     return {
     
         create: function () {
@@ -193,6 +202,7 @@ GameStates.makeGame = function( game, shared ) {
             if(timeLeft > 0) enemyMoneyIncrease();
             moneyIncrease();
             displayMoney();
+            if(key.isDown) toggleVisibility();
         }
     };
 };
