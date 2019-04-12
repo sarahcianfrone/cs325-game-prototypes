@@ -178,7 +178,7 @@ GameStates.makeGame = function( game, shared ) {
             buttonsInfo[i].nameText.visibility = !buttonsInfo[i].nameText.visibility;
             buttonsInfo[i].perSecText.visibility = !buttonsInfo[i].perSecText.visibility;
             buttonsInfo[i].numOwnedText.visibility = ! buttonsInfo[i].numOwnedText.visibility;
-            buttonsInfo[i].costTest.visibility = !buttonsInfo[i].costTest.visibility.visibility;
+            buttonsInfo[i].costText.visibility = !buttonsInfo[i].costText.visibility.visibility;
         }
     }
 
