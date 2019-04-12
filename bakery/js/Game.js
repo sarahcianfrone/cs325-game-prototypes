@@ -54,6 +54,7 @@ GameStates.makeGame = function( game, shared ) {
     var enemyEarningPerSecond = 1000;
     var enemyMoneyEarnedThisSecond = 0;
     var enemyMoneyText = null;
+    var lifetimeMoneyText = null;
 
     function enemyMoneyIncrease(){
         var enemyEarningPerTick = Math.floor(enemyEarningPerSecond/60);
@@ -152,8 +153,8 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function displayMoney(){
-        var floorMoney = Math.floor(money);
-        moneyText.setText(numberToString(floorMoney));
+        moneyText.setText(numberToString(Math.floor(money)));
+        lifetimeMoneyText.setText(numberToString(Math.floor(lifetimeEarnings)));
     }
 
     function quitGame() {
@@ -177,6 +178,7 @@ GameStates.makeGame = function( game, shared ) {
             timeLeftText = game.add.text(WIDTH - 50, 10, "5:00", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
             enemyMoneyText = game.add.text(WIDTH - 100, 50, ""+enemyMoney, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
             moneyText = game.add.text(WIDTH*0.75, 500, "0", {font: "40px Arial", fill: "#000", boundsAlignH: "center"});
+            lifetimeMoneyText = game.add.text(WIDTH*0.75, 600, "0", {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
             key = game.input.keyboard.addKey(Phaser.Keyboard.W);
      
             makeUnits();
