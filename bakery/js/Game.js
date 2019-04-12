@@ -202,7 +202,10 @@ GameStates.makeGame = function( game, shared ) {
             if(timeLeft > 0) enemyMoneyIncrease();
             moneyIncrease();
             displayMoney();
-            if(key.isDown) toggleVisibility();
+            if(key.isDown) {
+                toggleVisibility();
+                console.log("w");
+            }
         }
     };
 };
