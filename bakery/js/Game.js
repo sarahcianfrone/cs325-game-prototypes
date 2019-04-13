@@ -174,11 +174,11 @@ GameStates.makeGame = function( game, shared ) {
     
     function toggleVisibility(){
         for(var i = 0; i < buttonsInfo.length ; i++){
-            buttons[i].visibility = !buttons[i].visibility;
-            buttonsInfo[i].nameText.visibility = !buttonsInfo[i].nameText.visibility;
-            buttonsInfo[i].perSecText.visibility = !buttonsInfo[i].perSecText.visibility;
-            buttonsInfo[i].numOwnedText.visibility = ! buttonsInfo[i].numOwnedText.visibility;
-            buttonsInfo[i].costText.visibility = !buttonsInfo[i].costText.visibility;
+            buttons[i].visible = !buttons[i].visible;
+            buttonsInfo[i].nameText.visible = !buttonsInfo[i].nameText.visible;
+            buttonsInfo[i].perSecText.visible = !buttonsInfo[i].perSecText.visible;
+            buttonsInfo[i].numOwnedText.visible = ! buttonsInfo[i].numOwnedText.visible;
+            buttonsInfo[i].costText.visible = !buttonsInfo[i].costText.visible;
         }
     }
 
