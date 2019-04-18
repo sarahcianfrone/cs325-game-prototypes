@@ -17,7 +17,8 @@ window.onload = function() {
 	game.state.add( 'Preloader', GameStates.makePreloader( game ) );
 	game.state.add( 'MainMenu', GameStates.makeMainMenu( game, shared ) );
 	game.state.add( 'Game', GameStates.makeGame( game, shared ) );
-
+	game.state.add( 'Win', GameStates.makeWin(game, shared));
+	game.state.add('Lose', GameStates.makeLose(game, shared));
 	//	Now start the Boot state.
 	game.state.start('Boot');
 

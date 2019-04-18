@@ -34,7 +34,7 @@ GameStates.makeMainMenu = function( game, shared ) {
     return {
 
         create: function () {
-    
+            index = 0;
             story = game.add.sprite(0, 0, 'story0');
             key = game.input.keyboard.addKey(Phaser.KeyCode.ENTER);
             key.onDown.add(nextIndex);
@@ -43,9 +43,7 @@ GameStates.makeMainMenu = function( game, shared ) {
         },
     
         update: function () {
-    
-            //	Do some nice funky main menu effect here
-    
+            
         }
         
     };

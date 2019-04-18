@@ -28,7 +28,8 @@ GameStates.makePreloader = function( game ) {
             game.load.image('background', 'assets/game/background.png');
             game.load.image('tabBottom', 'assets/tabs/tabBottom.png');
             game.load.image('buttonBase', 'assets/game/buttonBase.png');
-            
+            game.load.image('win', 'assets/story/win.png');
+            game.load.image('lose', 'assets/story/lose.png');
         },
     
         create: function () {
