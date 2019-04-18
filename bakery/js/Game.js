@@ -100,7 +100,6 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function timeUp(){
-        quitGame();
         if(lifetimeEarnings > enemyMoney) game.state.start('Win');
         else game.state.start('Lose');
     }
