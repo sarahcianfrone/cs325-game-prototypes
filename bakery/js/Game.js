@@ -273,7 +273,7 @@ GameStates.makeGame = function( game, shared ) {
             numOwnedText: game.add.text(x+150, y+35, "Owned : "+units[ind[0]][ind[1]][ind[2]].numOwned, styleR),
             costText: game.add.text(x+150, y+65, "Cost = "+units[ind[0]][ind[1]][ind[2]].cost, styleR), 
             index: ind};
-
+        
         buttonInfo.nameText.visible = false;
         buttonInfo.perSecText.visible = false;
         buttonInfo.numOwnedText.visible = false;
@@ -303,6 +303,7 @@ GameStates.makeGame = function( game, shared ) {
                 }
             }
         }
+        console.log(buttonsInfo);
         toggleVisibility([0, 0, 0]);
     }
 
@@ -339,11 +340,11 @@ GameStates.makeGame = function( game, shared ) {
     function toggleVisibility(index){
         console.log(index);
         for(var i=0;i<4;i++){
-            buttonsInfo[index[0]][index[1]][i].nameText.visible = false;
-            buttonsInfo[index[0]][index[1]][i].perSecText.visible = false;
-            buttonsInfo[index[0]][index[1]][i].numOwnedText.visible = false;
-            buttonsInfo[index[0]][index[1]][i].costText.visible = false;
-            buttons[index[0]][index[1]][i].visible = false;
+            buttonsInfo[index[0]][index[1]][i].nameText.visible = ! buttonsInfo[index[0]][index[1]][i].nameText.visible;
+            buttonsInfo[index[0]][index[1]][i].perSecText.visible = !  buttonsInfo[index[0]][index[1]][i].perSecText.visible ;
+            buttonsInfo[index[0]][index[1]][i].numOwnedText.visible = ! buttonsInfo[index[0]][index[1]][i].numOwnedText.visible;
+            buttonsInfo[index[0]][index[1]][i].costText.visible = !buttonsInfo[index[0]][index[1]][i].costText.visible;
+            buttons[index[0]][index[1]][i].visible = !buttons[index[0]][index[1]][i].visible;
         }
     }
 
@@ -396,11 +397,13 @@ GameStates.makeGame = function( game, shared ) {
             if(timeLeft > 0) enemyMoneyIncrease();
             moneyIncrease();
             displayMoney();
+            if(frame%10 == 0){
             if(a.isDown) {
                 tabLeft();
             } else if(d.isDown){
                 tabRight();
             }
+        }
         }
     };
 };
