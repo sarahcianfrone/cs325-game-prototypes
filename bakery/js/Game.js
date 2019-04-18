@@ -78,7 +78,7 @@ GameStates.makeGame = function( game, shared ) {
     var background;
 
     //Used for the timer to include a loss case
-    var timeLeft = 11;
+    var timeLeft = 301;
     var timeLeftText;
     var frame = 0;
 
