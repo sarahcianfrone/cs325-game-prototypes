@@ -176,7 +176,7 @@ GameStates.makeGame = function( game, shared ) {
         sub3.push(Unit("Cinnamon Raisin Bagel", 36, 6, 0));
         sub3.push(Unit("French Toast Bagel", 49, 7, 0));
         sub3.push(Unit("Rainbow Bagel", 64, 8, 0));
-        tab = [sub1, sub2, sub3];
+        var tab = [sub1, sub2, sub3];
         units.push(tab);
     }
 
@@ -196,7 +196,7 @@ GameStates.makeGame = function( game, shared ) {
         sub3.push(Unit("Chocolate Mousse Cake", 150, 20, 0));
         sub3.push(Unit("Chocolate Flourless Cake", 200, 40, 0));
         sub3.push(Unit("NY Style Cheesecake", 500, 100, 0));
-        tab = [sub1, sub2, sub3];
+        var tab = [sub1, sub2, sub3];
         units.push(tab);
     }
 
@@ -216,7 +216,7 @@ GameStates.makeGame = function( game, shared ) {
         sub3.push(Unit("Sugar Cookie", 15, 20, 0));
         sub3.push(Unit("Chocolate Chip Cookie", 30, 40, 0));
         sub3.push(Unit("Gingerbread", 50, 100, 0));
-        tab = [sub1, sub2, sub3];
+        var tab = [sub1, sub2, sub3];
         units.push(tab);
     }
 
@@ -236,7 +236,7 @@ GameStates.makeGame = function( game, shared ) {
         sub3.push(Unit("Pumpkin Pie", 15, 20, 0));
         sub3.push(Unit("Key Lime Pie", 30, 40, 0));
         sub3.push(Unit("Lemon Meringue Pie", 50, 100, 0));
-        tab = [sub1, sub2, sub3];
+        var tab = [sub1, sub2, sub3];
         units.push(tab);
     }
 
