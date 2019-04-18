@@ -372,6 +372,7 @@ GameStates.makeGame = function( game, shared ) {
             }
             toggleVisibility(currentIndex);
             toggleVisibility(newIndex);
+            currentIndex = newIndex;
         }
     }
 
