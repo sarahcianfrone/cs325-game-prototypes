@@ -338,11 +338,13 @@ GameStates.makeGame = function( game, shared ) {
     
     function toggleVisibility(index){
         console.log(index);
-        buttonsInfo[index[0]][index[1]][index[2]].nameText.visible = false;
-        buttonsInfo[index[0]][index[1]][index[2]].perSecText.visible = false;
-        buttonsInfo[index[0]][index[1]][index[2]].numOwnedText.visible = false;
-        buttonsInfo[index[0]][index[1]][index[2]].costText.visible = false;
-        buttons[index[0]][index[1]][index[2]].visible = false;
+        for(var i=0;i<4;i++){}
+            buttonsInfo[index[0]][index[1]][i].nameText.visible = false;
+            buttonsInfo[index[0]][index[1]][i].perSecText.visible = false;
+            buttonsInfo[index[0]][index[1]][i].numOwnedText.visible = false;
+            buttonsInfo[index[0]][index[1]][i].costText.visible = false;
+            buttons[index[0]][index[1]][i].visible = false;
+        }
     }
 
     function tabLeft(){
