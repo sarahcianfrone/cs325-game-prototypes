@@ -78,7 +78,7 @@ GameStates.makeGame = function( game, shared ) {
     var background;
 
     //Used for the timer to include a loss case
-    var timeLeft = 301;
+    var timeLeft = 11;
     var timeLeftText;
     var frame = 0;
 
@@ -100,9 +100,9 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function timeUp(){
-        if(lifetimeEarnings > enemyMoney) console.log("Win");
-        else console.log("Lose");
         quitGame();
+        if(lifetimeEarnings > enemyMoney) game.state.start('Win');
+        else game.state.start('Lose');
     }
 
 
