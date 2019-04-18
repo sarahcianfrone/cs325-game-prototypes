@@ -338,7 +338,7 @@ GameStates.makeGame = function( game, shared ) {
     
     function toggleVisibility(index){
         console.log(index);
-        for(var i=0;i<4;i++){}
+        for(var i=0;i<4;i++){
             buttonsInfo[index[0]][index[1]][i].nameText.visible = false;
             buttonsInfo[index[0]][index[1]][i].perSecText.visible = false;
             buttonsInfo[index[0]][index[1]][i].numOwnedText.visible = false;
