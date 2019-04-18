@@ -337,6 +337,7 @@ GameStates.makeGame = function( game, shared ) {
     }
     
     function toggleVisibility(index){
+        console.log(index);
         buttonsInfo[index[0]][index[1]][index[2]].nameText.visible = false;
         buttonsInfo[index[0]][index[1]][index[2]].perSecText.visible = false;
         buttonsInfo[index[0]][index[1]][index[2]].numOwnedText.visible = false;
@@ -354,6 +355,7 @@ GameStates.makeGame = function( game, shared ) {
             }
             toggleVisibility(currentIndex);
             toggleVisibility(newIndex);
+            currentIndex = newIndex;
         }
     }
 
