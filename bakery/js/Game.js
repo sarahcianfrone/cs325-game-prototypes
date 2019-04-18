@@ -73,7 +73,7 @@ GameStates.makeGame = function( game, shared ) {
     var a;
     var d;
 
-    currentIndex = [0, 0];
+    var currentIndex = [0, 0];
     //Sprites
     var background;
 
