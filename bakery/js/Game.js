@@ -83,14 +83,8 @@ GameStates.makeGame = function( game, shared ) {
     var frame = 0;
 
     var units = [];
-    var buttons = [ [[null, null, null, null], [null, null, null, null], [null, null, null, null]], 
-                    [[null, null, null, null], [null, null, null, null], [null, null, null, null]],
-                    [[null, null, null, null], [null, null, null, null], [null, null, null, null]],
-                    [[null, null, null, null], [null, null, null, null], [null, null, null, null]] ];
-    var buttonsInfo = [ [[null, null, null, null], [null, null, null, null], [null, null, null, null]], 
-                        [[null, null, null, null], [null, null, null, null], [null, null, null, null]],
-                        [[null, null, null, null], [null, null, null, null], [null, null, null, null]],
-                        [[null, null, null, null], [null, null, null, null], [null, null, null, null]] ];
+    var buttons = [4][3][4];
+    var buttonsInfo = [4][3][4];
 
     function decreaseTimeLeft(){
         frame = 0;
@@ -266,7 +260,6 @@ GameStates.makeGame = function( game, shared ) {
         var styleL = {font: "25px Arial", fill: "#fff", boundsAlignH: "left"};
         var styleR = {font: "20px Arial", fill: "#fff", boundsAlignH: "right"};
         var bttn =  game.add.button(x, y, 'buttonBase', function(){buttonClicked(ind)});
-        bttn.scale.setTo(2, 1);
         var buttonInfo =  { nameText: game.add.text(x+5, y+5, units[ind[0]][ind[1]][ind[2]].name, styleL),
             perSecText: game.add.text(x+5, y+65, "$/s = "+units[ind[0]][ind[1]][ind[2]].perSec, styleR),
             numOwnedText: game.add.text(x+150, y+35, "Owned : "+units[ind[0]][ind[1]][ind[2]].numOwned, styleR),
