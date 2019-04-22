@@ -83,8 +83,14 @@ GameStates.makeGame = function( game, shared ) {
     var frame = 0;
 
     var units = [];
-    var buttons = [4][3][4];
-    var buttonsInfo = [4][3][4];
+    var buttons = [[[null, null, null, null], [null, null, null, null], [null, null, null, null]],
+                   [[null, null, null, null], [null, null, null, null], [null, null, null, null]],
+                   [[null, null, null, null], [null, null, null, null], [null, null, null, null]],
+                   [[null, null, null, null], [null, null, null, null], [null, null, null, null]]];
+    var buttonsInfo = [[[null, null, null, null], [null, null, null, null], [null, null, null, null]],
+    [[null, null, null, null], [null, null, null, null], [null, null, null, null]],
+    [[null, null, null, null], [null, null, null, null], [null, null, null, null]],
+    [[null, null, null, null], [null, null, null, null], [null, null, null, null]]];
 
     function decreaseTimeLeft(){
         frame = 0;
