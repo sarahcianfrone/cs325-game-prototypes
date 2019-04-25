@@ -333,7 +333,7 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function SubTab(ind, name){
-        var tab = ind;
+        var tab = {up: null, down: null, name: null, text: null};
         tab.up = game.add.sprite(50+(ind*100), 150, 'subtabSelected');
         tab.down = game.add.button(50+(ind*100), 150, 'subtabUnselected', function(){subTabClicked(ind)});
         tab.name = name;
@@ -345,9 +345,9 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function MainTab(ind, name1, name2, name3, name){
-        var tab = ind;
+        var tab = {up: null, down:null, name:null, text:null, subtabs:null};
         tab.up = game.add.sprite(50+(ind*75), 100, 'mainTabSelected');
-        tab.down = game.add.button(50+(ind*75), 100, 'mainTabSelected', function(){mainTabClicked(ind)});
+        tab.down = game.add.button(50+(ind*75), 100, 'mainTabUnselected', function(){mainTabClicked(ind)});
         tab.up.visible = false;
         tab.down.visible = true;
         tab.name = name;
