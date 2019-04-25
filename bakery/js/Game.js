@@ -145,7 +145,7 @@ GameStates.makeGame = function( game, shared ) {
             numChanging-=numChanging%1000;
             numChanging/=1000;
 
-            if(hundreds >= 100 || (ret.length == 0 && numChanging == 0)) ret = ""+hundreds+ret;
+            if(hundreds >= 100 || (ret.length == 0 || numChanging == 0)) ret = ""+hundreds+ret;
             else if(hundreds >= 10) ret = "0"+hundreds+ret
             else ret = "00"+hundreds+ret;
             
