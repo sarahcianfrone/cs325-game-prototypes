@@ -474,6 +474,7 @@ GameStates.makeGame = function( game, shared ) {
             if(lifetimeEarnings > enemyMoney){
                 timeUp();
             }
+            console.log(currentIndex);
         }
         
     };
