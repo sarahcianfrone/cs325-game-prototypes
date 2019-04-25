@@ -131,7 +131,7 @@ GameStates.makeGame = function( game, shared ) {
             enemyEarningPerTick = enemyEarningPerSecond-enemyMoneyEarnedThisSecond;
         }
         enemyMoney+=enemyEarningPerTick;
-        enemyMoneyText.setText("Enemy $: "+numberToString(enemyMoney));
+        enemyMoneyText.setText("Enemy $ "+numberToString(enemyMoney));
     }
 
     //Converts a number from 12345678 format -> 12,345,678 format
@@ -324,8 +324,8 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function displayMoney(){
-        moneyText.setText("$:"+numberToString(Math.floor(money)));
-        lifetimeMoneyText.setText("Lifetime $:"+numberToString(Math.floor(lifetimeEarnings)));
+        moneyText.setText("$"+numberToString(Math.floor(money)));
+        lifetimeMoneyText.setText("Lifetime $"+numberToString(Math.floor(lifetimeEarnings)));
         moneyPerSecondText.setText("$/sec: "+numberToString(moneyPerSecond));
     }
 
