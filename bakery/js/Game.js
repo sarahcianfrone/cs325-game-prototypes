@@ -118,8 +118,8 @@ GameStates.makeGame = function( game, shared ) {
     //EnemyMoney and enemyEarningPerSecond used for the loss case also
     //By the end of 5 minutes = 300 seconds, the enemy will have 100,000+300*10,000 = 400,000
     //These numbers subject to change
-    var enemyMoney = 100000;
-    var enemyEarningPerSecond = 1000;
+    var enemyMoney = 250000;
+    var enemyEarningPerSecond = 2500;
     var enemyMoneyEarnedThisSecond = 0;
     var enemyMoneyText = null;
     var lifetimeMoneyText = null;
