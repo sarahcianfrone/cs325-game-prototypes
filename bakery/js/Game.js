@@ -330,6 +330,7 @@ GameStates.makeGame = function( game, shared ) {
 console.log("STC: "+ind);
         tabs[currentIndex[0]].subtabs[ind].up.visible = true;
         tabs[currentIndex[0]].subtabs[ind].down.visible = false;
+        currentIndex = [currentIndex[0], ind];
     }
 
     function SubTab(ind, name){
