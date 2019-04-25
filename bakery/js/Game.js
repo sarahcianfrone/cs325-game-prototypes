@@ -452,6 +452,7 @@ GameStates.makeGame = function( game, shared ) {
     
         create: function () {
             background = game.add.sprite(0, 0, 'background');
+            maintabBackground=  game.add.sprite(50, 125, 'maintabBackground');
             tabBackground = game.add.sprite(50, 225, 'tabBackground');
             timeLeftText = game.add.text(WIDTH - 50, 10, "5:00", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
             enemyMoneyText = game.add.text(WIDTH - 100, 50, ""+enemyMoney, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
