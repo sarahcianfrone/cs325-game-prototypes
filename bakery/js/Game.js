@@ -458,6 +458,7 @@ GameStates.makeGame = function( game, shared ) {
             maintabBackground=  game.add.sprite(50, 125, 'maintabBackground');
             enemyInfoBox = game.add.sprite(450, 100, 'enemyInfoBox');
             moneyBox = game.add.sprite(450, 500, 'moneyBox');
+            game.add.sprite(450, 225, 'upgradeBox');
             tabBackground = game.add.sprite(50, 225, 'tabBackground');
             timeLeftText = game.add.text(460, 140, "5:00", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
             enemyMoneyText = game.add.text(460, 105, ""+enemyMoney, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
