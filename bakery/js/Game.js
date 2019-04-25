@@ -131,7 +131,7 @@ GameStates.makeGame = function( game, shared ) {
             enemyEarningPerTick = enemyEarningPerSecond-enemyMoneyEarnedThisSecond;
         }
         enemyMoney+=enemyEarningPerTick;
-        enemyMoneyText.setText("TSP $:\n"+numberToString(enemyMoney));
+        enemyMoneyText.setText("Enemy $: "+numberToString(enemyMoney));
     }
 
     //Converts a number from 12345678 format -> 12,345,678 format
@@ -320,8 +320,8 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function displayMoney(){
-        moneyText.setText("Current Money:\n"+numberToString(Math.floor(money)));
-        lifetimeMoneyText.setText("Lifetime Earnings:\n"+numberToString(Math.floor(lifetimeEarnings)));
+        moneyText.setText("$:"+numberToString(Math.floor(money)));
+        lifetimeMoneyText.setText("Lifetime $:"+numberToString(Math.floor(lifetimeEarnings)));
         moneyPerSecondText.setText("$/sec: "+numberToString(moneyPerSecond));
     }
 
@@ -459,11 +459,11 @@ GameStates.makeGame = function( game, shared ) {
             enemyInfoBox = game.add.sprite(450, 100, 'enemyInfoBox');
             moneyBox = game.add.sprite(450, 500, 'moneyBox');
             tabBackground = game.add.sprite(50, 225, 'tabBackground');
-            timeLeftText = game.add.text(425, 140, "5:00", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
-            enemyMoneyText = game.add.text(425, 105, ""+enemyMoney, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
-            moneyText = game.add.text(425, 510, "0", {font: "40px Arial", fill: "#000", boundsAlignH: "center"});
-            lifetimeMoneyText = game.add.text(425, 600, "0", {font: "25px Arial", fill: "#000", align: "center"});
-            moneyPerSecondText = game.add.text(425, 660, "0", {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
+            timeLeftText = game.add.text(460, 140, "5:00", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
+            enemyMoneyText = game.add.text(460, 105, ""+enemyMoney, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
+            moneyText = game.add.text(460, 510, "0", {font: "40px Arial", fill: "#000", boundsAlignH: "center"});
+            lifetimeMoneyText = game.add.text(460, 600, "0", {font: "25px Arial", fill: "#000", align: "center"});
+            moneyPerSecondText = game.add.text(460, 660, "0", {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
             a = game.input.keyboard.addKey(Phaser.Keyboard.A);
             d = game.input.keyboard.addKey(Phaser.Keyboard.D);
 
