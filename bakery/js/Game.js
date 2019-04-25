@@ -328,8 +328,8 @@ GameStates.makeGame = function( game, shared ) {
         tabs[currentIndex[0]].subtabs[currentIndex[1]].up.visible = false;
         tabs[currentIndex[0]].subtabs[currentIndex[1]].down.visible = true;
 console.log(ind);
-        tabs[currentIndex[0]].subtabs[currentIndex[ind]].up.visible = true;
-        tabs[currentIndex[0]].subtabs[currentIndex[ind]].down.visible = false;
+        tabs[currentIndex[0]].subtabs[ind].up.visible = true;
+        tabs[currentIndex[0]].subtabs[ind].down.visible = false;
     }
 
     function SubTab(ind, name){
