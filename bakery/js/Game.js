@@ -78,6 +78,8 @@ GameStates.makeGame = function( game, shared ) {
     var background;
     var tabBackground;
     var maintabBackground;
+    var enemyInfoBox;
+    var moneyBox;
     //Used for the timer to include a loss case
     var timeLeft = 301;
     var timeLeftText;
@@ -97,7 +99,7 @@ GameStates.makeGame = function( game, shared ) {
     function decreaseTimeLeft(){
         frame = 0;
         timeLeft--;
-        timeLeftText.setText(timeToString(timeLeft))
+        timeLeftText.setText("Time Left: "+timeToString(timeLeft))
         if(timeLeft == 0) timeUp();
     }
 
@@ -129,7 +131,7 @@ GameStates.makeGame = function( game, shared ) {
             enemyEarningPerTick = enemyEarningPerSecond-enemyMoneyEarnedThisSecond;
         }
         enemyMoney+=enemyEarningPerTick;
-        enemyMoneyText.setText(numberToString(enemyMoney));
+        enemyMoneyText.setText("TSP $:\n"+numberToString(enemyMoney));
     }
 
     //Converts a number from 12345678 format -> 12,345,678 format
@@ -143,7 +145,7 @@ GameStates.makeGame = function( game, shared ) {
             numChanging-=numChanging%1000;
             numChanging/=1000;
 
-            if(hundreds >= 100 || ret.length == 0 || numChanging == 0) ret = ""+hundreds+ret;
+            if(hundreds >= 100 || (ret.length == 0 && numChanging == 0)) ret = ""+hundreds+ret;
             else if(hundreds >= 10) ret = "0"+hundreds+ret
             else ret = "00"+hundreds+ret;
             
@@ -265,8 +267,8 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function Button(x, y, ind){
-        var styleL = {font: "25px Arial", fill: "#fff", boundsAlignH: "left"};
-        var styleR = {font: "20px Arial", fill: "#fff", boundsAlignH: "right"};
+        var styleL = {font: "25px Arial", fill: "#000", boundsAlignH: "left"};
+        var styleR = {font: "20px Arial", fill: "#000", boundsAlignH: "right"};
         var bttn =  game.add.button(x, y, 'buttonBase', function(){buttonClicked(ind)});
         var buttonInfo =  { nameText: game.add.text(x+5, y+5, units[ind[0]][ind[1]][ind[2]].name, styleL),
             perSecText: game.add.text(x+5, y+65, "$/s = "+units[ind[0]][ind[1]][ind[2]].perSec, styleR),
@@ -318,9 +320,9 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function displayMoney(){
-        moneyText.setText(numberToString(Math.floor(money)));
-        lifetimeMoneyText.setText(numberToString(Math.floor(lifetimeEarnings)));
-        moneyPerSecondText.setText(numberToString(moneyPerSecond));
+        moneyText.setText("Current Money:\n"+numberToString(Math.floor(money)));
+        lifetimeMoneyText.setText("Lifetime Earnings:\n"+numberToString(Math.floor(lifetimeEarnings)));
+        moneyPerSecondText.setText("$/sec: "+numberToString(moneyPerSecond));
     }
 
     function subTabClicked(ind){
@@ -454,12 +456,14 @@ GameStates.makeGame = function( game, shared ) {
         create: function () {
             background = game.add.sprite(0, 0, 'background');
             maintabBackground=  game.add.sprite(50, 125, 'maintabBackground');
+            enemyInfoBox = game.add.sprite(450, 100, 'enemyInfoBox');
+            moneyBox = game.add.sprite(450, 500, 'moneyBox');
             tabBackground = game.add.sprite(50, 225, 'tabBackground');
-            timeLeftText = game.add.text(WIDTH - 50, 10, "5:00", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
-            enemyMoneyText = game.add.text(WIDTH - 100, 50, ""+enemyMoney, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
-            moneyText = game.add.text(WIDTH*0.75, 500, "0", {font: "40px Arial", fill: "#000", boundsAlignH: "center"});
-            lifetimeMoneyText = game.add.text(WIDTH*0.75, 600, "0", {font: "25px Arial", fill: "#000", align: "center"});
-            moneyPerSecondText = game.add.text(WIDTH*0.75, 660, "0", {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
+            timeLeftText = game.add.text(425, 140, "5:00", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
+            enemyMoneyText = game.add.text(425, 105, ""+enemyMoney, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
+            moneyText = game.add.text(425, 510, "0", {font: "40px Arial", fill: "#000", boundsAlignH: "center"});
+            lifetimeMoneyText = game.add.text(425, 600, "0", {font: "25px Arial", fill: "#000", align: "center"});
+            moneyPerSecondText = game.add.text(425, 660, "0", {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
             a = game.input.keyboard.addKey(Phaser.Keyboard.A);
             d = game.input.keyboard.addKey(Phaser.Keyboard.D);
 
