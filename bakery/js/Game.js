@@ -327,7 +327,7 @@ GameStates.makeGame = function( game, shared ) {
         toggleVisibility([currentIndex[0], ind]);
         tabs[currentIndex[0]].subtabs[currentIndex[1]].up.visible = false;
         tabs[currentIndex[0]].subtabs[currentIndex[1]].down.visible = true;
-console.log(ind);
+console.log("STC: "+ind);
         tabs[currentIndex[0]].subtabs[ind].up.visible = true;
         tabs[currentIndex[0]].subtabs[ind].down.visible = false;
     }
