@@ -298,7 +298,7 @@ GameStates.makeGame = function( game, shared ) {
         for(var a = 0; a < 4; a++){
             for(var b = 0; b < 3; b++){
                 for(var c = 0; c < 4; c++){
-                    Button(20, 50+(150*c), [a, b, c]);
+                    Button(75, 125+(150*c), [a, b, c]);
                 }
             }
         }
@@ -375,7 +375,8 @@ GameStates.makeGame = function( game, shared ) {
         tabs[current].down.visible = true;
         tabs[ind].up.visible = true;
         tabs[ind].down.visible = false;
-
+        toggleVisibility(currentIndex);
+        toggleVisibility([ind, 0]);
         currentIndex = [ind, 0];
     }
 
