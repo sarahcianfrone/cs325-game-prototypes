@@ -30,6 +30,10 @@ GameStates.makePreloader = function( game ) {
             game.load.image('buttonBase', 'assets/game/buttonBase.png');
             game.load.image('win', 'assets/story/win.png');
             game.load.image('lose', 'assets/story/lose.png');
+            game.load.image('subtabSelected', 'assets/tabs/subtab_selected.png')
+            game.load.image('subtabUnselected', 'assets/tabs/subtab_unselected.png');
+            game.load.image('mainTabSelected', 'assets/tabs/maintab_selected.png')
+            game.load.image('mainTabUnselected', 'assets/tabs/maintab_unselected.png')
         },
     
         create: function () {
