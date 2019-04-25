@@ -272,8 +272,8 @@ GameStates.makeGame = function( game, shared ) {
         var bttn =  game.add.button(x, y, 'buttonBase', function(){buttonClicked(ind)});
         var buttonInfo =  { nameText: game.add.text(x+5, y+5, units[ind[0]][ind[1]][ind[2]].name, styleL),
             perSecText: game.add.text(x+5, y+65, "$/s = "+units[ind[0]][ind[1]][ind[2]].perSec, styleR),
-            numOwnedText: game.add.text(325, y+35, "Owned : "+units[ind[0]][ind[1]][ind[2]].numOwned, styleR),
-            costText: game.add.text(325, y+65, "Cost = "+units[ind[0]][ind[1]][ind[2]].cost, styleR), 
+            numOwnedText: game.add.text(321, y+35, "Owned : "+units[ind[0]][ind[1]][ind[2]].numOwned, styleR),
+            costText: game.add.text(321, y+65, "Cost = "+units[ind[0]][ind[1]][ind[2]].cost, styleR), 
             index: ind};
         
 
