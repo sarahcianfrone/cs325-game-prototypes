@@ -76,7 +76,7 @@ GameStates.makeGame = function( game, shared ) {
     var currentIndex = [0, 0];
     //Sprites
     var background;
-
+    var tabBackground;
     //Used for the timer to include a loss case
     var timeLeft = 301;
     var timeLeftText;
@@ -298,11 +298,11 @@ GameStates.makeGame = function( game, shared ) {
         for(var a = 0; a < 4; a++){
             for(var b = 0; b < 3; b++){
                 for(var c = 0; c < 4; c++){
-                    Button(75, 125+(150*c), [a, b, c]);
+                    Button(75, 250+(125*c), [a, b, c]);
                 }
             }
         }
-        console.log(buttonsInfo);
+       
         toggleVisibility([0, 0, 0]);
     }
 
@@ -327,7 +327,6 @@ GameStates.makeGame = function( game, shared ) {
         toggleVisibility([currentIndex[0], ind]);
         tabs[currentIndex[0]].subtabs[currentIndex[1]].up.visible = false;
         tabs[currentIndex[0]].subtabs[currentIndex[1]].down.visible = true;
-console.log("STC: "+ind);
         tabs[currentIndex[0]].subtabs[ind].up.visible = true;
         tabs[currentIndex[0]].subtabs[ind].down.visible = false;
         currentIndex = [currentIndex[0], ind];
@@ -347,7 +346,7 @@ console.log("STC: "+ind);
 
     function MainTab(ind, name1, name2, name3, name){
         var tab = {up: null, down:null, name:null, text:null, subtabs:null};
-        tab.up = game.add.sprite(50+(ind*75), 100, 'mainTabSelected');
+        tab.up = game.add.sprite(50+(ind*100), 100, 'mainTabSelected');
         tab.down = game.add.button(50+(ind*75), 100, 'mainTabUnselected', function(){mainTabClicked(ind)});
         tab.up.visible = false;
         tab.down.visible = true;
@@ -411,7 +410,6 @@ console.log("STC: "+ind);
     }
     
     function toggleVisibility(index){
-        console.log(index);
         for(var i=0;i<4;i++){
             buttonsInfo[index[0]][index[1]][i].nameText.visible = ! buttonsInfo[index[0]][index[1]][i].nameText.visible;
             buttonsInfo[index[0]][index[1]][i].perSecText.visible = !  buttonsInfo[index[0]][index[1]][i].perSecText.visible ;
@@ -454,6 +452,7 @@ console.log("STC: "+ind);
     
         create: function () {
             background = game.add.sprite(0, 0, 'background');
+            tabBackground = game.add.sprite(50, 225, 'tabBackground');
             timeLeftText = game.add.text(WIDTH - 50, 10, "5:00", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
             enemyMoneyText = game.add.text(WIDTH - 100, 50, ""+enemyMoney, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
             moneyText = game.add.text(WIDTH*0.75, 500, "0", {font: "40px Arial", fill: "#000", boundsAlignH: "center"});
@@ -476,7 +475,6 @@ console.log("STC: "+ind);
             if(lifetimeEarnings > enemyMoney){
                 timeUp();
             }
-           // console.log(currentIndex);
         }
         
     };
