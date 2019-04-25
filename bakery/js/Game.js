@@ -368,6 +368,7 @@ console.log(ind);
             tabs[current].subtabs[i].down.visible = false;
             tabs[current].subtabs[i].text.visible = false;
         }
+
         tabs[ind].subtabs[0].up.visible = true;
         tabs[ind].subtabs[0].down.visible = false;
 
@@ -474,7 +475,7 @@ console.log(ind);
             if(lifetimeEarnings > enemyMoney){
                 timeUp();
             }
-            console.log(currentIndex);
+           // console.log(currentIndex);
         }
         
     };
