@@ -92,6 +92,7 @@ GameStates.makeGame = function( game, shared ) {
     [[null, null, null, null], [null, null, null, null], [null, null, null, null]],
     [[null, null, null, null], [null, null, null, null], [null, null, null, null]]];
 
+    var tabs = [null, null, null, null];
     function decreaseTimeLeft(){
         frame = 0;
         timeLeft--;
@@ -321,6 +322,77 @@ GameStates.makeGame = function( game, shared ) {
         moneyPerSecondText.setText(numberToString(moneyPerSecond));
     }
 
+    function subTabClicked(ind){
+        toggleVisibility(currentIndex);
+        toggleVisibility([currentIndex[0], ind]);
+        tabs[currentIndex[0]].subtabs[currentIndex[1]].up.visible = false;
+        tabs[currentIndex[0]].subtabs[currentIndex[1]].down.visible = true;
+
+        tabs[currentIndex[0]].subtabs[currentIndex[ind]].up.visible = true;
+        tabs[currentIndex[0]].subtabs[currentIndex[ind]].down.visible = false;
+    }
+
+    function SubTab(ind, name){
+        var tab = ind;
+        tab.up = game.add.sprite(50+(ind*100), 150, 'subtabSelected');
+        tab.down = game.add.button(50+(ind*100), 150, 'subtabUnselected', function(){subTabClicked(ind)});
+        tab.name = name;
+        tab.text = game.add.text(50+ind*100+5, 150, name, {font: "15px Arial", fill: "#000", align: "center"});
+        tab.up.visible = false;
+        tab.down.visible = false;
+        tab.text.visible = false;
+        return tab;
+    }
+
+    function MainTab(ind, name1, name2, name3, name){
+        var tab = ind;
+        tab.up = game.add.sprite(50+(ind*75), 100, 'mainTabSelected');
+        tab.down = game.add.button(50+(ind*75), 100, 'mainTabSelected', function(){mainTabClicked(ind)});
+        tab.up.visible = false;
+        tab.down.visible = true;
+        tab.name = name;
+        tab.text = game.add.text(50+(ind*75)+5, 100, name, {font: "20px Arial", fill: "#000", align: "center"});
+        tab.subtabs = [SubTab(0, name1), SubTab(1, name2), SubTab(2, name3)];
+        return tab;
+    }
+    
+    function mainTabClicked(ind){
+        var current = currentIndex[0];
+
+        for(var i=0;i<3;i++){
+            tabs[ind].subtabs[i].down.visible = true;
+            tabs[ind].subtabs[i].up.visible = false;
+            tabs[ind].subtabs[i].text.visible = true;
+
+            tabs[current].subtabs[i].up.visible = false;
+            tabs[current].subtabs[i].down.visible = false;
+            tabs[current].subtabs[i].text.visible = false;
+        }
+        tabs[ind].subtabs[0].up.visible = true;
+        tabs[ind].subtabs[0].down.visible = false;
+
+        tabs[current].up.visible = false;
+        tabs[current].down.visible = true;
+        tabs[ind].up.visible = true;
+        tabs[ind].down.visible = false;
+
+        currentIndex = [ind, 0];
+    }
+
+    function makeTabs(){
+        tabs = [MainTab(0, "Yeasted", "Nonyeasted", "Bagels", "Bread"), MainTab(1, "Foam Cake", "Butter Cake", "Flourless", "Cake"), MainTab(2, "Breakfast", "Dessert", "Cookies", "Pastry"), MainTab(3, "Fruit Pies", "Cream Pies","Custard Pies", "Pie")];
+        for(var i=0;i<3;i++){
+            tabs[0].subtabs[i].down.visible = true;
+            tabs[0].subtabs[i].up.visible = false;
+            tabs[0].subtabs[i].text.visible = true;
+        }
+        tabs[0].subtabs[0].up.visible = true;
+        tabs[0].subtabs[0].down.visible = false;
+        tabs[0].down.visible = false;
+        tabs[0].up.visible = true;
+        currentIndex = [0, 0];
+    }
+
     function quitGame() {
         //  Here you should destroy anything you no longer need.
         //  Stop music, delete sprites, purge caches, free resources, all that good stuff.
@@ -345,6 +417,7 @@ GameStates.makeGame = function( game, shared ) {
             buttons[index[0]][index[1]][i].visible = !buttons[index[0]][index[1]][i].visible;
         }
     }
+
 
     function tabLeft(){
         var newIndex = [0, 0];
@@ -381,13 +454,14 @@ GameStates.makeGame = function( game, shared ) {
             timeLeftText = game.add.text(WIDTH - 50, 10, "5:00", {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
             enemyMoneyText = game.add.text(WIDTH - 100, 50, ""+enemyMoney, {font: "25px Arial", fill: "#000", boundsAlignH: "right"});
             moneyText = game.add.text(WIDTH*0.75, 500, "0", {font: "40px Arial", fill: "#000", boundsAlignH: "center"});
-            lifetimeMoneyText = game.add.text(WIDTH*0.75, 600, "0", {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
+            lifetimeMoneyText = game.add.text(WIDTH*0.75, 600, "0", {font: "25px Arial", fill: "#000", align: "center"});
             moneyPerSecondText = game.add.text(WIDTH*0.75, 660, "0", {font: "25px Arial", fill: "#000", boundsAlignH: "center"});
             a = game.input.keyboard.addKey(Phaser.Keyboard.A);
             d = game.input.keyboard.addKey(Phaser.Keyboard.D);
 
             makeUnits();
             makeButtons();
+            makeTabs();
         },
     
         update: function () {
@@ -396,16 +470,10 @@ GameStates.makeGame = function( game, shared ) {
             if(timeLeft > 0) enemyMoneyIncrease();
             moneyIncrease();
             displayMoney();
-            if(frame%10 == 0){
-            if(a.isDown) {
-                tabLeft();
-            } else if(d.isDown){
-                tabRight();
-            }
             if(lifetimeEarnings > enemyMoney){
-
+                timeUp();
             }
         }
-        }
+        
     };
 };
