@@ -176,7 +176,7 @@ GameStates.makeGame = function( game, shared ) {
         sub2.push(Unit("Sourdough", 10000, 1000, 0));
         var sub3 = [];
         sub3.push(Unit("Basic Bagel", 25, 5, 0));
-        sub3.push(Unit("Cinnamon Raisin Bagel", 36, 6, 0));
+        sub3.push(Unit("Cinnamon Raisin\nBagel", 36, 6, 0));
         sub3.push(Unit("French Toast Bagel", 49, 7, 0));
         sub3.push(Unit("Rainbow Bagel", 64, 8, 0));
         var tab = [sub1, sub2, sub3];
@@ -196,8 +196,8 @@ GameStates.makeGame = function( game, shared ) {
         sub2.push(Unit("Chocolate Cake", 10000, 1000, 0));
         var sub3 = [];
         sub3.push(Unit("No-Bake Cheesecake", 25, 4, 0));
-        sub3.push(Unit("Chocolate Mousse Cake", 150, 20, 0));
-        sub3.push(Unit("Chocolate Flourless Cake", 200, 40, 0));
+        sub3.push(Unit("Chocolate Mousse\nCake", 150, 20, 0));
+        sub3.push(Unit("Chocolate Flourless\nCake", 200, 40, 0));
         sub3.push(Unit("NY Style Cheesecake", 500, 100, 0));
         var tab = [sub1, sub2, sub3];
         units.push(tab);
@@ -215,9 +215,9 @@ GameStates.makeGame = function( game, shared ) {
         sub2.push(Unit("Eclair", 100, 65, 0));
         sub2.push(Unit("Macaron", 100000, 20000, 0));
         var sub3 = [];
-        sub3.push(Unit("Oatmeal Raisin Cookie", 6, 1, 0));
+        sub3.push(Unit("Oatmeal Raisin\nCookie", 6, 1, 0));
         sub3.push(Unit("Sugar Cookie", 15, 20, 0));
-        sub3.push(Unit("Chocolate Chip Cookie", 30, 40, 0));
+        sub3.push(Unit("Chocolate Chip\nCookie", 30, 40, 0));
         sub3.push(Unit("Gingerbread", 50, 100, 0));
         var tab = [sub1, sub2, sub3];
         units.push(tab);
@@ -271,9 +271,9 @@ GameStates.makeGame = function( game, shared ) {
         var styleR = {font: "20px Arial", fill: "#000", boundsAlignH: "right"};
         var bttn =  game.add.button(x, y, 'buttonBase', function(){buttonClicked(ind)});
         var buttonInfo =  { nameText: game.add.text(x+5, y+5, units[ind[0]][ind[1]][ind[2]].name, styleL),
-            perSecText: game.add.text(x+5, y+65, "$/s = "+units[ind[0]][ind[1]][ind[2]].perSec, styleR),
-            numOwnedText: game.add.text(321, y+35, "Owned : "+units[ind[0]][ind[1]][ind[2]].numOwned, styleR),
-            costText: game.add.text(321, y+65, "Cost = "+units[ind[0]][ind[1]][ind[2]].cost, styleR), 
+            perSecText: game.add.text(x+5, y+67, "$/s = "+units[ind[0]][ind[1]][ind[2]].perSec, styleR),
+            numOwnedText: game.add.text(320, y+35, "Owned : "+units[ind[0]][ind[1]][ind[2]].numOwned, styleR),
+            costText: game.add.text(320, y+67, "Cost = "+units[ind[0]][ind[1]][ind[2]].cost, styleR), 
             index: ind};
         
 
