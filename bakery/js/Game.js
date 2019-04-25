@@ -77,6 +77,7 @@ GameStates.makeGame = function( game, shared ) {
     //Sprites
     var background;
     var tabBackground;
+    var maintabBackground;
     //Used for the timer to include a loss case
     var timeLeft = 301;
     var timeLeftText;
